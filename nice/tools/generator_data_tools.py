@@ -96,6 +96,10 @@ def get_plant_ids_for_dataset(dataset_desc, data_year):
         return list(set(data["Plant Code"].to_list()))
 
 
+if __name__ == "__main__":
+    gen = load_eia_860_generator(2024)  # 26885
+    # gen = load_eia_923_generator_and_fuel(data_year=2024)
+    []
 # data_year = 2024
 
 

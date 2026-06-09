@@ -18,7 +18,7 @@ def prime_mover_to_desc():
         "IC": "Internal Combustion Engine",
         "CA": "Combined Cycle Steam Part",
         "CT": "Combined Cycle Combustion Turbine Part",
-        "CS": "Combined Cycle Sincle Shaft",
+        "CS": "Combined Cycle Single Shaft",
         "CC": "Combined Cycle Total Unit",
         "HA": "Hydrokinetic Axial Flow Turbine",
         "HB": "Hydrokinetic Wave Buoy",
@@ -32,6 +32,37 @@ def prime_mover_to_desc():
         "OT": "Other",
     }
     return prime_mover_code
+
+
+def make_prime_mover_cmap():
+    # HB, ES, CC, HA, HK not prime mover
+    import matplotlib as mpl
+
+    cmap = {}
+    pms = prime_mover_to_desc()
+    pm_abbrev = list(pms.keys())
+    # similar colors for combined cycle, oranges
+    cmap |= dict(zip(["CA", "CT", "CS", "CC"], mpl.colormaps["tab20c"].colors[4:8]))
+
+    # similar colors for hydrokinetic, purples
+    cmap |= dict(zip(["HY", "HB", "HK", "HA"], mpl.colormaps["tab20c"].colors[12:16]))
+
+    # similar colors for wind, blues
+    cmap |= dict(zip(["WT", "WS"], mpl.colormaps["tab20"].colors[0:2]))
+
+    # similar colors for turbines and combustion, ugly yellows
+    cmap |= dict(zip(["ST", "GT", "IC"], mpl.colormaps["tab20b"].colors[8:11]))
+
+    # similar colors for solar, reds
+    cmap |= dict(zip(["PV", "CP"], mpl.colormaps["tab20"].colors[6:8]))
+
+    # similar colors for storage, magentas
+    cmap |= dict(zip(["BA", "CE", "FW", "PS"], mpl.colormaps["tab20b"].colors[16:]))
+
+    missing_pms = [k for k in list(cmap.keys()) if k not in pm_abbrev]
+    cmap |= dict(zip(missing_pms, mpl.colormaps["Set2"].colors[: len(missing_pms)]))
+
+    return cmap
 
 
 def load_eia_860(file: str, sheet: str = None, year: int = 2024):

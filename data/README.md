@@ -3,3 +3,4 @@ Download Egrid data from [here](https://www.epa.gov/egrid/detailed-data). The fi
 - [EIA 860](https://www.eia.gov/electricity/data/eia860/)
 - [EIA 923](https://www.eia.gov/electricity/data/eia923/)
 - [State shape file](https://www.census.gov/cgi-bin/geo/shapefiles/index.php?year=2023&layergroup=States+%28and+equivalent%29)
+- [Grid ISO regions](https://github.com/NatLabRockies/ReEDS-2.0/blob/main/inputs/shapefiles/WKT_csvs/rto_WKT.csv)
