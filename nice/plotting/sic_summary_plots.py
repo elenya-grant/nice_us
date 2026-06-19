@@ -17,7 +17,7 @@ def stacked_bar_sic_capacity(
     sub_pm_list,
 ):
     pm_cmap = make_prime_mover_cmap()
-    pm_to_desc = prime_mover_to_desc()
+    prime_mover_to_desc()
 
     x_vals = np.arange(1, len(pm_list) + 1, 1)
     fig, ax = plt.subplots(1, 1, figsize=[11.0, 6.0])

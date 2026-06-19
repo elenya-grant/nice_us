@@ -12,12 +12,10 @@ def violin_plot_of_sic(df, pm, figure_dir, surplus_threshold_fraction):
         df.swaplevel().loc[pm]["Surplus Interconnect Capacity (MW)"].dropna().values
     )
 
-    
     fig, ax = plt.subplots(1, 1, figsize=[4.8, 6.4])
 
     vparts = ax.violinplot(
-        data_plt, [1.0], widths=vw, 
-        points=100, showmedians=True, showextrema=True
+        data_plt, [1.0], widths=vw, points=100, showmedians=True, showextrema=True
     )
 
     # Step 5: modify violins
