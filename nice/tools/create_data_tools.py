@@ -79,3 +79,28 @@ def get_monthly_capacity_factor(
         # return [None]*len(storage_data_cols)
 
     return perf_pm[m12_cols].sum(axis=0).to_list()
+
+
+def get_monthly_data(
+    perf_data_m12,
+    pid,
+    pm,
+    column_fmt="Netgen {month}",
+    missing_val=0.0,
+):
+    months_to_n_days = {
+        calendar.month_name[i]: calendar.monthrange(2024, i)[1] for i in range(1, 13)
+    }
+    m12_cols = [column_fmt.format(month=m) for m in list(months_to_n_days.keys())]
+    if isinstance(perf_data_m12.loc[pid, "Reported Prime Mover"], str):
+        if perf_data_m12.loc[pid, "Reported Prime Mover"] == pm:
+            return perf_data_m12.loc[pid].replace({".": 0})[m12_cols].to_dict()
+        return dict(zip(m12_cols, [missing_val] * len(m12_cols)))
+
+    perf_pm = perf_data_m12.loc[pid][
+        perf_data_m12.loc[pid]["Reported Prime Mover"] == pm
+    ]
+    if len(perf_pm) == 0:
+        return dict(zip(m12_cols, [missing_val] * len(m12_cols)))
+
+    return perf_pm[m12_cols].replace({".": 0}).sum(axis=0).to_dict()

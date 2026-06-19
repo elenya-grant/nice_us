@@ -8,18 +8,25 @@ import pandas as pd
 from nice import DATA_DIR, ROOT_DIR
 from nice.plotting.map_plot import plot_scatter_map_basic
 from nice.tools.create_data import create_surplus_interconnect_data
+from nice.tools.create_monthly_data import do_monthly_stuff
 from nice.tools.eia_860_file_tools import prime_mover_to_desc
 from nice.tools.geo_data_file_tools import convert_df_to_gdf, load_us_state_boundaries
 
 figure_dir = ROOT_DIR.parent / "map_figures"
 
 surplus_threshold_fraction = 0.80
-full_utilization_threshold = 1.0  # CF >= means no surplus interconnect
+
+# CF >= means no surplus interconnect
+full_utilization_threshold = 1.0
 include_storage_techs = True
 
 output_data_dir = DATA_DIR / "nice_data_aggregated"
-# spi_data_fpath = output_data_dir/"surplus_interconnect_data.csv"
-spi_data_fpath = output_data_dir / "surplus_interconnect_data_missing_is_None.csv"
+# spi_data_fpath = output_data_dir/"surplus_interconnect_data_2024.csv"
+spi_data_fpath = output_data_dir / "surplus_interconnect_data_missing_is_None_2024.csv"
+spi_monthly_data_fpath = (
+    output_data_dir / "monthly_Netgen_surplus_interconnect_2024.csv"
+)
+
 if not output_data_dir.exists():
     Path(output_data_dir).mkdir(exist_ok=True, parents=True)
 
@@ -31,6 +38,12 @@ if not spi_data_fpath.is_file():
     data.sort_index().to_csv(spi_data_fpath)
 else:
     data = pd.read_csv(spi_data_fpath, index_col="Unnamed: 0")
+
+if not spi_monthly_data_fpath.is_file():
+    m12_data = do_monthly_stuff()
+    m12_data.sort_index().to_csv(spi_monthly_data_fpath)
+else:
+    m12_data = pd.read_csv(spi_monthly_data_fpath, index_col="Unnamed: 0")
 
 # 778 plant ids are in perf and storage,
 data["Capacity Factor"] = data["Net Generation (Megawatthours)"] / (
@@ -57,6 +70,8 @@ for i in data[data["Capacity Factor"] >= full_utilization_threshold].index.to_li
     data.loc[i, "Surplus Interconnect Factor"] = 0.0
 for i in data[data["Capacity Factor"] > surplus_threshold_fraction].index.to_list():
     data.loc[i, "Surplus Interconnect Factor"] = 0.0
+
+# Set Interconnect Factor to 0.0 if it Generates Nothing
 for i in data[data["Net Generation (Megawatthours)"] == 0.0].index.to_list():
     data.loc[i, "Surplus Interconnect Factor"] = None
 
@@ -136,7 +151,7 @@ for pm in set(data.index.get_level_values("Prime Mover").to_list()):
 
     figfpath = (
         figure_dir
-        / f"{pm_to_desc[pm].replace(' ', '_')}_surplus_interconnect_capacity.png"
+        / f"{pm_to_desc[pm].replace(' ', '_')}_surplus_interconnect_capacity_{surplus_threshold_fraction*100:d}percent.png"
     )
 
     fig.savefig(figfpath, bbox_inches="tight", dpi=300, pad_inches=0.0)
@@ -150,8 +165,10 @@ plot_scatter_map_basic(
     "Surplus Interconnect Capacity (MW)",
     cmap,
     norm,
-    figure_dir / "all_surplus_interconnect_capacity.png",
+    figure_dir
+    / f"all_surplus_interconnect_capacity_{surplus_threshold_fraction*100:d}percent.png",
 )
 
+print(f"{surplus_threshold_fraction*100:.1f}% capacity factor is fully utilized")
 print(pd.Series(pm_to_tot_capac).sort_index().to_latex(float_format="%.2f", index=True))
 print(f"{pd.Series(pm_to_tot_capac).sum()} MW total")

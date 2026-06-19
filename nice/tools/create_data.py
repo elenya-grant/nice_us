@@ -4,14 +4,40 @@ import nice.tools.create_data_tools as cd_tools
 from nice.tools.eia_860_file_tools import load_eia_860
 from nice.tools.eia_923_file_tools import load_eia_923
 
+
+def calculate_surplus_interconnect_factor(data, surplus_threshold_fraction):
+    if "Capacity Factor" not in data.columns.to_list():
+        data["Capacity Factor"] = data["Net Generation (Megawatthours)"] / (
+            data["Nameplate Capacity (MW)"] * 8760
+        )
+
+    # Clip CF to max of 1.0
+    for i in data[data["Capacity Factor"] > 1.0].index.to_list():
+        data.loc[i, "Capacity Factor"] = 1.0
+
+    # Clip to minimum of 0.0
+    for i in data[data["Capacity Factor"] < 0.0].index.to_list():
+        data.loc[i, "Capacity Factor"] = 0.0
+
+    data["Surplus Interconnect Factor"] = 1.0 - data["Capacity Factor"]
+
+    # Locations with a CF of >surplus_threshold_fraction are not usable
+    for i in data[data["Capacity Factor"] > surplus_threshold_fraction].index.to_list():
+        data.loc[i, "Surplus Interconnect Factor"] = 0.0
+
+    data["Surplus Interconnect Capacity (MW)"] = (
+        data["Nameplate Capacity (MW)"] * data["Surplus Interconnect Factor"]
+    )
+    return data
+
+
 # 13370 plant IDs in generator and plant
 # 13071 plant IDS in generator and plant and perf
 # 778 plant IDs in generator and plant and storage
 # 788 plant IDs in perf and storage
 
 
-def create_surplus_interconnect_data(missing_val=0.0):
-    data_year = 2024
+def create_surplus_interconnect_data(missing_val=0.0, data_year=2024):
     plant = load_eia_860("Plant", year=data_year)
     gen = load_eia_860("Generator", year=data_year)
     perf = load_eia_923("M_12", sheet="Page 1 Generation and Fuel Data", year=data_year)
@@ -103,6 +129,7 @@ def create_surplus_interconnect_data(missing_val=0.0):
             new_df = pd.concat([new_df, tmp_df], axis=0)
         else:
             for pm in set(gen.loc[pid, "Prime Mover"].to_list()):
+                tmp_dict = {}
                 gen_data = cd_tools.get_generator_data_by_pid_pm(
                     gen, pid, pm, gen_data_cols, missing_val=missing_val
                 )
@@ -150,3 +177,38 @@ def create_surplus_interconnect_data(missing_val=0.0):
                 new_df = pd.concat([new_df, tmp_df], axis=0)
 
     return new_df
+
+
+# # def create_monthly_data(data_year = 2024):
+# if __name__ == "__main__":
+#     data_year = 2024
+#     gen = load_eia_860("Generator", year=data_year)
+#     perf = load_eia_923("M_12", sheet="Page 1 Generation and Fuel Data", year=data_year)
+
+#     gen["Plant Code"] = gen["Plant Code"].astype(int)  # 13371
+#     perf["Plant Code"] = perf["Plant Id"].astype(int)
+
+#     perf.set_index(keys="Plant Code", inplace=True)
+#     gen.set_index(keys="Plant Code", inplace=True)
+
+#     perf_pid = set(perf["Plant Code"].to_list())
+#     gen_pid = set(gen["Plant Code"].to_list())
+
+#     column_fmt="Net Generation {month}"
+
+
+#     months_to_n_days = {
+#         calendar.month_name[i]: calendar.monthrange(2024, i)[1] for i in range(1, 13)
+#     }
+#     m12_cols = [column_fmt.format(month=m) for m in list(months_to_n_days.keys())]
+
+#     monthly_df = pd.DataFrame()
+#     for pid in gen_pid.intersection(perf_pid):
+#         if isinstance(gen.loc[pid, "Nameplate Capacity (MW)"], float):
+#             pass
+#         else:
+#             for pm in set(gen.loc[pid, "Prime Mover"].to_list()):
+#                 pass
+
+
+#     # create_monthly_data()

@@ -5,6 +5,17 @@ import pandas as pd
 from nice import DATA_DIR
 
 
+def storage_prime_mover_to_desc():
+    storage_pm_to_code = {
+        "BA": "Battery Storage",
+        "CE": "Compressed Air Storage",
+        "FW": "Flywheel Storage",
+        "PS": "Pumped Hydro Storage",
+        "ES": "Other Storage",
+    }
+    return storage_pm_to_code
+
+
 def prime_mover_to_desc():
     prime_mover_code = {
         "BA": "Battery Storage",
@@ -59,7 +70,7 @@ def make_prime_mover_cmap():
     # similar colors for storage, magentas
     cmap |= dict(zip(["BA", "CE", "FW", "PS"], mpl.colormaps["tab20b"].colors[16:]))
 
-    missing_pms = [k for k in list(cmap.keys()) if k not in pm_abbrev]
+    missing_pms = [k for k in pm_abbrev if k not in cmap]
     cmap |= dict(zip(missing_pms, mpl.colormaps["Set2"].colors[: len(missing_pms)]))
 
     return cmap

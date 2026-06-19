@@ -7,6 +7,7 @@ from nice.tools.geo_data_file_tools import convert_df_to_gdf, load_us_state_boun
 def plot_scatter_map_basic(df, data_col: str, cbar_label: str, cmap, norm, figfpath):
     gdf = convert_df_to_gdf(df.copy())
 
+    # fig, ax = plt.subplots(1, 1, figsize=[8, 8])
     fig, ax = plt.subplots(1, 1, figsize=[6, 6])
 
     us_states = load_us_state_boundaries()
@@ -19,8 +20,13 @@ def plot_scatter_map_basic(df, data_col: str, cbar_label: str, cmap, norm, figfp
         c=np.ma.masked_invalid(gdf[data_col].values),
         cmap=cmap,
         norm=norm,
-        alpha=0.5,
+        alpha=0.9,
+        # alpha=0.75,
     )
+    # ax.set_ylim([24.396308,49.384479])
+    ax.set_ylim([24.2, 49.384479])
+    # ax.set_xlim([-124.848974,-66.885444])
+    ax.set_xlim([-125.0, -66.5])
 
     cb = fig.colorbar(
         sc,
