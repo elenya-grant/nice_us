@@ -10,7 +10,7 @@ from nice.plotting.sic_monthly_plots import plot_monthly_surplus_interconnection
 from nice.plotting.sic_summary_plots import stacked_bar_capacity
 from nice.plotting.sic_violin_plots import violin_plot_of_sic
 from nice.tools.create_data import create_surplus_interconnect_data
-from nice.tools.create_monthly_data import do_monthly_stuff
+from nice.tools.create_monthly_data import summarize_monthly_eia_data
 from nice.tools.eia_860_file_tools import (
     make_prime_mover_cmap,
     prime_mover_to_desc,
@@ -84,7 +84,7 @@ if not bar_figure_dir.exists():
 
 if not spi_monthly_data_fpath.is_file():
     print("Running monthly")
-    m12_data = do_monthly_stuff()
+    m12_data = summarize_monthly_eia_data()
     m12_data.sort_index().to_csv(spi_monthly_data_fpath)
     print("Completed monthly")
 else:

@@ -8,7 +8,7 @@ import pandas as pd
 from nice import DATA_DIR, ROOT_DIR
 from nice.plotting.map_plot import plot_scatter_map_basic
 from nice.tools.create_data import create_surplus_interconnect_data
-from nice.tools.create_monthly_data import do_monthly_stuff
+from nice.tools.create_monthly_data import summarize_monthly_eia_data
 from nice.tools.eia_860_file_tools import prime_mover_to_desc
 from nice.tools.geo_data_file_tools import convert_df_to_gdf, load_us_state_boundaries
 
@@ -40,7 +40,7 @@ else:
     data = pd.read_csv(spi_data_fpath, index_col="Unnamed: 0")
 
 if not spi_monthly_data_fpath.is_file():
-    m12_data = do_monthly_stuff()
+    m12_data = summarize_monthly_eia_data()
     m12_data.sort_index().to_csv(spi_monthly_data_fpath)
 else:
     m12_data = pd.read_csv(spi_monthly_data_fpath, index_col="Unnamed: 0")

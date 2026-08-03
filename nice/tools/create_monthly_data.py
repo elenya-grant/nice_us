@@ -7,7 +7,7 @@ from nice.tools.eia_860_file_tools import load_eia_860
 from nice.tools.eia_923_file_tools import load_eia_923
 
 
-def do_monthly_stuff(data_year=2024):
+def summarize_monthly_eia_data(data_year=2024):
     gen = load_eia_860("Generator", year=data_year)
     perf = load_eia_923("M_12", sheet="Page 1 Generation and Fuel Data", year=data_year)
 
