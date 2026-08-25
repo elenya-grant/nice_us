@@ -1,0 +1,4061 @@
+Facility Name,Facility ID,Unit ID
+Barry,3,1
+Barry,3,2
+Barry,3,4
+Barry,3,5
+Barry,3,6A
+Barry,3,6B
+Barry,3,7A
+Barry,3,7B
+Barry,3,8
+Copper Station,9,CTG-1
+Greene County,10,1
+Greene County,10,2
+Greene County,10,CT10
+Greene County,10,CT2
+Greene County,10,CT3
+Greene County,10,CT4
+Greene County,10,CT5
+Greene County,10,CT6
+Greene County,10,CT7
+Greene County,10,CT8
+Greene County,10,CT9
+E C Gaston,26,1
+E C Gaston,26,2
+E C Gaston,26,3
+E C Gaston,26,4
+E C Gaston,26,5
+Colbert,47,CCT1
+Colbert,47,CCT10
+Colbert,47,CCT11
+Colbert,47,CCT2
+Colbert,47,CCT3
+Colbert,47,CCT4
+Colbert,47,CCT5
+Colbert,47,CCT6
+Colbert,47,CCT7
+Colbert,47,CCT8
+Colbert,47,CCT9
+Smith Generating Facility,54,SCT1
+Smith Generating Facility,54,SCT10
+Smith Generating Facility,54,SCT2
+Smith Generating Facility,54,SCT3
+Smith Generating Facility,54,SCT4
+Smith Generating Facility,54,SCT5
+Smith Generating Facility,54,SCT6
+Smith Generating Facility,54,SCT7
+Smith Generating Facility,54,SCT9
+Charles R Lowman,56,CC1
+Platte,59,1
+Gerald Whelan Energy Center,60,1
+Gerald Whelan Energy Center,60,2
+Holcomb,108,SGU1
+Cholla,113,1
+Cholla,113,3
+Ocotillo Power Plant,116,GT3
+Ocotillo Power Plant,116,GT4
+Ocotillo Power Plant,116,GT5
+Ocotillo Power Plant,116,GT6
+Ocotillo Power Plant,116,GT7
+APS West Phoenix Power Plant,117,CC4
+APS West Phoenix Power Plant,117,CC5A
+APS West Phoenix Power Plant,117,CC5B
+APS Saguaro Power Plant,118,CT3
+Yucca Power Plant,120,1
+Yucca Power Plant,120,CT5
+Yucca Power Plant,120,CT6
+De Moss Petrie Generating Station,124,GT1
+Irvington Generating Station,126,3
+Irvington Generating Station,126,4
+Cross,130,1
+Cross,130,2
+Cross,130,3
+Cross,130,4
+Seminole (136),136,2
+Seminole (136),136,CT1
+Seminole (136),136,CT2
+Agua Fria Generating Station,141,1
+Agua Fria Generating Station,141,2
+Agua Fria Generating Station,141,3
+Agua Fria Generating Station,141,7
+Agua Fria Generating Station,141,8
+Kyrene Generating Station,147,K-7
+Apache Station,160,1
+Apache Station,160,2
+Apache Station,160,3
+Apache Station,160,4
+Grand River Dam Authority,165,1
+Grand River Dam Authority,165,2
+Grand River Dam Authority,165,3
+Lake Catherine,170,4
+Thomas Fitzhugh,201,2
+Carl Bailey,202,01
+McClellan,203,01
+Moss Landing Power Plant,260,1A
+Moss Landing Power Plant,260,2A
+Moss Landing Power Plant,260,3A
+Moss Landing Power Plant,260,4A
+Limestone,298,LIM1
+Limestone,298,LIM2
+Cabrillo Power I Encina Power Station,302,10
+Cabrillo Power I Encina Power Station,302,6
+Cabrillo Power I Encina Power Station,302,7
+Cabrillo Power I Encina Power Station,302,8
+Cabrillo Power I Encina Power Station,302,9
+AES Alamitos,315,3
+AES Alamitos,315,4
+AES Alamitos,315,5
+AES Alamitos,315,CT1
+AES Alamitos,315,CT2
+El Segundo,330,5
+El Segundo,330,7
+AES Huntington Beach,335,2
+AES Huntington Beach,335,CT1
+AES Huntington Beach,335,CT2
+Long Beach Generating Station,341,1
+Long Beach Generating Station,341,2
+Long Beach Generating Station,341,3
+Long Beach Generating Station,341,4
+"Ormond Beach Power, LLC.",350,1
+"Ormond Beach Power, LLC.",350,2
+Mountainview Generating Station,358,3-1
+Mountainview Generating Station,358,3-2
+Mountainview Generating Station,358,4-1
+Mountainview Generating Station,358,4-2
+Grayson Power Plant,377,9
+El Centro,389,2-2
+El Centro,389,3-1
+El Centro,389,3-2
+El Centro,389,4
+Harbor Generating Station,399,10
+Harbor Generating Station,399,**10A
+Harbor Generating Station,399,**10B
+Harbor Generating Station,399,11
+Harbor Generating Station,399,12
+Harbor Generating Station,399,13
+Harbor Generating Station,399,14
+Haynes Generating Station,400,1
+Haynes Generating Station,400,10
+Haynes Generating Station,400,11
+Haynes Generating Station,400,12
+Haynes Generating Station,400,13
+Haynes Generating Station,400,14
+Haynes Generating Station,400,15
+Haynes Generating Station,400,16
+Haynes Generating Station,400,2
+Haynes Generating Station,400,9
+Scattergood Generating Station,404,1
+Scattergood Generating Station,404,2
+Scattergood Generating Station,404,4
+Scattergood Generating Station,404,6
+Scattergood Generating Station,404,7
+Valley Generating Station,408,5
+Valley Generating Station,408,6
+Valley Generating Station,408,7
+Glenarm,422,GT3
+Glenarm,422,GT4
+Glenarm,422,GT5
+Cherokee,469,4
+Cherokee,469,5
+Cherokee,469,6
+Comanche (470),470,2
+Comanche (470),470,3
+Martin Drake,492,A1
+Martin Drake,492,A2
+Martin Drake,492,A3
+Martin Drake,492,A4
+Martin Drake,492,A5
+Martin Drake,492,A6
+Hayden,525,H1
+Hayden,525,H2
+McWilliams,533,**4
+McWilliams,533,**V1
+McWilliams,533,**V2
+Devon,544,11
+Devon,544,12
+Devon,544,13
+Devon,544,14
+Devon,544,15
+Devon,544,16
+Devon,544,17
+Devon,544,18
+Montville,546,5
+Montville,546,6
+Middletown,562,12
+Middletown,562,13
+Middletown,562,14
+Middletown,562,15
+Middletown,562,2
+Middletown,562,3
+Middletown,562,4
+Curtis H. Stanton Energy Center,564,1
+Curtis H. Stanton Energy Center,564,2
+Curtis H. Stanton Energy Center,564,CCB
+Bridgeport Harbor Station,568,BHB5
+J C McNeil,589,1
+Christiana Substation,591,11
+Christiana Substation,591,14
+Edge Moor,593,3
+Edge Moor,593,4
+Edge Moor,593,5
+Indian River,594,4
+Brandon Shores,602,1
+Brandon Shores,602,2
+Fredonia Generating Station,607,CT3
+Fredonia Generating Station,607,CT4
+Cape Canaveral,609,CCCT3A
+Cape Canaveral,609,CCCT3B
+Cape Canaveral,609,CCCT3C
+Fort Myers,612,FMCT2A
+Fort Myers,612,FMCT2B
+Fort Myers,612,FMCT2C
+Fort Myers,612,FMCT2D
+Fort Myers,612,FMCT2E
+Fort Myers,612,FMCT2F
+Fort Myers,612,PFM3A
+Fort Myers,612,PFM3B
+Fort Myers,612,PFM3C
+Fort Myers,612,PFM3D
+Lauderdale,613,PFL6A
+Lauderdale,613,PFL6B
+Lauderdale,613,PFL6C
+Lauderdale,613,PFL6D
+Lauderdale,613,PFL6E
+Lauderdale,613,PFL7A
+Lauderdale,613,PFL7B
+Port Everglades,617,PECT5A
+Port Everglades,617,PECT5B
+Port Everglades,617,PECT5C
+Riviera Beach Energy Center,619,RBCT5A
+Riviera Beach Energy Center,619,RBCT5B
+Riviera Beach Energy Center,619,RBCT5C
+Sanford,620,SNCT4A
+Sanford,620,SNCT4B
+Sanford,620,SNCT4C
+Sanford,620,SNCT4D
+Sanford,620,SNCT5A
+Sanford,620,SNCT5B
+Sanford,620,SNCT5C
+Sanford,620,SNCT5D
+Turkey Point,621,TPCT5A
+Turkey Point,621,TPCT5B
+Turkey Point,621,TPCT5C
+Turkey Point,621,TPCT5D
+Crystal River,628,1GTA
+Crystal River,628,1GTB
+Crystal River,628,2GTA
+Crystal River,628,2GTB
+Crystal River,628,4
+Crystal River,628,5
+P L Bartow,634,4A
+P L Bartow,634,4B
+P L Bartow,634,4C
+P L Bartow,634,4D
+Gulf Clean Energy Center,641,4
+Gulf Clean Energy Center,641,5
+Gulf Clean Energy Center,641,6
+Gulf Clean Energy Center,641,7
+Gulf Clean Energy Center,641,8A
+Gulf Clean Energy Center,641,8B
+Gulf Clean Energy Center,641,8C
+Gulf Clean Energy Center,641,8D
+Lansing Smith Generating Plant,643,4
+Lansing Smith Generating Plant,643,5
+Big Bend,645,BB04
+Big Bend,645,BB05
+Big Bend,645,BB06
+Big Bend,645,CT4A
+Big Bend,645,CT4B
+Deerhaven,663,B1
+Deerhaven,663,B2
+Deerhaven,663,CT3
+J R Kelly,664,CC1
+J D Kennedy,666,7
+J D Kennedy,666,CT8
+Northside,667,1A
+Northside,667,2A
+Northside,667,3
+Tom G Smith,673,S-3
+Charles Larsen Memorial Power Plant,675,**8
+C D McIntosh Jr Power Plant,676,5
+C D McIntosh Jr Power Plant,676,MGT2
+Indian River (683),683,**C
+Indian River (683),683,**D
+Arvah B Hopkins,688,2A
+Arvah B Hopkins,688,HC3
+Arvah B Hopkins,688,HC4
+S O Purdom,689,8
+Bowen,703,1BLR
+Bowen,703,2BLR
+Bowen,703,3BLR
+Bowen,703,4BLR
+Jack McDonough,710,3AA
+Jack McDonough,710,3AB
+Jack McDonough,710,3BA
+Jack McDonough,710,3BB
+Jack McDonough,710,4A
+Jack McDonough,710,4B
+Jack McDonough,710,5A
+Jack McDonough,710,5B
+Jack McDonough,710,6A
+Jack McDonough,710,6B
+McManus,715,3A
+McManus,715,3B
+McManus,715,3C
+McManus,715,4A
+McManus,715,4B
+McManus,715,4C
+McManus,715,4D
+McManus,715,4E
+McManus,715,4F
+Yates,728,Y6BR
+Yates,728,Y7BR
+Ponca,762,2
+Ponca,762,3
+Ponca,762,4
+Kincaid Generating Station,876,1
+Kincaid Generating Station,876,2
+Powerton,879,51
+Powerton,879,52
+Powerton,879,61
+Powerton,879,62
+Waukegan,883,311
+Waukegan,883,312
+Waukegan,883,321
+Waukegan,883,322
+Fisk,886,311
+Fisk,886,312
+Fisk,886,321
+Fisk,886,322
+Fisk,886,331
+Fisk,886,332
+Fisk,886,341
+Fisk,886,342
+Baldwin Energy Complex,889,1
+Baldwin Energy Complex,889,2
+Venice,913,CT03
+Venice,913,CT04
+Venice,913,CT05
+Venice,913,CT2A
+Venice,913,CT2B
+Dallman,963,4
+Marion,976,123
+Marion,976,5
+Marion,976,6
+Clifty Creek,983,1
+Clifty Creek,983,2
+Clifty Creek,983,3
+Clifty Creek,983,4
+Clifty Creek,983,5
+Clifty Creek,983,6
+IPL - Harding Street Station (EW Stout),990,50
+IPL - Harding Street Station (EW Stout),990,60
+IPL - Harding Street Station (EW Stout),990,70
+IPL - Harding Street Station (EW Stout),990,GT4
+IPL - Harding Street Station (EW Stout),990,GT5
+IPL - Harding Street Station (EW Stout),990,GT6
+IPL - Eagle Valley Generating Station,991,GT1
+IPL - Eagle Valley Generating Station,991,GT2
+C. C. Perry K Steam Plant,992,11
+C. C. Perry K Steam Plant,992,12
+C. C. Perry K Steam Plant,992,13
+C. C. Perry K Steam Plant,992,14
+C. C. Perry K Steam Plant,992,16
+IPL - Petersburg Generating Station,994,3
+IPL - Petersburg Generating Station,994,4
+Michigan City Generating Station,997,12
+Cayuga,1001,1
+Cayuga,1001,2
+Cayuga,1001,4
+Edwardsport Generating Station,1004,CTG1
+Edwardsport Generating Station,1004,CTG2
+Noblesville,1007,CT3
+Noblesville,1007,CT4
+Noblesville,1007,CT5
+F B Culley Generating Station,1012,2
+F B Culley Generating Station,1012,3
+Butler-Warner Generation Plant,1016,GT-1
+Butler-Warner Generation Plant,1016,GT-2
+Butler-Warner Generation Plant,1016,GT-3
+Butler-Warner Generation Plant,1016,GT-4
+Butler-Warner Generation Plant,1016,GT-5
+Butler-Warner Generation Plant,1016,GT-6
+Butler-Warner Generation Plant,1016,GT-7
+Butler-Warner Generation Plant,1016,GT-8
+Whitewater Valley,1040,1
+Whitewater Valley,1040,2
+Marshalltown CTs,1068,1A
+Marshalltown CTs,1068,1B
+Marshalltown CTs,1068,2A
+Marshalltown CTs,1068,2B
+Marshalltown CTs,1068,3A
+Marshalltown CTs,1068,3B
+Prairie Creek,1073,3
+Prairie Creek,1073,4
+Walter Scott Jr. Energy Center,1082,3
+Walter Scott Jr. Energy Center,1082,4
+George Neal North,1091,3
+Burlington (IA),1104,1
+Ames,1122,7
+Ames,1122,8
+Streeter Station,1131,7
+Muscatine,1167,8
+Muscatine,1167,9
+Summit Lake,1206,1G
+Summit Lake,1206,2G
+Earl F Wisdom,1217,1
+Earl F Wisdom,1217,2
+Cimarron River,1230,1
+Fort Dodge aka Judson Large,1233,4
+Great Bend Station aka Arthur Mullergren,1235,3
+Riverton,1239,12
+Gordon Evans Energy Center,1240,E1CT
+Gordon Evans Energy Center,1240,E2CT
+Gordon Evans Energy Center,1240,E3CT
+La Cygne,1241,1
+La Cygne,1241,2
+Hutchinson Energy Center,1248,CT-1
+Hutchinson Energy Center,1248,CT-2
+Hutchinson Energy Center,1248,CT-3
+Hutchinson Energy Center,1248,CT-4
+Lawrence Energy Center,1250,4
+Lawrence Energy Center,1250,5
+Chanute 2,1268,14
+Coffeyville,1271,4
+Quindaro,1295,CT2
+Quindaro,1295,CT3
+McPherson 2,1305,GT1
+McPherson 2,1305,GT2
+McPherson 2,1305,GT3
+Garden City,1336,S-2
+Garden City,1336,S-4
+Garden City,1336,S-5
+Big Sandy,1353,BSU1
+E W Brown,1355,10
+E W Brown,1355,11
+E W Brown,1355,3
+E W Brown,1355,5
+E W Brown,1355,6
+E W Brown,1355,7
+E W Brown,1355,8
+E W Brown,1355,9
+Ghent,1356,1
+Ghent,1356,2
+Ghent,1356,3
+Ghent,1356,4
+Cane Run,1363,7A
+Cane Run,1363,7B
+Mill Creek,1364,1
+Mill Creek,1364,2
+Mill Creek,1364,3
+Mill Creek,1364,4
+Paddy's Run,1366,12
+Paddy's Run,1366,13
+Paradise,1378,PCC1
+Paradise,1378,PCC2
+Paradise,1378,PCC3
+Paradise,1378,PCC5
+Paradise,1378,PCC6
+Paradise,1378,PCC7
+Shawnee,1379,1
+Shawnee,1379,2
+Shawnee,1379,3
+Shawnee,1379,4
+Shawnee,1379,5
+Shawnee,1379,6
+Shawnee,1379,7
+Shawnee,1379,8
+Shawnee,1379,9
+Robert Reid,1383,RT
+John S. Cooper,1384,1
+John S. Cooper,1384,2
+Louisiana 1,1391,1A
+Louisiana 1,1391,2A
+Louisiana 1,1391,3A
+Louisiana 1,1391,4A
+Louisiana 1,1391,5A
+R S Nelson,1393,6
+Coughlin Power Station,1396,6-1
+Coughlin Power Station,1396,7-1
+Coughlin Power Station,1396,7-2
+Teche Power Station,1400,4
+Little Gypsy,1402,2
+Little Gypsy,1402,3
+Ninemile Point,1403,4
+Ninemile Point,1403,5
+Ninemile Point,1403,6A
+Ninemile Point,1403,6B
+Sterlington,1404,7AB
+Arsenal Hill Power Plant,1416,5A
+Arsenal Hill Power Plant,1416,CTG-6A
+Arsenal Hill Power Plant,1416,CTG-6B
+Lieberman Power Plant,1417,3
+Lieberman Power Plant,1417,4
+Houma,1439,15
+Houma,1439,16
+Big Cajun 1,1464,1B1
+Big Cajun 1,1464,1B2
+Big Cajun 1,1464,CTG1
+Big Cajun 1,1464,CTG2
+William F Wyman,1507,3
+William F Wyman,1507,4
+Herbert A Wagner,1554,1
+Herbert A Wagner,1554,2
+Herbert A Wagner,1554,3
+Herbert A Wagner,1554,4
+Perryman,1556,**51
+Perryman,1556,6-1
+Perryman,1556,6-2
+Perryman,1556,CT1
+Perryman,1556,CT3
+Perryman,1556,CT4
+Vienna,1564,8
+Chalk Point,1571,3
+Chalk Point,1571,4
+Chalk Point,1571,GT2
+Chalk Point,1571,**GT3
+Chalk Point,1571,**GT4
+Chalk Point,1571,**GT5
+Chalk Point,1571,**GT6
+Chalk Point,1571,SMECO
+Dickerson,1572,GT2
+Dickerson,1572,GT3
+Morgantown,1573,GT3
+Morgantown,1573,GT4
+Morgantown,1573,GT5
+Morgantown,1573,GT6
+Medway Station,1592,J1T1
+Medway Station,1592,J1T2
+Medway Station,1592,J2T1
+Medway Station,1592,J2T2
+Medway Station,1592,J3T1
+Medway Station,1592,J3T2
+Blackstone,1594,11
+Blackstone,1594,12
+Kendall Green Energy LLC,1595,2
+Kendall Green Energy LLC,1595,3
+Kendall Green Energy LLC,1595,4
+Canal Station,1599,1
+Canal Station,1599,2
+Canal Station,1599,3
+Potter,1660,4
+Potter,1660,5
+Waters River,1678,1
+Waters River,1678,2
+Cleary Flood,1682,9
+Dan E Karn,1702,3
+Dan E Karn,1702,4
+Dan E Karn,1702,A
+Dan E Karn,1702,B
+J H Campbell,1710,1
+J H Campbell,1710,2
+J H Campbell,1710,3
+Delray,1728,CTG111
+Delray,1728,CTG121
+Hancock Peakers,1730,CTG121
+Hancock Peakers,1730,CTG122
+Monroe,1733,1
+Monroe,1733,2
+Monroe,1733,3
+Monroe,1733,4
+Wyandotte,1866,5
+Wyandotte,1866,7
+Laskin Energy Center,1891,1
+Laskin Energy Center,1891,2
+Boswell Energy Center,1893,3
+Boswell Energy Center,1893,4
+Hibbard Energy Center,1897,3
+Hibbard Energy Center,1897,4
+Black Dog,1904,5
+Black Dog,1904,6
+High Bridge,1912,7
+High Bridge,1912,8
+Inver Hills,1913,1
+Inver Hills,1913,2
+Inver Hills,1913,3
+Inver Hills,1913,4
+Inver Hills,1913,5
+Inver Hills,1913,6
+Allen S King,1915,1
+Riverside (1927),1927,10
+Riverside (1927),1927,9
+New Ulm,2001,7
+Cambridge Station,2038,1
+Cambridge Station,2038,2
+Elk River,2039,ERPS11
+Maple Lake Station,2042,1
+Chevron Cogenerating Station,2047,5
+Sweatt Electric Generating Plant,2048,CTA
+Sweatt Electric Generating Plant,2048,CTB
+Watson Electric Generating Plant,2049,4
+Watson Electric Generating Plant,2049,5
+Watson Electric Generating Plant,2049,CTA
+Watson Electric Generating Plant,2049,CTB
+Moselle Generation Complex,2070,3
+Moselle Generation Complex,2070,**4
+Moselle Generation Complex,2070,5
+Moselle Generation Complex,2070,6
+Moselle Generation Complex,2070,7
+Hawthorn,2079,5A
+Hawthorn,2079,6
+Hawthorn,2079,7
+Hawthorn,2079,8
+Hawthorn,2079,9
+Northeast Generating Station,2081,11
+Northeast Generating Station,2081,12
+Northeast Generating Station,2081,13
+Northeast Generating Station,2081,14
+Northeast Generating Station,2081,15
+Northeast Generating Station,2081,16
+Northeast Generating Station,2081,17
+Northeast Generating Station,2081,18
+Fairgrounds,2082,CT01
+Ralph Green Station,2092,3
+Lake Road,2098,6
+Lake Road,2098,GT5
+Labadie,2103,1
+Labadie,2103,2
+Labadie,2103,3
+Labadie,2103,4
+Sioux,2107,1
+Sioux,2107,2
+Chillicothe,2122,GT1A
+Chillicothe,2122,GT1B
+Chillicothe,2122,GT2A
+Chillicothe,2122,GT2B
+Columbia,2123,6
+Columbia,2123,7
+Columbia,2123,8
+Higginsville Municipal Power Plant,2131,4A
+Higginsville Municipal Power Plant,2131,4B
+James River,2161,**GT1
+James River,2161,**GT2
+New Madrid Power Plant,2167,1
+New Madrid Power Plant,2167,2
+Thomas Hill Energy Center,2168,MB1
+Thomas Hill Energy Center,2168,MB2
+Thomas Hill Energy Center,2168,MB3
+Glendive Generating Station,2176,GT-2
+Canaday,2226,1
+Lon D Wright Power Plant,2240,50T
+Lon D Wright Power Plant,2240,8
+C W Burdick,2241,GT-2
+C W Burdick,2241,GT-3
+J Street,2250,1
+Hallam Peaking,2265,1A
+Hallam Peaking,2265,1B
+Hebron Peaking,2266,1A
+Hebron Peaking,2266,1B
+McCook Peaking,2271,1A
+McCook Peaking,2271,1B
+Sheldon,2277,1
+Sheldon,2277,2
+Jones Street,2290,1
+Jones Street,2290,2
+North Omaha Station,2291,1
+North Omaha Station,2291,2
+North Omaha Station,2291,3
+North Omaha Station,2291,4
+North Omaha Station,2291,5
+Sarpy County Station,2292,1
+Sarpy County Station,2292,2
+Sarpy County Station,2292,CT3
+Sarpy County Station,2292,CT4A
+Sarpy County Station,2292,CT4B
+Sarpy County Station,2292,CT5A
+Sarpy County Station,2292,CT5B
+Clark,2322,11A
+Clark,2322,11B
+Clark,2322,12A
+Clark,2322,12B
+Clark,2322,13A
+Clark,2322,13B
+Clark,2322,14A
+Clark,2322,14B
+Clark,2322,15A
+Clark,2322,15B
+Clark,2322,16A
+Clark,2322,16B
+Clark,2322,17A
+Clark,2322,17B
+Clark,2322,18A
+Clark,2322,18B
+Clark,2322,19A
+Clark,2322,19B
+Clark,2322,20A
+Clark,2322,20B
+Clark,2322,21A
+Clark,2322,21B
+Clark,2322,22A
+Clark,2322,22B
+Fort Churchill,2330,1
+Fort Churchill,2330,2
+Tracy,2336,3
+Tracy,2336,4
+Tracy,2336,5
+Tracy,2336,6
+Tracy,2336,8
+Tracy,2336,9
+Merrimack,2364,1
+Merrimack,2364,2
+Schiller,2367,4
+Schiller,2367,5
+Schiller,2367,6
+Sayreville,2390,12001
+Sayreville,2390,14001
+Sayreville,2390,15001
+Sayreville,2390,16001
+Gilbert Generating Station,2393,4
+Gilbert Generating Station,2393,5
+Gilbert Generating Station,2393,6
+Gilbert Generating Station,2393,7
+Gilbert Generating Station,2393,9
+Bergen Generating Station,2398,1101
+Bergen Generating Station,2398,1201
+Bergen Generating Station,2398,1301
+Bergen Generating Station,2398,1401
+Bergen Generating Station,2398,2101
+Bergen Generating Station,2398,2201
+Burlington Generating Station,2399,121
+Burlington Generating Station,2399,122
+Burlington Generating Station,2399,123
+Burlington Generating Station,2399,124
+Kearny Generating Station,2404,121
+Kearny Generating Station,2404,122
+Kearny Generating Station,2404,123
+Kearny Generating Station,2404,124
+Kearny Generating Station,2404,131
+Kearny Generating Station,2404,132
+Kearny Generating Station,2404,133
+Kearny Generating Station,2404,134
+Kearny Generating Station,2404,141
+Kearny Generating Station,2404,142
+Linden Generating Station,2406,1101
+Linden Generating Station,2406,1201
+Linden Generating Station,2406,2101
+Linden Generating Station,2406,2201
+Linden Generating Station,2406,5
+Linden Generating Station,2406,6
+Linden Generating Station,2406,7
+Linden Generating Station,2406,8
+Salem Generating Station,2410,2001
+Sewaren Generating Station,2411,7
+Howard M Down,2434,U11
+Four Corners Steam Elec Station,2442,4
+Four Corners Steam Elec Station,2442,5
+Rio Grande,2444,6
+Rio Grande,2444,7
+Rio Grande,2444,8
+Rio Grande,2444,9
+Maddox,2446,051B
+Reeves Generating Station,2450,1
+Reeves Generating Station,2450,2
+Reeves Generating Station,2450,3
+Cunningham,2454,121B
+Cunningham,2454,122B
+Cunningham,2454,123T
+Cunningham,2454,124T
+Danskammer Generating Station,2480,1
+Danskammer Generating Station,2480,2
+Danskammer Generating Station,2480,3
+Danskammer Generating Station,2480,4
+Arthur Kill,2490,20
+Arthur Kill,2490,30
+Arthur Kill,2490,CT0001
+East River,2493,1
+East River,2493,2
+East River,2493,60
+East River,2493,70
+Gowanus Generating Station,2494,CT01-1
+Gowanus Generating Station,2494,CT01-2
+Gowanus Generating Station,2494,CT01-3
+Gowanus Generating Station,2494,CT01-4
+Gowanus Generating Station,2494,CT01-5
+Gowanus Generating Station,2494,CT01-6
+Gowanus Generating Station,2494,CT01-7
+Gowanus Generating Station,2494,CT01-8
+Gowanus Generating Station,2494,CT02-1
+Gowanus Generating Station,2494,CT02-2
+Gowanus Generating Station,2494,CT02-3
+Gowanus Generating Station,2494,CT02-4
+Gowanus Generating Station,2494,CT02-5
+Gowanus Generating Station,2494,CT02-6
+Gowanus Generating Station,2494,CT02-7
+Gowanus Generating Station,2494,CT02-8
+Gowanus Generating Station,2494,CT03-1
+Gowanus Generating Station,2494,CT03-2
+Gowanus Generating Station,2494,CT03-3
+Gowanus Generating Station,2494,CT03-4
+Gowanus Generating Station,2494,CT03-5
+Gowanus Generating Station,2494,CT03-6
+Gowanus Generating Station,2494,CT03-7
+Gowanus Generating Station,2494,CT03-8
+Gowanus Generating Station,2494,CT04-1
+Gowanus Generating Station,2494,CT04-2
+Gowanus Generating Station,2494,CT04-3
+Gowanus Generating Station,2494,CT04-4
+Gowanus Generating Station,2494,CT04-5
+Gowanus Generating Station,2494,CT04-6
+Gowanus Generating Station,2494,CT04-7
+Gowanus Generating Station,2494,CT04-8
+Narrows Generating Station,2499,CT01-1
+Narrows Generating Station,2499,CT01-2
+Narrows Generating Station,2499,CT01-3
+Narrows Generating Station,2499,CT01-4
+Narrows Generating Station,2499,CT01-5
+Narrows Generating Station,2499,CT01-6
+Narrows Generating Station,2499,CT01-7
+Narrows Generating Station,2499,CT01-8
+Narrows Generating Station,2499,CT02-1
+Narrows Generating Station,2499,CT02-2
+Narrows Generating Station,2499,CT02-3
+Narrows Generating Station,2499,CT02-4
+Narrows Generating Station,2499,CT02-5
+Narrows Generating Station,2499,CT02-6
+Narrows Generating Station,2499,CT02-7
+Narrows Generating Station,2499,CT02-8
+Ravenswood Generating Station,2500,10
+Ravenswood Generating Station,2500,20
+Ravenswood Generating Station,2500,30
+Ravenswood Generating Station,2500,UCC001
+59th Street,2503,BLR114
+59th Street,2503,BLR115
+59th Street,2503,BLR116
+59th Street,2503,BLR117
+59th Street,2503,BLR118
+74th Street,2504,120
+74th Street,2504,121
+74th Street,2504,122
+74th Street,2504,CT0001
+74th Street,2504,CT0002
+E F Barrett,2511,10
+E F Barrett,2511,20
+E F Barrett,2511,U00004
+E F Barrett,2511,U00005
+E F Barrett,2511,U00006
+E F Barrett,2511,U00007
+E F Barrett,2511,U00008
+E F Barrett,2511,U00009
+E F Barrett,2511,U00011
+E F Barrett,2511,U00012
+E F Barrett,2511,U00013
+E F Barrett,2511,U00014
+E F Barrett,2511,U00015
+E F Barrett,2511,U00016
+E F Barrett,2511,U00017
+E F Barrett,2511,U00018
+E F Barrett,2511,U00019
+East Hampton Facility,2512,UGT001
+Glenwood,2514,U00020
+Glenwood,2514,U00021
+Northport,2516,1
+Northport,2516,2
+Northport,2516,3
+Northport,2516,4
+Northport,2516,UGT001
+Port Jefferson Energy Center,2517,3
+Port Jefferson Energy Center,2517,4
+Port Jefferson Energy Center,2517,UGT001
+Port Jefferson Energy Center,2517,UGT002
+Port Jefferson Energy Center,2517,UGT003
+West Babylon Facility,2521,UGT001
+Greenidge Generation LLC,2527,6
+Bethlehem Energy Center (Albany),2539,10001
+Bethlehem Energy Center (Albany),2539,10002
+Bethlehem Energy Center (Albany),2539,10003
+Oswego Harbor Power,2594,5
+Oswego Harbor Power,2594,6
+Bowline Generating Station,2625,1
+Bowline Generating Station,2625,2
+Hillburn,2628,001
+Shoemaker,2632,1
+Freeport Power Plant No. 2,2679,5
+Freeport Power Plant No. 2,2679,CT3
+S A Carlson,2682,10
+S A Carlson,2682,20
+S A Carlson,2682,9
+Asheville,2706,3
+Asheville,2706,4
+Asheville,2706,CT5
+Asheville,2706,CT7
+Blewett,2707,1
+Blewett,2707,2
+Blewett,2707,3
+Blewett,2707,4
+H F Lee Steam Electric Plant,2709,01A
+H F Lee Steam Electric Plant,2709,01B
+H F Lee Steam Electric Plant,2709,01C
+H F Lee Steam Electric Plant,2709,10
+H F Lee Steam Electric Plant,2709,11
+H F Lee Steam Electric Plant,2709,12
+H F Lee Steam Electric Plant,2709,13
+H F Lee Steam Electric Plant,2709,14
+Roxboro,2712,1
+Roxboro,2712,2
+Roxboro,2712,3A
+Roxboro,2712,3B
+Roxboro,2712,4A
+Roxboro,2712,4B
+L V Sutton,2713,01A
+L V Sutton,2713,01B
+L V Sutton,2713,4
+L V Sutton,2713,5
+W H Weatherspoon,2716,4
+W H Weatherspoon,2716,5
+W H Weatherspoon,2716,6
+W H Weatherspoon,2716,7
+G G Allen,2718,1
+Buck,2720,11C
+Buck,2720,12C
+Cliffside,2721,5
+Cliffside,2721,6
+Dan River,2723,8C
+Dan River,2723,9C
+Marshall,2727,1
+Marshall,2727,2
+Marshall,2727,3
+Marshall,2727,4
+R M Heskett,2790,12
+R M Heskett,2790,CT6
+Leland Olds,2817,1
+Leland Olds,2817,2
+Milton R Young,2823,B1
+Milton R Young,2823,B2
+Cardinal,2828,1
+Cardinal,2828,2
+Cardinal,2828,3
+Dicks Creek Power Company LLC,2831,1
+Miami Fort Power Station,2832,6
+Miami Fort Power Station,2832,7
+Miami Fort Power Station,2832,8
+Frank M Tait Station,2847,1
+Frank M Tait Station,2847,2
+Frank M Tait Station,2847,3
+O H Hutchings,2848,H-7
+Niles,2861,CTA
+West Lorain,2869,1A
+West Lorain,2869,1B
+West Lorain,2869,2
+West Lorain,2869,3
+West Lorain,2869,4
+West Lorain,2869,5
+West Lorain,2869,6
+Kyger Creek,2876,1
+Kyger Creek,2876,2
+Kyger Creek,2876,3
+Kyger Creek,2876,4
+Kyger Creek,2876,5
+Bay Shore,2878,1
+Richland Peaking Station,2880,CTG4
+Richland Peaking Station,2880,CTG5
+Richland Peaking Station,2880,CTG6
+Horseshoe Lake,2951,10
+Horseshoe Lake,2951,6
+Horseshoe Lake,2951,7
+Horseshoe Lake,2951,8
+Horseshoe Lake,2951,9
+Muskogee,2952,4
+Muskogee,2952,5
+Muskogee,2952,6
+Mustang,2953,T10
+Mustang,2953,T11
+Mustang,2953,T12
+Mustang,2953,T6
+Mustang,2953,T7
+Mustang,2953,T8
+Mustang,2953,T9
+Seminole (2956),2956,1
+Seminole (2956),2956,2
+Seminole (2956),2956,3
+Northeastern,2963,3301A
+Northeastern,2963,3301B
+Northeastern,2963,3302
+Northeastern,2963,3313
+Southwestern,2964,8002
+Southwestern,2964,8003
+Southwestern,2964,8004
+Southwestern,2964,8005
+Southwestern,2964,801N
+Southwestern,2964,801S
+Tulsa,2965,1402
+Tulsa,2965,1404
+Anadarko,3006,10
+Anadarko,3006,11
+Anadarko,3006,3
+Anadarko,3006,4
+Anadarko,3006,5
+Anadarko,3006,6
+Anadarko,3006,7
+Anadarko,3006,8
+Anadarko,3006,9
+Mooreland,3008,1
+Mooreland,3008,2
+Mooreland,3008,3
+Brunot Island Power Station,3096,2A
+Brunot Island Power Station,3096,2B
+Brunot Island Power Station,3096,3
+Mountain,3111,31
+Mountain,3111,32
+Portland,3113,5
+Tolna,3116,31
+Tolna,3116,32
+Conemaugh,3118,1
+Conemaugh,3118,2
+Seward,3130,1
+Seward,3130,2
+Shawville,3131,1
+Shawville,3131,2
+Shawville,3131,3
+Shawville,3131,4
+Warren,3132,5
+Keystone,3136,1
+Keystone,3136,2
+New Castle,3138,3
+New Castle,3138,4
+New Castle,3138,5
+"Brunner Island, LLC",3140,1
+"Brunner Island, LLC",3140,2
+"Brunner Island, LLC",3140,3
+"Martins Creek, LLC",3148,3
+"Martins Creek, LLC",3148,4
+"Montour, LLC",3149,1
+"Montour, LLC",3149,2
+Eddystone Generating Station,3161,3
+Eddystone Generating Station,3161,4
+Richmond,3168,91
+Richmond,3168,92
+Hunlock Creek Generating LLC,3176,CT5
+Hunlock Creek Generating LLC,3176,CT6
+Manchester Street Station,3236,10
+Manchester Street Station,3236,11
+Manchester Street Station,3236,9
+Darlington County,3250,12
+Darlington County,3250,13
+W S Lee,3264,11
+W S Lee,3264,12
+W S Lee,3264,7C
+W S Lee,3264,8C
+Hagood,3285,HAG4
+McMeekin,3287,MCM1
+McMeekin,3287,MCM2
+Urquhart,3295,URQ3
+Urquhart,3295,URQ4
+Urquhart,3295,URQ5
+Urquhart,3295,URQ6
+Wateree,3297,WAT1
+Wateree,3297,WAT2
+Williams,3298,WIL1
+Hilton Head Gas Turbine Site,3318,CT1
+Hilton Head Gas Turbine Site,3318,CT2
+Hilton Head Gas Turbine Site,3318,CT3
+Myrtle Beach Gas Turbine Site,3320,CT3
+Myrtle Beach Gas Turbine Site,3320,CT4
+Myrtle Beach Gas Turbine Site,3320,CT5
+Aberdeen Generating Station,3338,2A
+Aberdeen Generating Station,3338,2B
+Allen,3393,ACC1
+Allen,3393,ACC2
+Allen,3393,ACT17
+Allen,3393,ACT18
+Allen,3393,ACT19
+Allen,3393,ACT20
+Cumberland,3399,1
+Cumberland,3399,2
+Cumberland,3399,A1
+Cumberland,3399,B1
+Gallatin,3403,1
+Gallatin,3403,2
+Gallatin,3403,3
+Gallatin,3403,4
+Gallatin,3403,GCT1
+Gallatin,3403,GCT2
+Gallatin,3403,GCT3
+Gallatin,3403,GCT4
+Gallatin,3403,GCT5
+Gallatin,3403,GCT6
+Gallatin,3403,GCT7
+Gallatin,3403,GCT8
+John Sevier,3405,JCC1
+John Sevier,3405,JCC2
+John Sevier,3405,JCC3
+Johnsonville,3406,AUX1
+Johnsonville,3406,AUX2
+Johnsonville,3406,JCT1
+Johnsonville,3406,JCT10
+Johnsonville,3406,JCT11
+Johnsonville,3406,JCT12
+Johnsonville,3406,JCT13
+Johnsonville,3406,JCT14
+Johnsonville,3406,JCT15
+Johnsonville,3406,JCT16
+Johnsonville,3406,JCT17
+Johnsonville,3406,JCT18
+Johnsonville,3406,JCT19
+Johnsonville,3406,JCT2
+Johnsonville,3406,JCT20
+Johnsonville,3406,JCT3
+Johnsonville,3406,JCT4
+Johnsonville,3406,JCT5
+Johnsonville,3406,JCT6
+Johnsonville,3406,JCT7
+Johnsonville,3406,JCT8
+Johnsonville,3406,JCT9
+Kingston,3407,1
+Kingston,3407,2
+Kingston,3407,3
+Kingston,3407,4
+Kingston,3407,5
+Kingston,3407,6
+Kingston,3407,7
+Kingston,3407,8
+Kingston,3407,9
+Laredo,3439,4
+Laredo,3439,5
+Nueces Bay,3441,8
+Nueces Bay,3441,9
+Victoria Power Station,3443,9
+Lake Hubbard,3452,1
+Lake Hubbard,3452,2
+Mountain Creek Generating Station,3453,6
+Mountain Creek Generating Station,3453,7
+Mountain Creek Generating Station,3453,8
+Newman Power Station,3456,1
+Newman Power Station,3456,2
+Newman Power Station,3456,3
+Newman Power Station,3456,**4
+Newman Power Station,3456,**5
+Newman Power Station,3456,GT-6A
+Newman Power Station,3456,GT-6B
+Newman Power Station,3456,SC-7
+Lewis Creek,3457,1
+Lewis Creek,3457,2
+Sabine,3459,1
+Sabine,3459,3
+Sabine,3459,4
+Sabine,3459,5
+Cedar Bayou,3460,CBY1
+Cedar Bayou,3460,CBY2
+Greens Bayou,3464,GBY73
+Greens Bayou,3464,GBY74
+Greens Bayou,3464,GBY81
+Greens Bayou,3464,GBY82
+Greens Bayou,3464,GBY83
+Greens Bayou,3464,GBY84
+T H Wharton,3469,THW31
+T H Wharton,3469,THW32
+T H Wharton,3469,THW33
+T H Wharton,3469,THW34
+T H Wharton,3469,THW41
+T H Wharton,3469,THW42
+T H Wharton,3469,THW43
+T H Wharton,3469,THW44
+T H Wharton,3469,THW51
+T H Wharton,3469,THW52
+T H Wharton,3469,THW53
+T H Wharton,3469,THW54
+T H Wharton,3469,THW55
+T H Wharton,3469,THW56
+W A Parish,3470,WAP1
+W A Parish,3470,WAP2
+W A Parish,3470,WAP3
+W A Parish,3470,WAP4
+W A Parish,3470,WAP5
+W A Parish,3470,WAP6
+W A Parish,3470,WAP7
+W A Parish,3470,WAP8
+Knox Lee Power Plant,3476,5
+Wilkes Power Plant,3478,1
+Wilkes Power Plant,3478,2
+Wilkes Power Plant,3478,3
+Jones Station,3482,151B
+Jones Station,3482,152B
+Jones Station,3482,153T
+Jones Station,3482,154T
+Nichols Station,3484,141B
+Nichols Station,3484,142B
+Nichols Station,3484,143B
+Plant X,3485,111B
+Plant X,3485,112B
+Plant X,3485,114B
+Graham,3490,1
+Graham,3490,2
+Handley Generating Station,3491,3
+Handley Generating Station,3491,4
+Handley Generating Station,3491,5
+Morgan Creek,3492,CT1
+Morgan Creek,3492,CT2
+Morgan Creek,3492,CT3
+Morgan Creek,3492,CT4
+Morgan Creek,3492,CT5
+Morgan Creek,3492,CT6
+Permian Basin,3494,CT1
+Permian Basin,3494,CT2
+Permian Basin,3494,CT3
+Permian Basin,3494,CT4
+Permian Basin,3494,CT5
+Stryker Creek,3504,1
+Stryker Creek,3504,2
+Trinidad,3507,9
+Decker Creek,3548,GT-1A
+Decker Creek,3548,GT-1B
+Decker Creek,3548,GT-2A
+Decker Creek,3548,GT-2B
+Decker Creek,3548,GT-3A
+Decker Creek,3548,GT-3B
+Decker Creek,3548,GT-4A
+Decker Creek,3548,GT-4B
+Silas Ray,3559,10
+Silas Ray,3559,9
+Ray Olinger,3576,BW2
+Ray Olinger,3576,BW3
+Ray Olinger,3576,CE1
+Ray Olinger,3576,GE4
+Sim Gideon,3601,1
+Sim Gideon,3601,2
+Sim Gideon,3601,3
+J Robert Massengale Generating Station,3604,GT1
+Leon Creek,3609,CGT1
+Leon Creek,3609,CGT2
+Leon Creek,3609,CGT3
+Leon Creek,3609,CGT4
+O W Sommers,3611,1
+O W Sommers,3611,2
+V H Braunig,3612,1
+V H Braunig,3612,2
+V H Braunig,3612,3
+V H Braunig,3612,CGT5
+V H Braunig,3612,CGT6
+V H Braunig,3612,CGT7
+V H Braunig,3612,CGT8
+V H Braunig,3612,CT01
+V H Braunig,3612,CT02
+R W Miller,3628,1
+R W Miller,3628,2
+R W Miller,3628,3
+R W Miller,3628,**4
+R W Miller,3628,**5
+Sam Rayburn Plant,3631,CT7
+Sam Rayburn Plant,3631,CT8
+Sam Rayburn Plant,3631,CT9
+Gadsby,3648,1
+Gadsby,3648,2
+Gadsby,3648,3
+Gadsby,3648,4
+Gadsby,3648,5
+Gadsby,3648,6
+Berlin 5,3734,A
+Berlin 5,3734,B
+Penny Lane Gas Turbine,3754,CT1
+Penny Lane Gas Turbine,3754,CT2
+Clinch River,3775,1
+Clinch River,3775,2
+Tasley Energy Center,3785,TA10
+Chesterfield Power Station,3797,7
+Chesterfield Power Station,3797,**8A
+Possum Point Power Station,3804,6A
+Possum Point Power Station,3804,6B
+Centralia,3845,BW22
+John E Amos,3935,1
+John E Amos,3935,2
+John E Amos,3935,3
+Fort Martin Power Station,3943,1
+Fort Martin Power Station,3943,2
+Harrison Power Station,3944,1
+Harrison Power Station,3944,2
+Harrison Power Station,3944,3
+Mitchell (WV),3948,1
+Mitchell (WV),3948,2
+Mount Storm Power Station,3954,1
+Mount Storm Power Station,3954,2
+Mount Storm Power Station,3954,3
+Bay Front,3982,1
+Bay Front,3982,2
+Fitchburg Generating Station,3991,1
+Fitchburg Generating Station,3991,2
+Blount Street,3992,8
+Blount Street,3992,9
+French Island,4005,3
+French Island,4005,4
+Wheaton Generating Plant,4014,1
+Wheaton Generating Plant,4014,2
+Wheaton Generating Plant,4014,3
+Wheaton Generating Plant,4014,4
+Port Washington Generating Station,4040,11
+Port Washington Generating Station,4040,12
+Port Washington Generating Station,4040,21
+Port Washington Generating Station,4040,22
+South Oak Creek,4041,7
+South Oak Creek,4041,8
+Valley (WEPCO),4042,1
+Valley (WEPCO),4042,2
+Valley (WEPCO),4042,3
+Valley (WEPCO),4042,4
+Edgewater (4050),4050,5
+Pulliam,4072,32
+West Marinette,4076,31A
+West Marinette,4076,31B
+West Marinette,4076,32A
+West Marinette,4076,32B
+West Marinette,4076,**33
+West Marinette,4076,**34
+Weston,4078,3
+Weston,4078,4
+Manitowoc,4125,8
+Manitowoc,4125,9
+Dave Johnston,4158,BW41
+Dave Johnston,4158,BW42
+Dave Johnston,4158,BW43
+Dave Johnston,4158,BW44
+Naughton,4162,1
+Naughton,4162,2
+Naughton,4162,3
+Power Lane Steam Plant,4195,2
+Power Lane Steam Plant,4195,3
+Spencer,4266,4
+Spencer,4266,5
+J P Madgett,4271,B1
+T C Ferguson Power Plant,4937,CT-1
+T C Ferguson Power Plant,4937,CT-2
+Barney M. Davis,4939,1
+Barney M. Davis,4939,3
+Barney M. Davis,4939,4
+Riverside (4940),4940,1501
+Riverside (4940),4940,1502
+Riverside (4940),4940,1503
+Riverside (4940),4940,1504
+Cumberland Energy Center,5083,4001
+Cumberland Energy Center,5083,5001
+James H Miller Jr,6002,1
+James H Miller Jr,6002,2
+James H Miller Jr,6002,3
+James H Miller Jr,6002,4
+Pleasants Power Station,6004,1
+Pleasants Power Station,6004,2
+White Bluff,6009,1
+White Bluff,6009,2
+Olive,6013,1
+Olive,6013,02
+Newton,6017,1
+East Bend,6018,2
+Craig,6021,C1
+Craig,6021,C2
+Craig,6021,C3
+Coal Creek,6030,1
+Coal Creek,6030,2
+Belle River,6034,1
+Belle River,6034,2
+Belle River,6034,CTG121
+Belle River,6034,CTG122
+Belle River,6034,CTG131
+Greenwood,6035,1
+Greenwood,6035,CTG111
+Greenwood,6035,CTG112
+Greenwood,6035,CTG121
+H L Spurlock,6041,1
+H L Spurlock,6041,2
+H L Spurlock,6041,3
+H L Spurlock,6041,4
+Manatee,6042,MTCT3A
+Manatee,6042,MTCT3B
+Manatee,6042,MTCT3C
+Manatee,6042,MTCT3D
+Manatee,6042,PMT1
+Manatee,6042,PMT2
+Martin,6043,HRSG3A
+Martin,6043,HRSG3B
+Martin,6043,HRSG4A
+Martin,6043,HRSG4B
+Martin,6043,PMR8A
+Martin,6043,PMR8B
+Martin,6043,PMR8C
+Martin,6043,PMR8D
+Debary,6046,**10
+Debary,6046,**7
+Debary,6046,**8
+Debary,6046,**9
+Big Cajun 2,6055,2B1
+Big Cajun 2,6055,2B2
+Big Cajun 2,6055,2B3
+Cascade Creek,6058,CT1
+Cascade Creek,6058,CT2
+Cascade Creek,6058,CT3
+R D Morrow Senior Generating Plant,6061,3
+Electrifarm,6063,1
+Electrifarm,6063,2
+Electrifarm,6063,3
+Nearman Creek,6064,CT4
+Nearman Creek,6064,N1
+Iatan,6065,1
+Iatan,6065,2
+Jeffrey Energy Center,6068,1
+Jeffrey Energy Center,6068,2
+Jeffrey Energy Center,6068,3
+Trimble County,6071,1
+Trimble County,6071,10
+Trimble County,6071,2
+Trimble County,6071,5
+Trimble County,6071,6
+Trimble County,6071,7
+Trimble County,6071,8
+Trimble County,6071,9
+Daniel Electric Generating Plant,6073,1
+Daniel Electric Generating Plant,6073,2
+Daniel Electric Generating Plant,6073,3A
+Daniel Electric Generating Plant,6073,3B
+Daniel Electric Generating Plant,6073,4A
+Daniel Electric Generating Plant,6073,4B
+Greenwood Energy Center,6074,1
+Greenwood Energy Center,6074,2
+Greenwood Energy Center,6074,3
+Greenwood Energy Center,6074,4
+Colstrip,6076,3
+Colstrip,6076,4
+Gerald Gentleman Station,6077,1
+Gerald Gentleman Station,6077,2
+Stony Brook Energy Center,6081,1
+Stony Brook Energy Center,6081,2
+Stony Brook Energy Center,6081,3
+Stony Brook Energy Center,6081,4
+Stony Brook Energy Center,6081,005
+R M Schahfer Generating Station,6085,16A
+R M Schahfer Generating Station,6085,16B
+R M Schahfer Generating Station,6085,17
+R M Schahfer Generating Station,6085,18
+Sherburne County,6090,1
+Sherburne County,6090,3
+Sooner,6095,1
+Sooner,6095,2
+Nebraska City Station,6096,1
+Nebraska City Station,6096,2
+Big Stone,6098,1
+Wyodak,6101,BW91
+Fort St. Vrain,6112,2
+Fort St. Vrain,6112,3
+Fort St. Vrain,6112,4
+Fort St. Vrain,6112,5
+Fort St. Vrain,6112,6
+Gibson,6113,1
+Gibson,6113,2
+Gibson,6113,3
+Gibson,6113,4
+Gibson,6113,5
+McIntosh (6124),6124,CT1
+McIntosh (6124),6124,CT2
+McIntosh (6124),6124,CT3
+McIntosh (6124),6124,CT4
+McIntosh (6124),6124,CT5
+McIntosh (6124),6124,CT6
+McIntosh (6124),6124,CT7
+McIntosh (6124),6124,CT8
+A B Brown Generating Station,6137,3
+A B Brown Generating Station,6137,4
+Flint Creek Power Plant,6138,1
+Welsh Power Plant,6139,1
+Welsh Power Plant,6139,3
+Martin Lake,6146,1
+Martin Lake,6146,2
+Martin Lake,6146,3
+Rush Island,6155,1
+Rush Island,6155,2
+New Haven Harbor,6156,NHB1
+New Haven Harbor,6156,NHHS2
+New Haven Harbor,6156,NHHS3
+New Haven Harbor,6156,NHHS4
+Hunter,6165,1
+Hunter,6165,2
+Hunter,6165,3
+Rockport,6166,MB1
+Rockport,6166,MB2
+Coronado Generating Station,6177,U1B
+Coronado Generating Station,6177,U2B
+Coleto Creek,6178,1
+Sam Seymour,6179,1
+Sam Seymour,6179,2
+Sam Seymour,6179,3
+Oak Grove,6180,1
+Oak Grove,6180,2
+San Miguel,6183,SM-1
+Brame Energy Center,6190,1
+Brame Energy Center,6190,2
+Brame Energy Center,6190,3-1
+Brame Energy Center,6190,3-2
+Harrington Station,6193,061B
+Harrington Station,6193,062B
+Harrington Station,6193,063B
+Tolk Station,6194,171B
+Tolk Station,6194,172B
+John Twitty Energy Center,6195,1
+John Twitty Energy Center,6195,2
+John Twitty Energy Center,6195,CT1A
+John Twitty Energy Center,6195,CT1B
+John Twitty Energy Center,6195,CT2A
+John Twitty Energy Center,6195,CT2B
+Laramie River,6204,1
+Laramie River,6204,2
+Laramie River,6204,3
+Merom,6213,1SG1
+Merom,6213,2SG1
+Empire District Elec Co Energy Ctr,6223,1
+Empire District Elec Co Energy Ctr,6223,2
+Empire District Elec Co Energy Ctr,6223,3A
+Empire District Elec Co Energy Ctr,6223,3B
+Empire District Elec Co Energy Ctr,6223,4A
+Empire District Elec Co Energy Ctr,6223,4B
+Roland C. Dansby Power Plant,6243,1
+Roland C. Dansby Power Plant,6243,2
+Roland C. Dansby Power Plant,6243,3
+Pawnee,6248,1
+Winyah,6249,1
+Winyah,6249,2
+Winyah,6249,3
+Winyah,6249,4
+Mayo,6250,1A
+Mayo,6250,1B
+Germantown Power Plant,6253,**5
+Germantown Power Plant,6253,P30
+Germantown Power Plant,6253,P31
+Germantown Power Plant,6253,P32
+Germantown Power Plant,6253,P33
+Germantown Power Plant,6253,P34
+Germantown Power Plant,6253,P35
+Germantown Power Plant,6253,P36
+Germantown Power Plant,6253,P37
+Ottumwa,6254,1
+Scherer,6257,1
+Scherer,6257,2
+Scherer,6257,3
+Allen B Wilson Combustion Turbine Plant,6258,1A
+Allen B Wilson Combustion Turbine Plant,6258,1B
+Allen B Wilson Combustion Turbine Plant,6258,1C
+Allen B Wilson Combustion Turbine Plant,6258,1D
+Allen B Wilson Combustion Turbine Plant,6258,1E
+Allen B Wilson Combustion Turbine Plant,6258,1F
+Mountaineer (1301),6264,1
+Healy Power Plant,6288,2
+Hutchinson - Plant 2,6358,1
+Rokeby,6373,1
+Rokeby,6373,2
+Rokeby,6373,3
+Dayton Avenue Substation,6463,GT2
+Antelope Valley,6469,B1
+Antelope Valley,6469,B2
+Intermountain,6481,1SGA
+Intermountain,6481,2SGA
+Stock Island,6584,CT4
+Alfred L Pierce Generating Station,6635,AP-1
+R D Green,6639,G1
+R D Green,6639,G2
+Independence,6641,1
+Independence,6641,2
+Mexico,6650,CT01
+Moberly,6651,CT01
+Moreau,6652,CT01
+Louisa,6664,101
+Alcoa Allowance Management Inc,6705,1
+Alcoa Allowance Management Inc,6705,2
+Alcoa Allowance Management Inc,6705,3
+Alcoa Allowance Management Inc,6705,4
+Rock Lake Station,6741,1
+Rawhide Energy Station,6761,101
+Rawhide Energy Station,6761,A
+Rawhide Energy Station,6761,B
+Rawhide Energy Station,6761,C
+Rawhide Energy Station,6761,D
+Rawhide Energy Station,6761,F
+Sikeston,6768,1
+Hugo,6772,1
+D B Wilson,6823,W1
+St. Bonifacius Station,6824,1
+St. Bonifacius Station,6824,2
+East 12th Street,7013,4
+Twin Oaks,7030,U1
+Twin Oaks,7030,U2
+Gravel Neck Combustion Turbine,7032,3
+Gravel Neck Combustion Turbine,7032,4
+Gravel Neck Combustion Turbine,7032,5
+Gravel Neck Combustion Turbine,7032,6
+McIntosh (7063),7063,**1
+McIntosh (7063),7063,**2
+McIntosh (7063),7063,**3
+McIntosh (7063),7063,**4
+McIntosh (7063),7063,**5
+Harry Allen,7082,**3
+Harry Allen,7082,**4
+Harry Allen,7082,**5
+Harry Allen,7082,**6
+J K Spruce,7097,**1
+J K Spruce,7097,**2
+Forked River Power,7138,002001
+Forked River Power,7138,003001
+Pleasant Hill Energy Center,7145,1
+Pleasant Hill Energy Center,7145,2
+Pleasant Hill Energy Center,7145,3
+Wading River Facility,7146,UGT007
+Wading River Facility,7146,UGT008
+Wading River Facility,7146,UGT009
+Wading River Facility,7146,UGT013
+Wading River Facility,7146,UGT014
+Hay Road,7153,1
+Hay Road,7153,2
+Hay Road,7153,**3
+Hay Road,7153,5
+Hay Road,7153,6
+Hay Road,7153,7
+Lime Creek,7155,**1
+Lime Creek,7155,**2
+Woodsdale,7158,**GT1
+Woodsdale,7158,**GT2
+Woodsdale,7158,**GT3
+Woodsdale,7158,**GT4
+Woodsdale,7158,**GT5
+Woodsdale,7158,**GT6
+Concord,7159,**1
+Concord,7159,**2
+Concord,7159,**3
+Concord,7159,**4
+South Fond Du Lac,7203,**CT1
+South Fond Du Lac,7203,**CT2
+South Fond Du Lac,7203,**CT3
+South Fond Du Lac,7203,**CT4
+Cope Station,7210,COP1
+Darbytown Combustion Turbine,7212,1
+Darbytown Combustion Turbine,7212,2
+Darbytown Combustion Turbine,7212,3
+Darbytown Combustion Turbine,7212,4
+Clover Power Station,7213,1
+Clover Power Station,7213,2
+Angus Anson,7237,2
+Angus Anson,7237,3
+Angus Anson,7237,4
+Cane Island,7238,**1
+Cane Island,7238,2
+Cane Island,7238,3
+Cane Island,7238,4
+Polk,7242,**1
+Polk,7242,**2
+Polk,7242,**3
+Polk,7242,**4
+Polk,7242,**5
+Reedy Creek Central Energy Plant,7254,32432
+48th Street Peaking Station,7258,**7
+48th Street Peaking Station,7258,**8
+48th Street Peaking Station,7258,9
+Woodland Generation Station,7266,1
+Woodland Generation Station,7266,2
+Paris,7270,**1
+Paris,7270,**2
+Paris,7270,**3
+Paris,7270,**4
+Lincoln Combustion Turbine,7277,1
+Lincoln Combustion Turbine,7277,10
+Lincoln Combustion Turbine,7277,11
+Lincoln Combustion Turbine,7277,12
+Lincoln Combustion Turbine,7277,13
+Lincoln Combustion Turbine,7277,14
+Lincoln Combustion Turbine,7277,15
+Lincoln Combustion Turbine,7277,16
+Lincoln Combustion Turbine,7277,17
+Lincoln Combustion Turbine,7277,2
+Lincoln Combustion Turbine,7277,3
+Lincoln Combustion Turbine,7277,4
+Lincoln Combustion Turbine,7277,5
+Lincoln Combustion Turbine,7277,6
+Lincoln Combustion Turbine,7277,7
+Lincoln Combustion Turbine,7277,8
+Lincoln Combustion Turbine,7277,9
+Sherman Avenue,7288,1
+State Line (MO),7296,1
+State Line (MO),7296,2-1
+State Line (MO),7296,2-2
+Hines Energy Complex,7302,1A
+Hines Energy Complex,7302,1B
+Hines Energy Complex,7302,2A
+Hines Energy Complex,7302,2B
+Hines Energy Complex,7302,3A
+Hines Energy Complex,7302,3B
+Hines Energy Complex,7302,4A
+Hines Energy Complex,7302,4B
+Redding Power Plant,7307,5
+Redding Power Plant,7307,6
+Richard M Flynn (Holtsville),7314,001
+Almond Power Plant,7315,1
+Almond Power Plant,7315,2
+Almond Power Plant,7315,3
+Almond Power Plant,7315,4
+Van Sant,7318,**11
+San Jacinto Steam Electric Station,7325,SJS1
+San Jacinto Steam Electric Station,7325,SJS2
+Richmond (IN),7335,RCT1
+Richmond (IN),7335,RCT2
+Anderson,7336,ACT1
+Anderson,7336,ACT2
+Anderson,7336,ACT3
+George Neal South,7343,4
+University of Florida,7345,1
+Robins,7348,CT1
+Robins,7348,CT2
+Coyote Springs,7350,CTG1
+Coyote Springs,7350,CTG2
+Midulla Generating Station,7380,1
+Midulla Generating Station,7380,2
+Midulla Generating Station,7380,4A
+Midulla Generating Station,7380,4B
+Midulla Generating Station,7380,5A
+Midulla Generating Station,7380,5B
+Midulla Generating Station,7380,6A
+Midulla Generating Station,7380,6B
+Midulla Generating Station,7380,7A
+Midulla Generating Station,7380,7B
+Midulla Generating Station,7380,8B
+Interstate,7425,1
+NCPA Combustion Turbine Project #2,7449,NA1
+Rathdrum Combustion Turbine Project,7456,1
+Rathdrum Combustion Turbine Project,7456,2
+Neil Simpson II,7504,001
+Neil Simpson II,7504,CT1
+McPherson Municipal Power Plant #3,7515,1
+Carson Power Plant,7527,1
+Carson Power Plant,7527,2
+Procter and Gamble Power Plant,7551,1A
+Procter and Gamble Power Plant,7551,1B
+Procter and Gamble Power Plant,7551,1C
+Campbell Power Plant,7552,1
+St. Francis Power Plant,7604,1
+St. Francis Power Plant,7604,2
+River Road,7605,1
+Washington County Cogen (Olin),7697,CC1
+SABIC Innovative Plastics - Burkville,7698,CC1
+Tiger Bay,7699,1
+Plant H. Allen Franklin,7710,1A
+Plant H. Allen Franklin,7710,1B
+Plant H. Allen Franklin,7710,2A
+Plant H. Allen Franklin,7710,2B
+Plant H. Allen Franklin,7710,3A
+Plant H. Allen Franklin,7710,3B
+Theodore Cogeneration,7721,CC1
+Essex Power Plant,7749,1
+Nodaway Power Plant,7754,1
+Nodaway Power Plant,7754,2
+Chouteau Power Plant,7757,1
+Chouteau Power Plant,7757,2
+Chouteau Power Plant,7757,3
+Chouteau Power Plant,7757,4
+Georgetown Substation,7759,GT1
+Georgetown Substation,7759,GT2
+Georgetown Substation,7759,GT3
+Georgetown Substation,7759,GT4
+Tilton Power Station,7760,1
+Tilton Power Station,7760,2
+Tilton Power Station,7760,3
+Tilton Power Station,7760,4
+Calpine Hidalgo Energy Center,7762,HRSG1
+Calpine Hidalgo Energy Center,7762,HRSG2
+Henry County Generating Station,7763,1
+Henry County Generating Station,7763,2
+Henry County Generating Station,7763,3
+MPC Generating,7764,1
+MPC Generating,7764,2
+Dahlberg (Jackson County),7765,1
+Dahlberg (Jackson County),7765,10
+Dahlberg (Jackson County),7765,2
+Dahlberg (Jackson County),7765,3
+Dahlberg (Jackson County),7765,4
+Dahlberg (Jackson County),7765,5
+Dahlberg (Jackson County),7765,6
+Dahlberg (Jackson County),7765,7
+Dahlberg (Jackson County),7765,8
+Dahlberg (Jackson County),7765,9
+Sowega Power Project,7768,CT2
+Sowega Power Project,7768,CT3
+Omega JV2 Hamilton,7782,P001
+Omega JV2 Bowling Green,7783,P001
+Bonanza,7790,1-1
+Richmond County Plant,7805,1
+Richmond County Plant,7805,10
+Richmond County Plant,7805,2
+Richmond County Plant,7805,3
+Richmond County Plant,7805,4
+Richmond County Plant,7805,6
+Richmond County Plant,7805,7
+Richmond County Plant,7805,8
+Richmond County Plant,7805,9
+Sewell Creek Energy,7813,1
+Sewell Creek Energy,7813,2
+Sewell Creek Energy,7813,3
+Sewell Creek Energy,7813,4
+Alsey Station,7818,ACT1
+Alsey Station,7818,ACT2
+Alsey Station,7818,ACT5
+Alsey Station,7818,ACT6
+Fulton,7825,CT1
+Plant Rowan County,7826,1
+Plant Rowan County,7826,2
+Plant Rowan County,7826,3
+Plant Rowan County,7826,4
+Plant Rowan County,7826,5
+Smarr Energy Facility,7829,1
+Smarr Energy Facility,7829,2
+John S. Rainey Generating Station,7834,CT1A
+John S. Rainey Generating Station,7834,CT1B
+John S. Rainey Generating Station,7834,CT2A
+John S. Rainey Generating Station,7834,CT2B
+John S. Rainey Generating Station,7834,CT3
+John S. Rainey Generating Station,7834,CT4
+John S. Rainey Generating Station,7834,CT5
+Rock Springs Generating Facility,7835,1
+Rock Springs Generating Facility,7835,2
+Rock Springs Generating Facility,7835,3
+Rock Springs Generating Facility,7835,4
+Marsh Run Generation Facility,7836,EU1
+Marsh Run Generation Facility,7836,EU2
+Marsh Run Generation Facility,7836,EU3
+Louisa Generation Facility,7837,EU1
+Louisa Generation Facility,7837,EU2
+Louisa Generation Facility,7837,EU3
+Louisa Generation Facility,7837,EU4
+Louisa Generation Facility,7837,EU5
+Remington Combustion Turbine Station,7838,1
+Remington Combustion Turbine Station,7838,2
+Remington Combustion Turbine Station,7838,3
+Remington Combustion Turbine Station,7838,4
+Ladysmith Combustion Turbine Sta,7839,1
+Ladysmith Combustion Turbine Sta,7839,2
+Ladysmith Combustion Turbine Sta,7839,3
+Ladysmith Combustion Turbine Sta,7839,4
+Ladysmith Combustion Turbine Sta,7839,5
+Pleasant Valley Station,7843,11
+Pleasant Valley Station,7843,12
+Pleasant Valley Station,7843,13
+Minnesota River Station,7844,U001
+Lagoon Creek,7845,LCC1
+Lagoon Creek,7845,LCC2
+Lagoon Creek,7845,LCT1
+Lagoon Creek,7845,LCT10
+Lagoon Creek,7845,LCT11
+Lagoon Creek,7845,LCT12
+Lagoon Creek,7845,LCT2
+Lagoon Creek,7845,LCT3
+Lagoon Creek,7845,LCT4
+Lagoon Creek,7845,LCT5
+Lagoon Creek,7845,LCT6
+Lagoon Creek,7845,LCT7
+Lagoon Creek,7845,LCT8
+Lagoon Creek,7845,LCT9
+Brandy Branch,7846,1
+Brandy Branch,7846,2
+Brandy Branch,7846,3
+Holden Power Plant,7848,1
+Holden Power Plant,7848,2
+Holden Power Plant,7848,3
+Elk Mound Generating Station,7863,1
+Elk Mound Generating Station,7863,2
+Glenwood Landing Energy Center,7869,UGT011
+Glenwood Landing Energy Center,7869,UGT012
+Glenwood Landing Energy Center,7869,UGT013
+Encogen Generating Station,7870,CT1
+Encogen Generating Station,7870,CT2
+Encogen Generating Station,7870,CT3
+Robert P Mone,7872,1
+Robert P Mone,7872,2
+Robert P Mone,7872,3
+Bayside Power Station,7873,CT1A
+Bayside Power Station,7873,CT1B
+Bayside Power Station,7873,CT1C
+Bayside Power Station,7873,CT2A
+Bayside Power Station,7873,CT2B
+Bayside Power Station,7873,CT2C
+Bayside Power Station,7873,CT2D
+Bayside Power Station,7873,CT3A
+Bayside Power Station,7873,CT3B
+Bayside Power Station,7873,CT4A
+Bayside Power Station,7873,CT4B
+Bayside Power Station,7873,CT5A
+Bayside Power Station,7873,CT5B
+Bayside Power Station,7873,CT6A
+Bayside Power Station,7873,CT6B
+Terry Bundy Generating Station,7887,SVGS2
+Terry Bundy Generating Station,7887,SVGS3
+Terry Bundy Generating Station,7887,SVGS4
+E B Harris Generating Plant,7897,1A
+E B Harris Generating Plant,7897,1B
+E B Harris Generating Plant,7897,2A
+E B Harris Generating Plant,7897,2B
+Sand Hill Energy Center,7900,SH1
+Sand Hill Energy Center,7900,SH2
+Sand Hill Energy Center,7900,SH3
+Sand Hill Energy Center,7900,SH4
+Sand Hill Energy Center,7900,SH5
+Sand Hill Energy Center,7900,SH6
+Sand Hill Energy Center,7900,SH7
+H W Pirkey Power Plant,7902,1
+McCartney Generating Station,7903,MGS1A
+McCartney Generating Station,7903,MGS1B
+McCartney Generating Station,7903,MGS2A
+McCartney Generating Station,7903,MGS2B
+Vernon Boulevard,7909,VB01
+Vernon Boulevard,7909,VB02
+23rd and 3rd,7910,2301
+23rd and 3rd,7910,2302
+Brentwood,7912,BW01
+Hell Gate,7913,HG01
+Hell Gate,7913,HG02
+Harlem River Yard,7914,HR01
+Harlem River Yard,7914,HR02
+North 1st,7915,NO1
+Talbot Energy Facility,7916,1
+Talbot Energy Facility,7916,2
+Talbot Energy Facility,7916,3
+Talbot Energy Facility,7916,4
+Talbot Energy Facility,7916,5
+Talbot Energy Facility,7916,6
+Chattahoochee Energy Facility,7917,8A
+Chattahoochee Energy Facility,7917,8B
+Lakefield Junction Generating,7925,CT01
+Lakefield Junction Generating,7925,CT02
+Lakefield Junction Generating,7925,CT03
+Lakefield Junction Generating,7925,CT04
+Lakefield Junction Generating,7925,CT05
+Lakefield Junction Generating,7925,CT06
+Osawatomie Generating Station,7928,1
+West Gardner Generating Station,7929,1
+West Gardner Generating Station,7929,2
+West Gardner Generating Station,7929,3
+West Gardner Generating Station,7929,4
+Wansley (7946),7946,CT9A
+Wansley (7946),7946,CT9B
+Solway Plant,7947,1
+Hoosier Energy Lawrence Co Station,7948,1
+Hoosier Energy Lawrence Co Station,7948,2
+Hoosier Energy Lawrence Co Station,7948,3
+Hoosier Energy Lawrence Co Station,7948,4
+Hoosier Energy Lawrence Co Station,7948,5
+Hoosier Energy Lawrence Co Station,7948,6
+Evander Andrews Power Complex,7953,CT1
+Evander Andrews Power Complex,7953,CT2
+Evander Andrews Power Complex,7953,CT3
+Kemper County,7960,KCT1
+Kemper County,7960,KCT2
+Kemper County,7960,KCT3
+Kemper County,7960,KCT4
+Warren F. Sam Beasley Pwr Station,7962,1
+Warren F. Sam Beasley Pwr Station,7962,2
+Peno Creek Energy Center,7964,CT1A
+Peno Creek Energy Center,7964,CT1B
+Peno Creek Energy Center,7964,CT2A
+Peno Creek Energy Center,7964,CT2B
+Peno Creek Energy Center,7964,CT3A
+Peno Creek Energy Center,7964,CT3B
+Peno Creek Energy Center,7964,CT4A
+Peno Creek Energy Center,7964,CT4B
+Lordsburg Generating Station,7967,1
+Lordsburg Generating Station,7967,2
+Sumpter Plant,7972,1
+Sumpter Plant,7972,2
+Sumpter Plant,7972,3
+Sumpter Plant,7972,4
+Pyramid Generating Station,7975,1
+Pyramid Generating Station,7975,2
+Pyramid Generating Station,7975,3
+Pyramid Generating Station,7975,4
+Mill Creek Combustion Turbine Station,7981,1
+Mill Creek Combustion Turbine Station,7981,2
+Mill Creek Combustion Turbine Station,7981,3
+Mill Creek Combustion Turbine Station,7981,4
+Mill Creek Combustion Turbine Station,7981,5
+Mill Creek Combustion Turbine Station,7981,6
+Mill Creek Combustion Turbine Station,7981,7
+Mill Creek Combustion Turbine Station,7981,8
+Kalkaska CT Project #1,7984,1A
+Kalkaska CT Project #1,7984,1B
+Greater Des Moines Energy Center,7985,1
+Greater Des Moines Energy Center,7985,2
+Lake,7987,01
+Silver Creek Generating Plant,7988,1
+Silver Creek Generating Plant,7988,2
+Silver Creek Generating Plant,7988,3
+Sylvarena Generating Plant,7989,1
+Sylvarena Generating Plant,7989,2
+Sylvarena Generating Plant,7989,3
+West Campus Cogeneration Facility,7991,U1
+West Campus Cogeneration Facility,7991,U2
+Grays Harbor Energy Center,7999,1
+Grays Harbor Energy Center,7999,2
+Beatrice,8000,1
+Beatrice,8000,2
+Newington,8002,1
+Roseton Generating LLC,8006,1
+Roseton Generating LLC,8006,2
+Holtsville Facility,8007,U00001
+Holtsville Facility,8007,U00002
+Holtsville Facility,8007,U00003
+Holtsville Facility,8007,U00004
+Holtsville Facility,8007,U00005
+Holtsville Facility,8007,U00006
+Holtsville Facility,8007,U00007
+Holtsville Facility,8007,U00008
+Holtsville Facility,8007,U00009
+Holtsville Facility,8007,U00010
+Holtsville Facility,8007,U00011
+Holtsville Facility,8007,U00012
+Holtsville Facility,8007,U00013
+Holtsville Facility,8007,U00014
+Holtsville Facility,8007,U00015
+Holtsville Facility,8007,U00016
+Holtsville Facility,8007,U00017
+Holtsville Facility,8007,U00018
+Holtsville Facility,8007,U00019
+Holtsville Facility,8007,U00020
+Croydon Generating Station,8012,11
+Croydon Generating Station,8012,12
+Croydon Generating Station,8012,21
+Croydon Generating Station,8012,22
+Croydon Generating Station,8012,31
+Croydon Generating Station,8012,32
+Croydon Generating Station,8012,41
+Croydon Generating Station,8012,42
+Factory Gas Turbine,8016,2
+Columbia,8023,1
+Columbia,8023,2
+Blue Lake Generating Plant,8027,1
+Blue Lake Generating Plant,8027,2
+Blue Lake Generating Plant,8027,3
+Blue Lake Generating Plant,8027,4
+Blue Lake Generating Plant,8027,7
+Blue Lake Generating Plant,8027,8
+Sycamore Combustion Turbine,8029,1
+Sycamore Combustion Turbine,8029,2
+Emery Station,8031,11
+Emery Station,8031,12
+Clifton Station,8037,CL1
+Belews Creek,8042,1
+Belews Creek,8042,2
+Anclote,8048,1
+Anclote,8048,2
+Intercession City,8049,**10
+Intercession City,8049,**11
+Intercession City,8049,**12
+Intercession City,8049,**13
+Intercession City,8049,**14
+Intercession City,8049,**7
+Intercession City,8049,**8
+Intercession City,8049,**9
+Pouch Terminal,8053,PT01
+Gerald Andrus,8054,1
+Waterford 1 & 2,8056,1
+Waterford 1 & 2,8056,2
+Waterford 1 & 2,8056,4
+Comanche (8059),8059,7251
+Comanche (8059),8059,7252
+Decordova,8063,CT1
+Decordova,8063,CT2
+Decordova,8063,CT3
+Decordova,8063,CT4
+Jim Bridger,8066,BW71
+Jim Bridger,8066,BW72
+Jim Bridger,8066,BW73
+Jim Bridger,8066,BW74
+Santan,8068,5A
+Santan,8068,5B
+Santan,8068,6A
+Huntington,8069,1
+Huntington,8069,2
+Gen J M Gavin,8102,1
+Gen J M Gavin,8102,2
+Ray D Nixon,8219,1
+Ray D Nixon,8219,2
+Ray D Nixon,8219,3
+Coyote,8222,B1
+Springerville Generating Station,8223,1
+Springerville Generating Station,8223,2
+Springerville Generating Station,8223,4
+Springerville Generating Station,8223,TS3
+North Valmy,8224,1
+North Valmy,8224,2
+Astoria Generating Station,8906,20
+Astoria Generating Station,8906,31RH
+Astoria Generating Station,8906,32SH
+Astoria Generating Station,8906,51RH
+Astoria Generating Station,8906,52SH
+Astoria Generating Station,8906,CT0001
+"RED-Rochester, LLC-Eastman Business Park",10025,4B
+Energy Center Dover LLC,10030,2
+Energy Center Dover LLC,10030,3
+"Calpine Gilroy Cogen, LP",10034,S-100
+Gilberton Power Company,10113,031
+Gilberton Power Company,10113,032
+Colver Green Energy,10143,AAB01
+Grant Town Power Plant,10151,1A
+Grant Town Power Plant,10151,1B
+"Fresno Cogeneration Partners, LP",10156,GEN1
+Carson Cogeneration Company,10169,D1
+MBTA South Boston Power Facility,10176,A
+MBTA South Boston Power Facility,10176,B
+"Castleton Power, LLC",10190,1
+King City Power Plant,10294,2
+King City Power Plant,10294,GTG
+Air Liquide Bayport Complex,10298,CG801
+Air Liquide Bayport Complex,10298,CG802
+Air Liquide Bayport Complex,10298,CG803
+Air Liquide Bayport Complex,10298,CG804
+Bellingham,10307,1
+Bellingham,10307,2
+Sayreville Power LP,10308,1001
+Sayreville Power LP,10308,1002
+Mt. Carmel Cogeneration,10343,SG-101
+Yuba City Energy Center,10349,2
+Greenleaf One,10350,CTGA
+Greenleaf One,10350,CTGB
+Kingsburg Cogen Facility,10405,1
+Craven County Wood Energy,10525,ES5A
+"Ahlstrom Power Windsor Locks, LLC",10567,GT1
+Ebensburg Power Company,10603,031
+"Beaver Falls, LLC",10617,1
+Allegany Station No. 133,10619,00001
+Carthage Energy,10620,1
+"Syracuse, LLC",10621,1
+Hopewell Cogeneration Facility,10633,1
+Hopewell Cogeneration Facility,10633,2
+Hopewell Cogeneration Facility,10633,3
+Bear Mountain Limited,10649,GT1
+Badger Creek Limited,10650,GT1
+River Valley,10671,1A
+River Valley,10671,1B
+River Valley,10671,2A
+River Valley,10671,2B
+Brush Power Projects,10682,GT2
+Brush Power Projects,10682,GT4
+Brush Power Projects,10682,GT5
+Selkirk Cogen Partners,10725,CTG101
+Selkirk Cogen Partners,10725,CTG201
+Selkirk Cogen Partners,10725,CTG301
+MASSPOWER,10726,1
+MASSPOWER,10726,2
+Morgantown Energy Facility,10743,CFB1
+Morgantown Energy Facility,10743,CFB2
+Midland Cogeneration Venture,10745,003
+Midland Cogeneration Venture,10745,004
+Midland Cogeneration Venture,10745,005
+Midland Cogeneration Venture,10745,006
+Midland Cogeneration Venture,10745,7
+Midland Cogeneration Venture,10745,8
+Midland Cogeneration Venture,10745,9
+Midland Cogeneration Venture,10745,10
+Midland Cogeneration Venture,10745,11
+Midland Cogeneration Venture,10745,12
+Midland Cogeneration Venture,10745,13
+Midland Cogeneration Venture,10745,14
+Midland Cogeneration Venture,10745,16
+Midland Cogeneration Venture,10745,17
+Midland Cogeneration Venture,10745,18
+Midland Cogeneration Venture,10745,19
+Midland Cogeneration Venture,10745,20
+Midland Cogeneration Venture,10745,21
+"Camden Plant Holding, LLC",10751,2001
+Las Vegas Generating Station,10761,1
+Las Vegas Generating Station,10761,2
+Las Vegas Generating Station,10761,3
+Las Vegas Generating Station,10761,4
+Las Vegas Generating Station,10761,5
+Hopewell Power Station,10771,1
+Hopewell Power Station,10771,2
+Altavista Power Station,10773,1
+Altavista Power Station,10773,2
+Southampton Power Station,10774,1
+Southampton Power Station,10774,2
+E. F. Oxnard Energy Facility,10776,GTG
+AG - Energy,10803,1
+AG - Energy,10803,2
+"E F Kenilworth, Inc.",10805,002001
+Grayling Generating Station,10822,1
+Deer Island Treatment,10823,S42
+Deer Island Treatment,10823,S43
+Northshore Mining Silver Bay Power,10849,PB1
+Northshore Mining Silver Bay Power,10849,PB2
+Archer Daniels Midland Co.,10865,FBC1
+Archer Daniels Midland Co.,10865,FBC2
+Archer Daniels Midland Co.,10865,FBC3
+Archer Daniels Midland Co.,10865,FBC4
+Archer Daniels Midland Co.,10865,FBC5
+Archer Daniels Midland Co.,10865,FBC6
+Archer Daniels Midland Co.,10865,FBC7
+Archer Daniels Midland Co.,10865,FBC8
+Archer Daniels Midland Co.,10865,FBC9
+Archer Daniels Midland Co.,10865,GB1
+Archer Daniels Midland Co.,10865,GB2
+Hazleton Generation,10870,TURB2
+Hazleton Generation,10870,TURB3
+Hazleton Generation,10870,TURB4
+Hazleton Generation,10870,TURBIN
+Pittsfield Generating,50002,1
+Pittsfield Generating,50002,2
+Pittsfield Generating,50002,3
+Linden Cogeneration Facility,50006,004001
+Linden Cogeneration Facility,50006,005001
+Linden Cogeneration Facility,50006,006001
+Linden Cogeneration Facility,50006,007001
+Linden Cogeneration Facility,50006,008001
+Linden Cogeneration Facility,50006,009001
+Nelson Industrial Steam Company,50030,1A
+Nelson Industrial Steam Company,50030,2A
+Paris Energy Center,50109,HRSG1
+Paris Energy Center,50109,HRSG2
+New Gulf Power Facility,50137,1
+Purdue University-Wade Utility,50240,2
+Purdue University-Wade Utility,50240,3
+Purdue University-Wade Utility,50240,5
+Purdue University-Wade Utility,50240,7
+Bucksport Generation LLC,50243,GEN4
+PEI Power Corporation,50279,2
+Bethpage Energy Center,50292,GT1
+Bethpage Energy Center,50292,GT2
+Bethpage Energy Center,50292,GT3
+Bethpage Energy Center,50292,GT4
+Pixelle Specialty Solutions,50397,036
+Indeck-Silver Springs Energy Center,50449,1
+Indeck-Oswego Energy Center,50450,1
+Indeck-Yerkes Energy Center,50451,1
+Indeck-Corinth Energy Center,50458,1
+Covanta Niagara,50472,R1B01
+Covanta Niagara,50472,R1B02
+Axiall Corporation Natrium Plant,50491,001
+Axiall Corporation Natrium Plant,50491,002
+Axiall Corporation Natrium Plant,50491,003
+Rosemary Power Station,50555,1
+Rosemary Power Station,50555,2
+Frontier Generating Station,50558,CC01
+Eagle Point Power Generation,50561,0001
+Eagle Point Power Generation,50561,0002
+Vicinity Energy Philadelphia- Schuylkill,50607,23
+Vicinity Energy Philadelphia- Schuylkill,50607,26
+Vicinity Energy Philadelphia- Schuylkill,50607,RSB1
+Vicinity Energy Philadelphia- Schuylkill,50607,RSB2
+"Rausch Creek Generation, LLC",50611,031
+McKittrick Limited,50612,GT1
+ExxonMobil Beaumont Refinery,50625,61STK1
+ExxonMobil Beaumont Refinery,50625,61STK2
+ExxonMobil Beaumont Refinery,50625,61STK3
+J M Shafer,50707,S001
+J M Shafer,50707,S002
+J M Shafer,50707,S003
+J M Shafer,50707,S004
+J M Shafer,50707,S005
+US Steel (Edgar Thomson),50732,ETBLR1
+US Steel (Edgar Thomson),50732,ETBLR2
+US Steel (Edgar Thomson),50732,ETBLR3
+Sterling Power Plant,50744,00001
+Panther Creek Energy Facility,50776,1
+Panther Creek Energy Facility,50776,2
+"Odyssey Energy Altura Cogen, LLC",50815,ENG101
+"Odyssey Energy Altura Cogen, LLC",50815,ENG201
+"Odyssey Energy Altura Cogen, LLC",50815,ENG301
+"Odyssey Energy Altura Cogen, LLC",50815,ENG401
+"Odyssey Energy Altura Cogen, LLC",50815,ENG501
+"Odyssey Energy Altura Cogen, LLC",50815,ENG601
+TES Filer City Station,50835,1
+TES Filer City Station,50835,2
+Salinas River Cogeneration Facility,50865,1
+Northampton Generating Plant,50888,NGC01
+WestRock Virginia Corp Covington Ops,50900,001
+WestRock Virginia Corp Covington Ops,50900,004
+Hardee Power Station,50949,CT2B
+Sunnyside Cogeneration Associates,50951,1
+Scrubgrass Generating Plant,50974,1
+Scrubgrass Generating Plant,50974,2
+Carr Street Generating Station,50978,A
+Carr Street Generating Station,50978,B
+Ocean State Power,51030,1
+Ocean State Power,51030,2
+Doswell Limited Partnership,52019,501
+Doswell Limited Partnership,52019,502
+Doswell Limited Partnership,52019,601
+Doswell Limited Partnership,52019,602
+Doswell Limited Partnership,52019,CT1
+Doswell Limited Partnership,52019,CT2
+Doswell Limited Partnership,52019,CT3
+Dartmouth Power,52026,1
+Dartmouth Power,52026,2
+Elizabeth River Combustion Turbine Sta,52087,CT-1
+Elizabeth River Combustion Turbine Sta,52087,CT-2
+Elizabeth River Combustion Turbine Sta,52087,CT-3
+Texas City Cogeneration,52088,GT-A
+Texas City Cogeneration,52088,GT-B
+Texas City Cogeneration,52088,GT-C
+Merck & Company - West Point,52149,039
+Merck & Company - West Point,52149,040
+C. R. Wing Cogeneration Plant,52176,1
+C. R. Wing Cogeneration Plant,52176,2
+Delaware City Refinery,52193,DCPP4
+Rensselaer Cogen,54034,1GTDBS
+Lockport,54041,011854
+Lockport,54041,011855
+Lockport,54041,011856
+Indeck-Olean Energy Center,54076,1
+"Spruance Operating Services, LLC",54081,BLR03A
+"Spruance Operating Services, LLC",54081,BLR03B
+"Spruance Operating Services, LLC",54081,BLR04A
+"Spruance Operating Services, LLC",54081,BLR04B
+Ticonderoga Mill,54099,000044
+KIAC Cogeneration,54114,GT1
+KIAC Cogeneration,54114,GT2
+"World Generation X, LLC",54131,NTCT1
+Nissequogue Energy Center,54149,1
+DTE Stockton,54238,BIOMS1
+Saguaro,54271,A01
+Saguaro,54271,A02
+Ocean State Power II,54324,3
+Ocean State Power II,54324,4
+Nevada Cogeneration Associates #1,54350,A001
+Nevada Cogeneration Associates #1,54350,A002
+Nevada Cogeneration Associates #1,54350,A003
+Orange Cogeneration Facility,54365,1
+Orange Cogeneration Facility,54365,2
+Cadillac Renewable Energy,54415,EUBLR
+Mulberry Cogeneration Facility,54426,1
+Orlando CoGen,54466,1
+Sumas Generating Station,54476,CT-1
+Ferndale Generating Station,54537,CT-1A
+Ferndale Generating Station,54537,CT-1B
+Independence,54547,1
+Independence,54547,2
+Independence,54547,3
+Independence,54547,4
+Ingredion Incorporated Argo Plant,54556,B06
+Ingredion Incorporated Argo Plant,54556,B07
+Ingredion Incorporated Argo Plant,54556,B08
+Ingredion Incorporated Argo Plant,54556,B10
+"Saranac Power Partners, LP",54574,00001
+"Saranac Power Partners, LP",54574,00002
+"Tanner Street Generation, LLC",54586,2
+Massena Energy Facility,54592,001
+Batavia Energy,54593,1
+"Pratt & Whitney, East Hartford",54605,1
+St. Nicholas Cogeneration Project,54634,1
+Lakewood,54640,1001
+Lakewood,54640,2001
+Yuma Cogeneration Associates,54694,4101
+Goal Line,54749,1
+Genesee Power Station,54751,1
+Hermiston,54761,1
+Hermiston,54761,2
+Live Oak Limited,54768,GT1
+Grays Ferry Cogen Partnership,54785,2
+Grays Ferry Cogen Partnership,54785,25
+"American Sugar Refining, Inc.",54795,C6
+"Milford Power, LLC",54805,1
+Johnson County Generation Facility,54817,EAST
+Brandywine Power Facility,54832,1
+Brandywine Power Facility,54832,2
+Gordonsville Power Station,54844,1
+Gordonsville Power Station,54844,2
+Sun Peak Generating Station,54854,3
+Sun Peak Generating Station,54854,4
+Sun Peak Generating Station,54854,5
+Brooklyn Navy Yard Cogeneration,54914,1
+Brooklyn Navy Yard Cogeneration,54914,2
+Michigan Power Limited Partnership,54915,1
+Cottage Grove Cogeneration,55010,1
+Whitewater Cogeneration Facility,55011,1
+Sweeny Cogeneration Facility,55015,1
+Sweeny Cogeneration Facility,55015,2
+Sweeny Cogeneration Facility,55015,3
+Sweeny Cogeneration Facility,55015,4
+Dighton,55026,1
+Depere Energy Center,55029,B01
+Rio Bravo Generating Station,55039,GT-1
+Mid-Georgia Cogeneration,55040,1
+Mid-Georgia Cogeneration,55040,2
+Berkshire Power,55041,1
+Bridgeport Energy,55042,BE1
+Bridgeport Energy,55042,BE2
+Cherokee County Cogen,55043,CCCP1
+Pasadena Power Plant,55047,CG-1
+Pasadena Power Plant,55047,CG-2
+Pasadena Power Plant,55047,CG-3
+"Tiverton Power, LLC",55048,1
+Tenaska Georgia Generating Station,55061,CT1
+Tenaska Georgia Generating Station,55061,CT2
+Tenaska Georgia Generating Station,55061,CT3
+Tenaska Georgia Generating Station,55061,CT4
+Tenaska Georgia Generating Station,55061,CT5
+Tenaska Georgia Generating Station,55061,CT6
+Tenaska Frontier Generating Station,55062,1
+Tenaska Frontier Generating Station,55062,2
+Tenaska Frontier Generating Station,55062,3
+Batesville Generation Facility,55063,1
+Batesville Generation Facility,55063,2
+Batesville Generation Facility,55063,3
+Blackhawk Station,55064,1
+Blackhawk Station,55064,2
+Mustang Station,55065,1
+Mustang Station,55065,2
+Maine Independence Station,55068,1
+Maine Independence Station,55068,2
+Pine Bluff Energy Center,55075,CT-1
+Red Hills Generation Facility,55076,AA001
+Red Hills Generation Facility,55076,AA002
+Desert Star Energy Center,55077,EDE1
+Desert Star Energy Center,55077,EDE2
+Millennium Power,55079,1
+Brownsville Combustion Turbine Plant,55081,AA-001
+Brownsville Combustion Turbine Plant,55081,AA-002
+Brownsville Combustion Turbine Plant,55081,AA-003
+Brownsville Combustion Turbine Plant,55081,AA-004
+Gregory Power Facility,55086,101
+Gregory Power Facility,55086,102
+Zeeland Generating Station,55087,CC1
+Zeeland Generating Station,55087,CC2
+Zeeland Generating Station,55087,CC3
+Zeeland Generating Station,55087,CC4
+Dearborn Industrial Generation,55088,BL1100
+Dearborn Industrial Generation,55088,BL2100
+Dearborn Industrial Generation,55088,BL3100
+Dearborn Industrial Generation,55088,GT2100
+Dearborn Industrial Generation,55088,GT3100
+Dearborn Industrial Generation,55088,GTP1
+Taft Cogeneration Facility,55089,CT1
+Taft Cogeneration Facility,55089,CT2
+Taft Cogeneration Facility,55089,CT3
+Midlothian Energy,55091,STK1
+Midlothian Energy,55091,STK2
+Midlothian Energy,55091,STK3
+Midlothian Energy,55091,STK4
+Midlothian Energy,55091,STK5
+Midlothian Energy,55091,STK6
+Lamar Power Plant,55097,1
+Lamar Power Plant,55097,2
+Lamar Power Plant,55097,3
+Lamar Power Plant,55097,4
+Frontera Generation Facility,55098,1
+Frontera Generation Facility,55098,2
+Rumford Power,55100,1
+Kalamazoo River Generating Station,55101,1
+Livingston Generating Station,55102,1
+Livingston Generating Station,55102,2
+Livingston Generating Station,55102,3
+Livingston Generating Station,55102,4
+Klamath Cogeneration Project,55103,CT1
+Klamath Cogeneration Project,55103,CT2
+Rhode Island State Energy Center,55107,RISEP1
+Rhode Island State Energy Center,55107,RISEP2
+"Rocky Road Power, LLC",55109,T1
+"Rocky Road Power, LLC",55109,T2
+"Rocky Road Power, LLC",55109,T3
+"Rocky Road Power, LLC",55109,T4
+Madison Generating Station,55110,1
+Madison Generating Station,55110,2
+Madison Generating Station,55110,3
+Madison Generating Station,55110,4
+Madison Generating Station,55110,5
+Madison Generating Station,55110,6
+Madison Generating Station,55110,7
+Madison Generating Station,55110,8
+Vermillion Generating Station,55111,1
+Vermillion Generating Station,55111,2
+Vermillion Generating Station,55111,3
+Vermillion Generating Station,55111,4
+Vermillion Generating Station,55111,5
+Vermillion Generating Station,55111,6
+Vermillion Generating Station,55111,7
+Vermillion Generating Station,55111,8
+Calpine Sutter Energy Center,55112,CT01
+Calpine Sutter Energy Center,55112,CT02
+Rockingham County Combustion Turbine,55116,CT1
+Rockingham County Combustion Turbine,55116,CT2
+Rockingham County Combustion Turbine,55116,CT3
+Rockingham County Combustion Turbine,55116,CT4
+Rockingham County Combustion Turbine,55116,CT5
+R S Cogen LLC,55117,RS-5
+R S Cogen LLC,55117,RS-6
+SRO Cogen Limited Partnership,55120,CTG-1
+SRO Cogen Limited Partnership,55120,CTG-2
+Magic Valley Generating Station,55123,CTG-1
+Magic Valley Generating Station,55123,CTG-2
+Griffith Energy Project,55124,P1
+Griffith Energy Project,55124,P2
+Milford Power Company LLC,55126,CT01
+Milford Power Company LLC,55126,CT02
+Manchief Generating Station,55127,CT1
+Manchief Generating Station,55127,CT2
+Walton County Power,55128,T1
+Walton County Power,55128,T2
+Walton County Power,55128,T3
+Desert Basin Generating Station,55129,DBG1
+Desert Basin Generating Station,55129,DBG2
+Desert Basin Generating Station,55129,DBG4
+Desert Basin Generating Station,55129,DBG5
+Kendall Energy Facility,55131,GTG-1
+Kendall Energy Facility,55131,GTG-2
+Kendall Energy Facility,55131,GTG-3
+Kendall Energy Facility,55131,GTG-4
+Tenaska Gateway Generating Station,55132,OGTDB1
+Tenaska Gateway Generating Station,55132,OGTDB2
+Tenaska Gateway Generating Station,55132,OGTDB3
+Neenah Energy Facility,55135,CT01
+Neenah Energy Facility,55135,CT02
+"Rio Nogales Power Project, LP",55137,CTG-1
+"Rio Nogales Power Project, LP",55137,CTG-2
+"Rio Nogales Power Project, LP",55137,CTG-3
+Walton Discover Power Facility,55138,1A
+Walton Discover Power Facility,55138,1B
+Walton Discover Power Facility,55138,2A
+Walton Discover Power Facility,55138,2B
+Wolf Hollow Generating Station,55139,CTG1
+Wolf Hollow Generating Station,55139,CTG2
+Hawk Road Energy Facility,55141,CT1
+Hawk Road Energy Facility,55141,CT2
+Hawk Road Energy Facility,55141,CT3
+Hays Energy Facility,55144,STK1
+Hays Energy Facility,55144,STK2
+Hays Energy Facility,55144,STK3
+Hays Energy Facility,55144,STK4
+"Green Country Energy, LLC",55146,CTGEN1
+"Green Country Energy, LLC",55146,CTGEN2
+"Green Country Energy, LLC",55146,CTGEN3
+Worthington Generation,55148,1
+Worthington Generation,55148,2
+Worthington Generation,55148,3
+Worthington Generation,55148,4
+Lake Road Generating Company,55149,LRG1
+Lake Road Generating Company,55149,LRG2
+Lake Road Generating Company,55149,LRG3
+La Paloma Generating Plant,55151,CTG-1
+La Paloma Generating Plant,55151,CTG-2
+La Paloma Generating Plant,55151,CTG-3
+La Paloma Generating Plant,55151,CTG-4
+Guadalupe Generating Station,55153,CTG-1
+Guadalupe Generating Station,55153,CTG-2
+Guadalupe Generating Station,55153,CTG-3
+Guadalupe Generating Station,55153,CTG-4
+Lost Pines 1,55154,1
+Lost Pines 1,55154,2
+Bluegrass Generating Station,55164,GTG1
+Bluegrass Generating Station,55164,GTG2
+Bluegrass Generating Station,55164,GTG3
+Calcasieu Plant,55165,GTG1
+Calcasieu Plant,55165,GTG2
+Broad River Energy Center,55166,CT-1
+Broad River Energy Center,55166,CT-2
+Broad River Energy Center,55166,CT-3
+Broad River Energy Center,55166,CT-4
+Broad River Energy Center,55166,CT-5
+Bastrop Clean Energy Center,55168,CTG-1A
+Bastrop Clean Energy Center,55168,CTG-1B
+Granite Ridge Energy,55170,0001
+Granite Ridge Energy,55170,0002
+Bosque County Power Plant,55172,GT-1
+Bosque County Power Plant,55172,GT-2
+Bosque County Power Plant,55172,GT-3
+Acadia Power Station,55173,CT1
+Acadia Power Station,55173,CT2
+Acadia Power Station,55173,CT3
+Acadia Power Station,55173,CT4
+Eastman Cogeneration Facility,55176,1
+Eastman Cogeneration Facility,55176,2
+"South Point Energy Center, LLC",55177,A
+"South Point Energy Center, LLC",55177,B
+Dogwood Energy Facility,55178,CT-1
+Dogwood Energy Facility,55178,CT-2
+"Rathdrum Power, LLC",55179,CTGEN1
+Sunrise Power Company,55182,CTG1
+Sunrise Power Company,55182,CTG2
+Nelson Energy Center,55183,1
+Nelson Energy Center,55183,2
+Channelview Cogeneration Facility,55187,CHV1
+Channelview Cogeneration Facility,55187,CHV2
+Channelview Cogeneration Facility,55187,CHV3
+Channelview Cogeneration Facility,55187,CHV4
+Cordova Energy Company,55188,1
+Cordova Energy Company,55188,2
+Osceola,55192,OSC1
+Osceola,55192,OSC2
+Osceola,55192,OSC3
+Ontelaunee Energy Center,55193,CT1
+Ontelaunee Energy Center,55193,CT2
+Springdale Generating Station (55196),55196,1
+Springdale Generating Station (55196),55196,2
+Caledonia,55197,AA-001
+Caledonia,55197,AA-002
+Caledonia,55197,AA-003
+Riverside Generating Company,55198,GTG101
+Riverside Generating Company,55198,GTG201
+Riverside Generating Company,55198,GTG301
+Riverside Generating Company,55198,GTG401
+Riverside Generating Company,55198,GTG501
+Elwood Energy Facility,55199,1
+Elwood Energy Facility,55199,2
+Elwood Energy Facility,55199,3
+Elwood Energy Facility,55199,4
+Elwood Energy Facility,55199,5
+Elwood Energy Facility,55199,6
+Elwood Energy Facility,55199,7
+Elwood Energy Facility,55199,8
+Elwood Energy Facility,55199,9
+Arapahoe Combustion Turbine Facility,55200,CT5
+Arapahoe Combustion Turbine Facility,55200,CT6
+"Gibson City Energy Center, LLC",55201,GCTG1
+"Gibson City Energy Center, LLC",55201,GCTG2
+Pinckneyville Power Plant,55202,CT01
+Pinckneyville Power Plant,55202,CT02
+Pinckneyville Power Plant,55202,CT03
+Pinckneyville Power Plant,55202,CT04
+Pinckneyville Power Plant,55202,CT05
+Pinckneyville Power Plant,55202,CT06
+Pinckneyville Power Plant,55202,CT07
+Pinckneyville Power Plant,55202,CT08
+Kinmundy Power Plant,55204,KCTG1
+Kinmundy Power Plant,55204,KCTG2
+Corpus Christi Energy Center,55206,CU1
+Corpus Christi Energy Center,55206,CU2
+Valmont Combustion Turbine Facility,55207,CT7
+Valmont Combustion Turbine Facility,55207,CT8
+Afton Generating Station,55210,0001
+Bellingham Power Generation LLC,55211,1
+Bellingham Power Generation LLC,55211,2
+Blackstone Power Generation LLC,55212,1
+Blackstone Power Generation LLC,55212,2
+Odessa Ector Generating Station,55215,GT1
+Odessa Ector Generating Station,55215,GT2
+Odessa Ector Generating Station,55215,GT3
+Odessa Ector Generating Station,55215,GT4
+"Morris Cogeneration, LLC",55216,CTG1
+"Morris Cogeneration, LLC",55216,CTG2
+"Morris Cogeneration, LLC",55216,CTG3
+"Los Medanos Energy Center, LLC",55217,X724
+"Los Medanos Energy Center, LLC",55217,X725
+Hinds Energy Facility,55218,2
+Hinds Energy Facility,55218,H01
+Hinds Energy Facility,55218,H02
+Attala Generating Plant,55220,A01
+Attala Generating Plant,55220,A02
+Oswald Generating Station,55221,G1
+Oswald Generating Station,55221,G2
+Oswald Generating Station,55221,G3
+Oswald Generating Station,55221,G4
+Oswald Generating Station,55221,G5
+Oswald Generating Station,55221,G6
+Oswald Generating Station,55221,G7
+Lincoln Generating Facility,55222,CTG-1
+Lincoln Generating Facility,55222,CTG-2
+Lincoln Generating Facility,55222,CTG-3
+Lincoln Generating Facility,55222,CTG-4
+Lincoln Generating Facility,55222,CTG-5
+Lincoln Generating Facility,55222,CTG-6
+Lincoln Generating Facility,55222,CTG-7
+Lincoln Generating Facility,55222,CTG-8
+"Ennis Power Company, LLC",55223,GT-1
+Wheatland Generating Facility LLC,55224,EU-01
+Wheatland Generating Facility LLC,55224,EU-02
+Wheatland Generating Facility LLC,55224,EU-03
+Wheatland Generating Facility LLC,55224,EU-04
+Oneta Energy Center,55225,CTG-1
+Oneta Energy Center,55225,CTG-2
+Oneta Energy Center,55225,CTG-3
+Oneta Energy Center,55225,CTG-4
+Freestone Power Generation,55226,GT1
+Freestone Power Generation,55226,GT2
+Freestone Power Generation,55226,GT3
+Freestone Power Generation,55226,GT4
+Greenville Electric Gen Station,55228,G1CT1
+Greenville Electric Gen Station,55228,G1CT2
+Greenville Electric Gen Station,55228,G2CT1
+Greenville Electric Gen Station,55228,G2CT2
+Greenville Electric Gen Station,55228,G3CT1
+Greenville Electric Gen Station,55228,G3CT2
+Greenville Electric Gen Station,55228,G4CT1
+Greenville Electric Gen Station,55228,G4CT2
+Montpelier Electric Gen Station,55229,G1CT1
+Montpelier Electric Gen Station,55229,G1CT2
+Montpelier Electric Gen Station,55229,G2CT1
+Montpelier Electric Gen Station,55229,G2CT2
+Montpelier Electric Gen Station,55229,G3CT1
+Montpelier Electric Gen Station,55229,G3CT2
+Montpelier Electric Gen Station,55229,G4CT1
+Montpelier Electric Gen Station,55229,G4CT2
+Jack County Generation Facility,55230,CT-1
+Jack County Generation Facility,55230,CT-2
+Jack County Generation Facility,55230,CT-3
+Jack County Generation Facility,55230,CT-4
+Liberty Electric Power Plant,55231,0001
+Liberty Electric Power Plant,55231,0002
+Marshall County,55232,CT1
+Marshall County,55232,CT2
+Marshall County,55232,CT3
+Marshall County,55232,CT4
+Marshall County,55232,CT5
+Marshall County,55232,CT6
+Marshall County,55232,CT7
+Marshall County,55232,CT8
+Handsome Lake Energy,55233,EU-1A
+Handsome Lake Energy,55233,EU-1B
+Handsome Lake Energy,55233,EU-2A
+Handsome Lake Energy,55233,EU-2B
+Handsome Lake Energy,55233,EU-3A
+Handsome Lake Energy,55233,EU-3B
+Handsome Lake Energy,55233,EU-4A
+Handsome Lake Energy,55233,EU-4B
+Handsome Lake Energy,55233,EU-5A
+Handsome Lake Energy,55233,EU-5B
+Audrain Power Plant,55234,CT1
+Audrain Power Plant,55234,CT2
+Audrain Power Plant,55234,CT3
+Audrain Power Plant,55234,CT4
+Audrain Power Plant,55234,CT5
+Audrain Power Plant,55234,CT6
+Audrain Power Plant,55234,CT7
+Audrain Power Plant,55234,CT8
+"Lee County Generating Station, LLC",55236,CT1
+"Lee County Generating Station, LLC",55236,CT2
+"Lee County Generating Station, LLC",55236,CT3
+"Lee County Generating Station, LLC",55236,CT4
+"Lee County Generating Station, LLC",55236,CT5
+"Lee County Generating Station, LLC",55236,CT6
+"Lee County Generating Station, LLC",55236,CT7
+"Lee County Generating Station, LLC",55236,CT8
+Shelby County,55237,SCE1
+Shelby County,55237,SCE2
+Shelby County,55237,SCE3
+Shelby County,55237,SCE4
+Shelby County,55237,SCE5
+Shelby County,55237,SCE6
+Shelby County,55237,SCE7
+Shelby County,55237,SCE8
+Rockford Energy Center,55238,0001
+Rockford Energy Center,55238,0002
+"Red Oak Power, LLC",55239,1
+"Red Oak Power, LLC",55239,2
+"Red Oak Power, LLC",55239,3
+Hog Bayou Energy Center,55241,COG01
+Santa Rosa Energy Center,55242,CT-1
+Doyle Energy Facility,55244,CTG-2
+Doyle Energy Facility,55244,CTG-3
+Doyle Energy Facility,55244,CTG-4
+Doyle Energy Facility,55244,CTG-5
+Darby Electric Generating Station,55247,CT1
+Darby Electric Generating Station,55247,CT2
+Darby Electric Generating Station,55247,CT3
+Darby Electric Generating Station,55247,CT4
+Darby Electric Generating Station,55247,CT5
+Darby Electric Generating Station,55247,CT6
+Tait Electric Generating Station,55248,CT4
+Tait Electric Generating Station,55248,CT5
+Tait Electric Generating Station,55248,CT6
+Tait Electric Generating Station,55248,CT7
+University Park Energy,55250,UP1
+University Park Energy,55250,UP10
+University Park Energy,55250,UP11
+University Park Energy,55250,UP12
+University Park Energy,55250,UP2
+University Park Energy,55250,UP3
+University Park Energy,55250,UP4
+University Park Energy,55250,UP5
+University Park Energy,55250,UP6
+University Park Energy,55250,UP7
+University Park Energy,55250,UP8
+University Park Energy,55250,UP9
+Gleason Combustion Turbine Plant,55251,CTG-1
+Gleason Combustion Turbine Plant,55251,CTG-2
+Gleason Combustion Turbine Plant,55251,CTG-3
+Crete Energy Park,55253,GT1
+Crete Energy Park,55253,GT2
+Crete Energy Park,55253,GT3
+Crete Energy Park,55253,GT4
+"Whiting Clean Energy, Inc.",55259,CT1
+"Whiting Clean Energy, Inc.",55259,CT2
+AMP-Ohio Gas Turbines Bowling Green,55262,CT1
+AMP-Ohio Gas Turbines Galion,55263,CT1
+AMP-Ohio Gas Turbines Napoleon,55264,CT1
+Edward L Addison Generating Plant,55267,1
+Edward L Addison Generating Plant,55267,2
+Edward L Addison Generating Plant,55267,3
+Edward L Addison Generating Plant,55267,4
+Southaven Combined Cycle Plant,55269,AA-001
+Southaven Combined Cycle Plant,55269,AA-002
+Southaven Combined Cycle Plant,55269,AA-003
+Jackson Generating Station,55270,7EA
+Jackson Generating Station,55270,LM1
+Jackson Generating Station,55270,LM2
+Jackson Generating Station,55270,LM3
+Jackson Generating Station,55270,LM4
+Jackson Generating Station,55270,LM5
+Jackson Generating Station,55270,LM6
+Lindsay Hill Generating Station,55271,CT1
+Lindsay Hill Generating Station,55271,CT2
+Lindsay Hill Generating Station,55271,CT3
+Ceredo Generating Station,55276,01
+Ceredo Generating Station,55276,02
+Ceredo Generating Station,55276,03
+Ceredo Generating Station,55276,04
+Ceredo Generating Station,55276,05
+Ceredo Generating Station,55276,06
+Aurora,55279,AGS01
+Aurora,55279,AGS02
+Aurora,55279,AGS03
+Aurora,55279,AGS04
+Aurora,55279,AGS05
+Aurora,55279,AGS06
+Aurora,55279,AGS07
+Aurora,55279,AGS08
+Aurora,55279,AGS09
+Aurora,55279,AGS10
+Arlington Valley Energy Facility,55282,CTG1
+Arlington Valley Energy Facility,55282,CTG2
+Front Range Power Plant,55283,1
+Front Range Power Plant,55283,2
+Big Sandy Peaker Plant,55284,GS01
+Big Sandy Peaker Plant,55284,GS02
+Big Sandy Peaker Plant,55284,GS03
+Big Sandy Peaker Plant,55284,GS04
+Big Sandy Peaker Plant,55284,GS05
+Big Sandy Peaker Plant,55284,GS06
+Big Sandy Peaker Plant,55284,GS07
+Big Sandy Peaker Plant,55284,GS08
+Big Sandy Peaker Plant,55284,GS09
+Big Sandy Peaker Plant,55284,GS10
+Big Sandy Peaker Plant,55284,GS11
+Big Sandy Peaker Plant,55284,GS12
+Wolf Hills Energy,55285,WH01
+Wolf Hills Energy,55285,WH02
+Wolf Hills Energy,55285,WH03
+Wolf Hills Energy,55285,WH04
+Wolf Hills Energy,55285,WH05
+Wolf Hills Energy,55285,WH06
+Wolf Hills Energy,55285,WH07
+Wolf Hills Energy,55285,WH08
+Wolf Hills Energy,55285,WH09
+Wolf Hills Energy,55285,WH10
+Oleander Power Project,55286,O-1
+Oleander Power Project,55286,O-2
+Oleander Power Project,55286,O-3
+Oleander Power Project,55286,O-4
+Oleander Power Project,55286,O-5
+Decatur Energy Center,55292,CTG-1
+Decatur Energy Center,55292,CTG-2
+Decatur Energy Center,55292,CTG-3
+Morgan Energy Center,55293,CT-1
+Morgan Energy Center,55293,CT-2
+Morgan Energy Center,55293,CT-3
+Westbrook Energy Center,55294,1
+Westbrook Energy Center,55294,2
+Blythe Energy,55295,1
+Blythe Energy,55295,2
+"Calumet Energy Team, LLC",55296,**1
+"Calumet Energy Team, LLC",55296,**2
+Covert Generating Station,55297,001
+Covert Generating Station,55297,002
+Covert Generating Station,55297,003
+Fairless Energy Center,55298,1A
+Fairless Energy Center,55298,1B
+Fairless Energy Center,55298,2A
+Fairless Energy Center,55298,2B
+Channel Energy Center,55299,CTG1
+Channel Energy Center,55299,CTG2
+Channel Energy Center,55299,CTG3
+Baconton Power,55304,CT1
+Baconton Power,55304,CT5
+Gila River Power Station,55306,1CTGA
+Gila River Power Station,55306,1CTGB
+Gila River Power Station,55306,2CTGA
+Gila River Power Station,55306,2CTGB
+Gila River Power Station,55306,3CTGA
+Gila River Power Station,55306,3CTGB
+Gila River Power Station,55306,4CTGA
+Gila River Power Station,55306,4CTGB
+Fore River Energy Center,55317,11
+Fore River Energy Center,55317,12
+"Wise County Power Company, LLC",55320,GT-1
+"Wise County Power Company, LLC",55320,GT-2
+Chuck Lenzie Generating Station,55322,CTG-1
+Chuck Lenzie Generating Station,55322,CTG-2
+Chuck Lenzie Generating Station,55322,CTG-3
+Chuck Lenzie Generating Station,55322,CTG-4
+Baytown Energy Center,55327,CTG-1
+Baytown Energy Center,55327,CTG-2
+Baytown Energy Center,55327,CTG-3
+Hermiston Power Plant,55328,CTG-1
+Hermiston Power Plant,55328,CTG-2
+Washington County Power,55332,T1
+Washington County Power,55332,T2
+Washington County Power,55332,T3
+Washington County Power,55332,T4
+"Delta Energy Center, LLC",55333,1
+"Delta Energy Center, LLC",55333,2
+"Delta Energy Center, LLC",55333,3
+Holland Energy Facility,55334,CTG1
+Holland Energy Facility,55334,CTG2
+Helix Ironwood LLC,55337,0001
+Helix Ironwood LLC,55337,0002
+Dell Power Plant,55340,1
+Dell Power Plant,55340,2
+Luna Energy Facility,55343,CTG1
+Luna Energy Facility,55343,CTG2
+"Otay Mesa Energy Center, LLC",55345,CTG-1
+"Otay Mesa Energy Center, LLC",55345,CTG-2
+"Armstrong Power, LLC",55347,1
+"Armstrong Power, LLC",55347,2
+"Armstrong Power, LLC",55347,3
+"Armstrong Power, LLC",55347,4
+"Troy Energy, LLC",55348,1
+"Troy Energy, LLC",55348,2
+"Troy Energy, LLC",55348,3
+"Troy Energy, LLC",55348,4
+"Pleasants Energy, LLC",55349,1
+"Pleasants Energy, LLC",55349,2
+Dresden Energy Facility,55350,1A
+Dresden Energy Facility,55350,1B
+"Brazos Valley Energy, LP",55357,CTG1
+"Brazos Valley Energy, LP",55357,CTG2
+Cottonwood Energy Project,55358,CT1
+Cottonwood Energy Project,55358,CT2
+Cottonwood Energy Project,55358,CT3
+Cottonwood Energy Project,55358,CT4
+Sugar Creek Generating Station,55364,CT11
+Sugar Creek Generating Station,55364,CT12
+LaPorte Generating Station,55365,GT-1
+LaPorte Generating Station,55365,GT-2
+LaPorte Generating Station,55365,GT-3
+LaPorte Generating Station,55365,GT-4
+New Harquahala Generating Company,55372,CTG1
+New Harquahala Generating Company,55372,CTG2
+New Harquahala Generating Company,55372,CTG3
+Astoria Energy,55375,CT1
+Astoria Energy,55375,CT2
+Astoria Energy,55375,CT3
+Astoria Energy,55375,CT4
+Gans Generating Facility,55377,8
+Gans Generating Facility,55377,9
+Union Power Station,55380,CTG-1
+Union Power Station,55380,CTG-2
+Union Power Station,55380,CTG-3
+Union Power Station,55380,CTG-4
+Union Power Station,55380,CTG-5
+Union Power Station,55380,CTG-6
+Union Power Station,55380,CTG-7
+Union Power Station,55380,CTG-8
+Commonwealth Chesapeake,55381,CT-001
+Commonwealth Chesapeake,55381,CT-002
+Commonwealth Chesapeake,55381,CT-003
+Commonwealth Chesapeake,55381,CT-004
+Commonwealth Chesapeake,55381,CT-005
+Commonwealth Chesapeake,55381,CT-006
+Commonwealth Chesapeake,55381,CT-007
+Thomas A. Smith Energy Facility,55382,CCCT1
+Thomas A. Smith Energy Facility,55382,CCCT2
+Thomas A. Smith Energy Facility,55382,CCCT3
+Thomas A. Smith Energy Facility,55382,CCCT4
+Columbia Energy Center (SC),55386,B-1
+Columbia Energy Center (SC),55386,B-2
+Columbia Energy Center (SC),55386,B-3
+Columbia Energy Center (SC),55386,CT-1
+Columbia Energy Center (SC),55386,CT-2
+Rockgen Energy Center,55391,CT-1
+Rockgen Energy Center,55391,CT-2
+Rockgen Energy Center,55391,CT-3
+Zion Energy Center,55392,CT-1
+Zion Energy Center,55392,CT-2
+Zion Energy Center,55392,CT-3
+Metcalf Energy Center,55393,1
+Metcalf Energy Center,55393,2
+Crossroads Energy Center (CPU),55395,CT01
+Crossroads Energy Center (CPU),55395,CT02
+Crossroads Energy Center (CPU),55395,CT03
+Crossroads Energy Center (CPU),55395,CT04
+Washington Power Company LLC,55397,CT1
+Washington Power Company LLC,55397,CT2
+Elk Hills Power,55400,CTG-1
+Elk Hills Power,55400,CTG-2
+Rolling Hills Generating LLC,55401,CT-1
+Rolling Hills Generating LLC,55401,CT-2
+Rolling Hills Generating LLC,55401,CT-3
+Rolling Hills Generating LLC,55401,CT-4
+Rolling Hills Generating LLC,55401,CT-5
+Renaissance Power,55402,CT1
+Renaissance Power,55402,CT2
+Renaissance Power,55402,CT3
+Renaissance Power,55402,CT4
+Carville Energy Center,55404,COG01
+Carville Energy Center,55404,COG02
+Athens Generating Company,55405,1
+Athens Generating Company,55405,2
+Athens Generating Company,55405,3
+Bobby C. Smith Jr. Energy Facility,55406,1
+Bobby C. Smith Jr. Energy Facility,55406,2
+Calhoun Generating Facility,55409,CT1
+Calhoun Generating Facility,55409,CT2
+Calhoun Generating Facility,55409,CT3
+Calhoun Generating Facility,55409,CT4
+Hillabee Energy Center,55411,CT1
+Hillabee Energy Center,55411,CT2
+Osprey Energy Center,55412,CT1
+Osprey Energy Center,55412,CT2
+Shady Hills,55414,GT101
+Shady Hills,55414,GT201
+Shady Hills,55414,GT301
+Vandolah Power Project,55415,GT101
+Vandolah Power Project,55415,GT201
+Vandolah Power Project,55415,GT301
+Vandolah Power Project,55415,GT401
+Raccoon Creek Power Plant,55417,CT-01
+Raccoon Creek Power Plant,55417,CT-02
+Raccoon Creek Power Plant,55417,CT-03
+Raccoon Creek Power Plant,55417,CT-04
+Hot Spring Energy Facility,55418,CT-1
+Hot Spring Energy Facility,55418,CT-2
+Plaquemine Cogen Facility,55419,500
+Plaquemine Cogen Facility,55419,600
+Plaquemine Cogen Facility,55419,700
+Plaquemine Cogen Facility,55419,800
+Bayou Cove Peaking Power Plant,55433,CTG-1
+Bayou Cove Peaking Power Plant,55433,CTG-2
+Bayou Cove Peaking Power Plant,55433,CTG-3
+Bayou Cove Peaking Power Plant,55433,CTG-4
+"Elgin Energy Center, LLC",55438,CT01
+"Elgin Energy Center, LLC",55438,CT02
+"Elgin Energy Center, LLC",55438,CT03
+"Elgin Energy Center, LLC",55438,CT04
+Tenaska Virginia Generating Station,55439,CTGDB1
+Tenaska Virginia Generating Station,55439,CTGDB2
+Tenaska Virginia Generating Station,55439,CTGDB3
+Central Alabama Gen Station,55440,CTGDB1
+Central Alabama Gen Station,55440,CTGDB2
+Central Alabama Gen Station,55440,CTGDB3
+Columbia Energy Center (MO),55447,CT01
+Columbia Energy Center (MO),55447,CT02
+Columbia Energy Center (MO),55447,CT03
+Columbia Energy Center (MO),55447,CT04
+Magnolia Combined Cycle Plant,55451,CTG-1
+Magnolia Combined Cycle Plant,55451,CTG-2
+Magnolia Combined Cycle Plant,55451,CTG-3
+Fountain Valley Power Plant,55453,1
+Fountain Valley Power Plant,55453,2
+Fountain Valley Power Plant,55453,3
+Fountain Valley Power Plant,55453,4
+Fountain Valley Power Plant,55453,5
+Fountain Valley Power Plant,55453,6
+Redhawk Generating Facility,55455,CC1A
+Redhawk Generating Facility,55455,CC1B
+Redhawk Generating Facility,55455,CC2A
+Redhawk Generating Facility,55455,CC2B
+McClain Energy Facility,55457,CT1
+McClain Energy Facility,55457,CT2
+Indeck-Niles Energy Center,55460,EUCT1
+Indeck-Niles Energy Center,55460,EUCT2
+Redbud Power Plant,55463,CT-01
+Redbud Power Plant,55463,CT-02
+Redbud Power Plant,55463,CT-03
+Redbud Power Plant,55463,CT-04
+Deer Park Energy Center,55464,CTG1
+Deer Park Energy Center,55464,CTG2
+Deer Park Energy Center,55464,CTG3
+Deer Park Energy Center,55464,CTG4
+Deer Park Energy Center,55464,CTG5
+Ouachita Plant,55467,CTGEN1
+Ouachita Plant,55467,CTGEN2
+Ouachita Plant,55467,CTGEN3
+South Houston Green Power Site,55470,EPN801
+South Houston Green Power Site,55470,EPN802
+South Houston Green Power Site,55470,EPN803
+Neil Simpson II (CT2),55477,CT2
+Lange,55478,CT1
+Wygen I,55479,001
+Forney Power Plant,55480,U1
+Forney Power Plant,55480,U2
+Forney Power Plant,55480,U3
+Forney Power Plant,55480,U4
+Forney Power Plant,55480,U5
+Forney Power Plant,55480,U6
+Mesquite Generating Station,55481,1
+Mesquite Generating Station,55481,2
+Mesquite Generating Station,55481,5
+Mesquite Generating Station,55481,6
+Goldendale Generating Station,55482,CT-1
+Washington Parish Energy Center,55486,CTG01
+Washington Parish Energy Center,55486,CTG02
+Goose Creek Power Plant,55496,CT-01
+Goose Creek Power Plant,55496,CT-02
+Goose Creek Power Plant,55496,CT-03
+Goose Creek Power Plant,55496,CT-04
+Goose Creek Power Plant,55496,CT-05
+Goose Creek Power Plant,55496,CT-06
+CalPeak Power - Vaca Dixon,55499,GT-1
+Tenaska Kiamichi Generating Station,55501,CTGDB1
+Tenaska Kiamichi Generating Station,55501,CTGDB2
+Tenaska Kiamichi Generating Station,55501,CTGDB3
+Tenaska Kiamichi Generating Station,55501,CTGDB4
+Lawrenceburg Energy Facility,55502,1
+Lawrenceburg Energy Facility,55502,2
+Lawrenceburg Energy Facility,55502,3
+Lawrenceburg Energy Facility,55502,4
+Waterford Plant,55503,1
+Waterford Plant,55503,2
+Waterford Plant,55503,3
+Limon Generating Station,55504,L1
+Limon Generating Station,55504,L2
+Frank Knutson Station,55505,BR1
+Frank Knutson Station,55505,BR2
+CalPeak Power - Panoche,55508,GT-1
+CalPeak Power - Border,55510,GT-1
+Cuyamaca Peak Energy,55512,GT-1
+CalPeak Power - Enterprise,55513,GT-1
+Apex Generating Station,55514,CTG01
+Apex Generating Station,55514,CTG02
+Fayette Power Company LLC,55516,CTG1
+Fayette Power Company LLC,55516,CTG2
+"Wallingford Energy, LLC",55517,CT01
+"Wallingford Energy, LLC",55517,CT02
+"Wallingford Energy, LLC",55517,CT03
+"Wallingford Energy, LLC",55517,CT04
+"Wallingford Energy, LLC",55517,CT05
+"Wallingford Energy, LLC",55517,CT06
+"Wallingford Energy, LLC",55517,CT07
+High Desert Power Project,55518,CTG1
+High Desert Power Project,55518,CTG2
+High Desert Power Project,55518,CTG3
+Sundance Power Plant,55522,CT01
+Sundance Power Plant,55522,CT02
+Sundance Power Plant,55522,CT03
+Sundance Power Plant,55522,CT04
+Sundance Power Plant,55522,CT05
+Sundance Power Plant,55522,CT06
+Sundance Power Plant,55522,CT07
+Sundance Power Plant,55522,CT08
+Sundance Power Plant,55522,CT09
+Sundance Power Plant,55522,CT10
+York Energy Center,55524,1
+York Energy Center,55524,2
+York Energy Center,55524,3
+York Energy Center,55524,5
+York Energy Center,55524,6
+"Escondido Energy Center, LLC",55538,CTG1
+Chula Vista Energy Center,55540,1A
+Chula Vista Energy Center,55540,1B
+Indigo Generation Facility,55541,1
+Indigo Generation Facility,55541,2
+Indigo Generation Facility,55541,3
+Larkspur Energy Facility,55542,1
+Larkspur Energy Facility,55542,2
+Klamath Generation Peakers,55544,GT1
+Klamath Generation Peakers,55544,GT2
+Klamath Generation Peakers,55544,GT3
+Klamath Generation Peakers,55544,GT4
+McKinley Paper and Packaging Company,55558,B06
+Perryville Power Station,55620,1-1
+Perryville Power Station,55620,1-2
+Perryville Power Station,55620,2-1
+West Valley Power Plant,55622,U1
+West Valley Power Plant,55622,U2
+West Valley Power Plant,55622,U3
+West Valley Power Plant,55622,U4
+West Valley Power Plant,55622,U5
+Creed Energy Center,55625,UNIT1
+Lambie Energy Center,55626,UNIT1
+Goose Haven Energy Center,55627,UNIT1
+"LSP University Park, LLC",55640,CT01
+"LSP University Park, LLC",55640,CT02
+"LSP University Park, LLC",55640,CT03
+"LSP University Park, LLC",55640,CT04
+"LSP University Park, LLC",55640,CT05
+"LSP University Park, LLC",55640,CT06
+"LSP University Park, LLC",55640,CT07
+"LSP University Park, LLC",55640,CT08
+"LSP University Park, LLC",55640,CT09
+"LSP University Park, LLC",55640,CT10
+"LSP University Park, LLC",55640,CT11
+"LSP University Park, LLC",55640,CT12
+Riverside Energy Center,55641,CT-01
+Riverside Energy Center,55641,CT-02
+Riverside Energy Center,55641,CT-03
+Riverside Energy Center,55641,CT-04
+Blue Spruce Energy Center,55645,CT-01
+Blue Spruce Energy Center,55645,CT-02
+Spring Creek Power Plant,55651,CT-01
+Spring Creek Power Plant,55651,CT-02
+Spring Creek Power Plant,55651,CT-03
+Spring Creek Power Plant,55651,CT-04
+Chambersburg Units 12 & 13,55654,12
+Chambersburg Units 12 & 13,55654,13
+Pastoria Energy Facility,55656,CT001
+Pastoria Energy Facility,55656,CT002
+Pastoria Energy Facility,55656,CT004
+Newington Energy,55661,1
+Newington Energy,55661,2
+Chehalis Generation Facility,55662,CT1
+Chehalis Generation Facility,55662,CT2
+Harrison County Power Project,55664,GT-1
+Harrison County Power Project,55664,GT-2
+"Lower Mount Bethel Energy, LLC",55667,CT01
+"Lower Mount Bethel Energy, LLC",55667,CT02
+AL Sandersville Energy Facility,55672,CT1
+AL Sandersville Energy Facility,55672,CT2
+AL Sandersville Energy Facility,55672,CT3
+AL Sandersville Energy Facility,55672,CT4
+AL Sandersville Energy Facility,55672,CT5
+AL Sandersville Energy Facility,55672,CT6
+AL Sandersville Energy Facility,55672,CT7
+AL Sandersville Energy Facility,55672,CT8
+Walter M. Higgins III Generating Station,55687,BHG1
+Walter M. Higgins III Generating Station,55687,BHG2
+Bethlehem Power Plant,55690,1
+Bethlehem Power Plant,55690,2
+Bethlehem Power Plant,55690,3
+Bethlehem Power Plant,55690,5
+Bethlehem Power Plant,55690,6
+Bethlehem Power Plant,55690,7
+Ackerman Combined Cycle Plant,55694,AA-001
+Ackerman Combined Cycle Plant,55694,AA-002
+Hanford Energy Park Peaker,55698,HEP1
+Hanford Energy Park Peaker,55698,HEP2
+Bayswater Peaking Facility,55699,1
+Bayswater Peaking Facility,55699,2
+Mint Farm Generating Station,55700,CTG1
+Fremont Energy Center,55701,CT01
+Fremont Energy Center,55701,CT02
+Choctaw County,55706,CTG1
+Choctaw County,55706,CTG2
+Choctaw County,55706,CTG3
+Nacogdoches Generating Facility,55708,BFB-1
+Springdale Generating Station (55710),55710,3
+Springdale Generating Station (55710),55710,4
+Magnet Cove Generating Station,55714,SN-01
+Magnet Cove Generating Station,55714,SN-02
+Dean Peakers,55718,1
+Dean Peakers,55718,2
+Dean Peakers,55718,3
+Dean Peakers,55718,4
+Bennett Mountain Power Project,55733,CT01
+Hanging Rock Power Company LLC,55736,CTG1
+Hanging Rock Power Company LLC,55736,CTG2
+Hanging Rock Power Company LLC,55736,CTG3
+Hanging Rock Power Company LLC,55736,CTG4
+Buchanan Units 1 & 2,55738,1
+Buchanan Units 1 & 2,55738,2
+Los Esteros Critical Energy Facility,55748,CTG1
+Los Esteros Critical Energy Facility,55748,CTG2
+Los Esteros Critical Energy Facility,55748,CTG3
+Los Esteros Critical Energy Facility,55748,CTG4
+Hardin Generating Station,55749,U1
+Edgewood Energy,55786,CT01
+Edgewood Energy,55786,CT02
+Shoreham Energy,55787,CT01
+Shoreham Energy,55787,CT02
+"Marcus Hook Energy, LP",55801,0001
+"Marcus Hook Energy, LP",55801,0002
+"Marcus Hook Energy, LP",55801,0003
+Valencia Power Plant,55802,CTG1
+Henrietta Peaker Plant,55807,HPP1
+Henrietta Peaker Plant,55807,HPP2
+"Gilroy Energy Center, LLC",55810,S-3
+"Gilroy Energy Center, LLC",55810,S-4
+"Gilroy Energy Center, LLC",55810,S-5
+Frederickson Power LP,55818,F1CT
+Stanton A,55821,25
+Stanton A,55821,26
+Rocky Mountain Energy Center,55835,1
+Rocky Mountain Energy Center,55835,2
+Island Street Peaking Plant,55836,1A
+Island Street Peaking Plant,55836,1B
+Silverhawk Generating Station,55841,A01
+Silverhawk Generating Station,55841,A03
+Silverhawk Generating Station,55841,A09
+Silverhawk Generating Station,55841,A10
+Feather River Energy Center,55847,UNIT1
+Wolfskill Energy Center,55855,UNIT1
+Prairie State Generating Station,55856,01
+Prairie State Generating Station,55856,02
+Jasper County Generating Facility,55927,CT01
+Jasper County Generating Facility,55927,CT02
+Jasper County Generating Facility,55927,CT03
+Tracy Combined Cycle Power Plant,55933,TPP1
+Tracy Combined Cycle Power Plant,55933,TPP2
+Rockford II Energy Center,55936,U1
+Ocean Peaking Power,55938,OPP3
+Ocean Peaking Power,55938,OPP4
+Warren County Power Station,55939,1A
+Warren County Power Station,55939,1B
+Warren County Power Station,55939,1C
+Agua Mansa Power,55951,AMP-1
+Riverview Energy Center,55963,1
+Wansley CC (55965),55965,6A
+Wansley CC (55965),55965,6B
+Wansley CC (55965),55965,7A
+Wansley CC (55965),55965,7B
+"Hawkeye Energy Greenport, LLC",55969,U-01
+Cosumnes Power Plant,55970,2
+Cosumnes Power Plant,55970,3
+Cass County Station,55972,CT1
+Cass County Station,55972,CT2
+Hunterstown Combined Cycle,55976,CT101
+Hunterstown Combined Cycle,55976,CT201
+Hunterstown Combined Cycle,55976,CT301
+Bluffview Power Plant,55977,CTG-1
+Palomar Energy Center,55985,CTG1
+Palomar Energy Center,55985,CTG2
+Exira Station,56013,U-1
+Exira Station,56013,U-2
+Exira Station,56013,U-3
+Walton Bainbridge Power Facility,56015,P1A
+Walton Bainbridge Power Facility,56015,P1B
+Walton Bainbridge Power Facility,56015,P2A
+Walton Bainbridge Power Facility,56015,P2B
+AMEA Sylacauga Plant,56018,1
+AMEA Sylacauga Plant,56018,2
+Donald Von Raesfeld,56026,PCT1
+Donald Von Raesfeld,56026,PCT2
+Fox Energy Center,56031,CTG-1
+Fox Energy Center,56031,CTG-2
+Equus  Power I,56032,0001
+Malburg Generating Station,56041,M1
+Malburg Generating Station,56041,M2
+Magnolia Power Project,56046,1
+CPV Towantic Energy Center,56047,1
+CPV Towantic Energy Center,56047,2
+Elm Road Generating Station,56068,1
+Elm Road Generating Station,56068,2
+Walnut Energy Center,56078,1
+Walnut Energy Center,56078,2
+Currant Creek Power Project,56102,CTG1A
+Currant Creek Power Project,56102,CTG1B
+Mankato Energy Center,56104,CT-1
+Mankato Energy Center,56104,CT-2
+T J Labbe Electric Generating Station,56108,U-1
+T J Labbe Electric Generating Station,56108,U-2
+Ripon Generation Station,56135,1
+Ripon Generation Station,56135,2
+Riverside Energy Resource Center,56143,1
+Riverside Energy Resource Center,56143,2
+Riverside Energy Resource Center,56143,3
+Riverside Energy Resource Center,56143,4
+McIntosh Combined Cycle Facility,56150,10A
+McIntosh Combined Cycle Facility,56150,10B
+McIntosh Combined Cycle Facility,56150,11A
+McIntosh Combined Cycle Facility,56150,11B
+South Harper Peaking Facility,56151,1
+South Harper Peaking Facility,56151,2
+South Harper Peaking Facility,56151,3
+Faribault Energy Park,56164,EU006
+Sheboygan Falls Energy Facility,56166,1
+Sheboygan Falls Energy Facility,56166,2
+Nebo Power Station,56177,U1
+Pinelawn Power,56188,00001
+Poletti 500 MW CC,56196,CTG7A
+Poletti 500 MW CC,56196,CTG7B
+TS Power Plant,56224,001
+Port Westward,56227,PWEU1
+Miramar Energy Facility,56232,1
+Miramar Energy Facility,56232,2
+Caithness Long Island Energy Center,56234,0001
+Lake Side Power Plant,56237,CT01
+Lake Side Power Plant,56237,CT02
+Lake Side Power Plant,56237,CT03
+Lake Side Power Plant,56237,CT04
+Groton Generating Station,56238,CT001
+Groton Generating Station,56238,CT002
+Malaga Power,56239,GT-1
+Malaga Power,56239,GT-2
+Cannon Falls Energy Center,56241,CT-01
+Cannon Falls Energy Center,56241,CT-02
+NCEMC Anson Plant,56249,ES1-A
+NCEMC Anson Plant,56249,ES1-B
+NCEMC Anson Plant,56249,ES2-A
+NCEMC Anson Plant,56249,ES2-B
+NCEMC Anson Plant,56249,ES3-A
+NCEMC Anson Plant,56249,ES3-B
+NCEMC Anson Plant,56249,ES4-A
+NCEMC Anson Plant,56249,ES4-B
+NCEMC Anson Plant,56249,ES5-A
+NCEMC Anson Plant,56249,ES5-B
+NCEMC Anson Plant,56249,ES6-A
+NCEMC Anson Plant,56249,ES6-B
+Millcreek Power,56253,MC-1
+Millcreek Power,56253,MC-2
+"Empire Generating Co, LLC",56259,CT-1
+"Empire Generating Co, LLC",56259,CT-2
+Hargis-Hebert Electric Generating Statio,56283,U-1
+Hargis-Hebert Electric Generating Statio,56283,U-2
+NCEMC Hamlet Plant,56292,ES1-A
+NCEMC Hamlet Plant,56292,ES1-B
+NCEMC Hamlet Plant,56292,ES2-A
+NCEMC Hamlet Plant,56292,ES2-B
+NCEMC Hamlet Plant,56292,ES3-A
+NCEMC Hamlet Plant,56292,ES3-B
+NCEMC Hamlet Plant,56292,ES4-A
+NCEMC Hamlet Plant,56292,ES4-B
+NCEMC Hamlet Plant,56292,ES5-A
+NCEMC Hamlet Plant,56292,ES5-B
+NCEMC Hamlet Plant,56292,ES6-A
+NCEMC Hamlet Plant,56292,ES6-B
+Roseville Energy Park,56298,CT001
+Roseville Energy Park,56298,CT002
+Roseville Energy Park,56298,CT005
+Roseville Energy Park,56298,CT006
+Wygen II,56319,001
+Mustang Station (56326),56326,GEN1
+Mustang Station (56326),56326,GEN2
+Mustang Station (56326),56326,GEN3
+Harry D. Mattison Power Plant,56328,1
+Harry D. Mattison Power Plant,56328,2
+Harry D. Mattison Power Plant,56328,3
+Harry D. Mattison Power Plant,56328,4
+Quail Run Energy Center,56349,CT1A
+Quail Run Energy Center,56349,CT1B
+Quail Run Energy Center,56349,CT2A
+Quail Run Energy Center,56349,CT2B
+Colorado Bend Energy Center,56350,CT1A
+Colorado Bend Energy Center,56350,CT1B
+Colorado Bend Energy Center,56350,CT2A
+Colorado Bend Energy Center,56350,CT2B
+Colorado Bend Energy Center,56350,CT-4A
+Colorado Bend Energy Center,56350,CT-4B
+Hunlock Unit 4,56397,4
+Treasure Coast Energy Center,56400,1
+West County Energy Center,56407,WCCT1A
+West County Energy Center,56407,WCCT1B
+West County Energy Center,56407,WCCT1C
+West County Energy Center,56407,WCCT2A
+West County Energy Center,56407,WCCT2B
+West County Energy Center,56407,WCCT2C
+West County Energy Center,56407,WCCT3A
+West County Energy Center,56407,WCCT3B
+West County Energy Center,56407,WCCT3C
+Spindle Hill Energy Center,56445,CT-01
+Spindle Hill Energy Center,56445,CT-02
+Plum Point Energy Station,56456,1
+Hobbs Generating Station,56458,HOBB1
+Hobbs Generating Station,56458,HOBB2
+Russell City Energy Company LLC,56467,CT1
+Russell City Energy Company LLC,56467,CT2
+McGrath Generating Station,56471,CT1
+Grapeland Generating Station,56472,CT1
+Mira Loma Generating Station,56473,CT1
+Barre Generating Station,56474,CT1
+Center Generating Station,56475,CT1
+Gateway Generating Station,56476,GT1
+Gateway Generating Station,56476,GT2
+Marshfield Utilities Combustion Turbine,56480,1A
+Marshfield Utilities Combustion Turbine,56480,1B
+Black Mountain Generating Station,56482,1
+Black Mountain Generating Station,56482,2
+Emporia Energy Center,56502,EEC1
+Emporia Energy Center,56502,EEC2
+Emporia Energy Center,56502,EEC3
+Emporia Energy Center,56502,EEC4
+Emporia Energy Center,56502,EEC5
+Emporia Energy Center,56502,EEC6
+Emporia Energy Center,56502,EEC7
+City Water & Light - City of Jonesboro,56505,SN04
+City Water & Light - City of Jonesboro,56505,SN06
+City Water & Light - City of Jonesboro,56505,SN07
+Colusa Generating Station,56532,CT1
+Colusa Generating Station,56532,CT2
+Paducah Power Systems Plant 1,56556,EU01A
+Paducah Power Systems Plant 1,56556,EU01B
+Paducah Power Systems Plant 1,56556,EU02A
+Paducah Power Systems Plant 1,56556,EU02B
+John W. Turk Jr. Power Plant,56564,SN-01
+Niland Gas Turbine Plant,56569,1
+Niland Gas Turbine Plant,56569,2
+Wygen III,56596,001
+San Jacinto County Peaking Facility,56603,SJCCT1
+San Jacinto County Peaking Facility,56603,SJCCT2
+Hardin County Peaking Facility,56604,HCCT1
+Hardin County Peaking Facility,56604,HCCT2
+Culbertson Station,56606,CT01
+Dry Fork Station,56609,01
+Deer Creek Station,56610,01
+Sandy Creek Energy Station,56611,S01
+Waterbury Generation,56629,10
+Midway Peaking,56639,1
+Midway Peaking,56639,2
+NIH Cogeneration Facility,56668,CGTC
+Longview Power,56671,001
+Winchester Power Park,56674,1
+Winchester Power Park,56674,2
+Winchester Power Park,56674,3
+Winchester Power Park,56674,4
+Spiritwood Station,56786,001
+Kleen Energy Systems Project,56798,U1
+Kleen Energy Systems Project,56798,U2
+Greenland Energy Center,56799,1
+Greenland Energy Center,56799,2
+Panoche Energy Center,56803,1
+Panoche Energy Center,56803,2
+Panoche Energy Center,56803,3
+Panoche Energy Center,56803,4
+Cedar Bayou 4,56806,CBY41
+Cedar Bayou 4,56806,CBY42
+Bear Garden Generating Station,56807,1A
+Bear Garden Generating Station,56807,1B
+Virginia City Hybrid Energy Center,56808,1
+Virginia City Hybrid Energy Center,56808,2
+CPV St. Charles Energy Center,56846,GT1
+CPV St. Charles Energy Center,56846,GT2
+Dave Gates Generating Station,56908,1A
+Dave Gates Generating Station,56908,1B
+Dave Gates Generating Station,56908,2A
+Dave Gates Generating Station,56908,2B
+Dave Gates Generating Station,56908,3A
+Dave Gates Generating Station,56908,3B
+Orange Grove Project,56914,CTG1
+Orange Grove Project,56914,CTG2
+Valley Energy Center,56940,1
+Valley Energy Center,56940,2
+Coolidge Generating Station,56948,CT01
+Coolidge Generating Station,56948,CT02
+Coolidge Generating Station,56948,CT03
+Coolidge Generating Station,56948,CT04
+Coolidge Generating Station,56948,CT05
+Coolidge Generating Station,56948,CT06
+Coolidge Generating Station,56948,CT07
+Coolidge Generating Station,56948,CT08
+Coolidge Generating Station,56948,CT09
+Coolidge Generating Station,56948,CT10
+Coolidge Generating Station,56948,CT11
+Coolidge Generating Station,56948,CT12
+West Deptford Energy Station,56963,E101
+West Deptford Energy Station,56963,E102
+Bayonne Energy Center,56964,GT1
+Bayonne Energy Center,56964,GT10
+Bayonne Energy Center,56964,GT2
+Bayonne Energy Center,56964,GT3
+Bayonne Energy Center,56964,GT4
+Bayonne Energy Center,56964,GT5
+Bayonne Energy Center,56964,GT6
+Bayonne Energy Center,56964,GT7
+Bayonne Energy Center,56964,GT8
+Bayonne Energy Center,56964,GT9
+Pueblo Airport Generating Station,56998,CT01
+Pueblo Airport Generating Station,56998,CT02
+Pueblo Airport Generating Station,56998,CT04
+Pueblo Airport Generating Station,56998,CT05
+Pueblo Airport Generating Station,56998,CT06
+Pueblo Airport Generating Station,56998,CT07
+Pueblo Airport Generating Station,56998,CT08
+El Cajon Energy Center,57001,1
+Canyon Power Plant,57027,1
+Canyon Power Plant,57027,2
+Canyon Power Plant,57027,3
+Canyon Power Plant,57027,4
+Langley Gulch Power Plant,57028,CT1
+Cleveland County Generating Facility,57029,ES1
+Cleveland County Generating Facility,57029,ES2
+Cleveland County Generating Facility,57029,ES3
+Cleveland County Generating Facility,57029,ES4
+David M Ratcliffe,57037,AB-001
+David M Ratcliffe,57037,AB-002
+Ivanpah 2,57073,BLR1
+Ivanpah 1,57074,BLR1
+Ivanpah 3,57075,BLR1
+Cricket Valley Energy Center,57185,U001
+Cricket Valley Energy Center,57185,U002
+Cricket Valley Energy Center,57185,U003
+Deerhaven Renewable Energy Center,57241,BFB1
+Marsh Landing Generating Station,57267,1
+Marsh Landing Generating Station,57267,2
+Marsh Landing Generating Station,57267,3
+Marsh Landing Generating Station,57267,4
+Garrison Energy Center,57349,1
+"Sentinel Energy Center, LLC",57482,1
+"Sentinel Energy Center, LLC",57482,2
+"Sentinel Energy Center, LLC",57482,3
+"Sentinel Energy Center, LLC",57482,4
+"Sentinel Energy Center, LLC",57482,5
+"Sentinel Energy Center, LLC",57482,6
+"Sentinel Energy Center, LLC",57482,7
+"Sentinel Energy Center, LLC",57482,8
+Mariposa Energy Project,57483,GT-1
+Mariposa Energy Project,57483,GT-2
+Mariposa Energy Project,57483,GT-3
+Mariposa Energy Project,57483,GT-4
+Walnut Creek Energy Park,57515,GT1
+Walnut Creek Energy Park,57515,GT2
+Walnut Creek Energy Park,57515,GT3
+Walnut Creek Energy Park,57515,GT4
+Walnut Creek Energy Park,57515,GT5
+Pio Pico Energy Center LLC,57555,CTG1
+Pio Pico Energy Center LLC,57555,CTG2
+Pio Pico Energy Center LLC,57555,CTG3
+Algonquin Power Sanger,57564,8
+Cheyenne Prairie Generating Station,57703,CT01
+Cheyenne Prairie Generating Station,57703,CT02
+Cheyenne Prairie Generating Station,57703,CT03
+St. Joseph Energy Center LLC,57794,CTG01A
+St. Joseph Energy Center LLC,57794,CTG01B
+Woodbridge Energy Center,57839,0001
+Woodbridge Energy Center,57839,0002
+Wabash River Highland Plant,57842,1
+Antelope Elk Energy Center,57865,1
+Antelope Elk Energy Center,57865,2
+Antelope Elk Energy Center,57865,3
+Pioneer Generating Station,57881,CT1
+Pioneer Generating Station,57881,CT2
+Pioneer Generating Station,57881,CT3
+Lonesome Creek Station,57943,CT1
+Lonesome Creek Station,57943,CT2
+Lonesome Creek Station,57943,CT3
+Lonesome Creek Station,57943,CT4
+Lonesome Creek Station,57943,CT5
+Lonesome Creek Station,57943,CT6
+Lodi Energy Center,57978,CT1
+Temple Power Station,58001,CTG1
+Temple Power Station,58001,CTG2
+Temple Power Station,58001,CTG3
+Temple Power Station,58001,CTG4
+Rayburn Energy Station,58005,CTG1
+Rayburn Energy Station,58005,CTG2
+Burgess BioPower,58054,ST01
+Newark Energy Center,58079,U001
+Newark Energy Center,58079,U002
+"Delano Energy Center, LLC",58122,GEN1
+Rothschild Biomass Cogeneration Facility,58124,1
+Clayville,58235,U1
+Marshalltown Generating Station,58236,CT1
+Marshalltown Generating Station,58236,CT2
+Brunswick County Power Station,58260,1A
+Brunswick County Power Station,58260,1B
+Brunswick County Power Station,58260,1C
+La Luz Energy Center,58284,1
+Charles D Lamb Energy Center,58325,1
+Carbon Capture Plant,58378,CTHRSG
+Copper Crossing Energy & Research Center,58413,SCCT1
+Copper Crossing Energy & Research Center,58413,SCCT2
+Hamilton Liberty Generation Plant,58420,CT1
+Hamilton Liberty Generation Plant,58420,CT2
+Hamilton Patriot Generation Plant,58426,CT1
+Hamilton Patriot Generation Plant,58426,CT2
+Lansing BWL REO Town Plant,58427,100
+Lansing BWL REO Town Plant,58427,200
+Ector County Energy Center,58471,CT-1
+Ector County Energy Center,58471,CT-2
+LEPA Unit No. 1,58478,CC01
+Carty Generating Station,58503,CTEU1
+Montana Power Station,58562,GT-1
+Montana Power Station,58562,GT-2
+Montana Power Station,58562,GT-3
+Montana Power Station,58562,GT-4
+Shell Chemical Appalachia LLC,58933,101
+Shell Chemical Appalachia LLC,58933,102
+Shell Chemical Appalachia LLC,58933,103
+"Potomac Energy Center, LLC",59004,CT1
+"Potomac Energy Center, LLC",59004,CT2
+Cove Point LNG Terminal,59073,214JA
+Cove Point LNG Terminal,59073,214JB
+Cove Point LNG Terminal,59073,B921A
+Cove Point LNG Terminal,59073,B921B
+Cove Point LNG Terminal,59073,GT501A
+Cove Point LNG Terminal,59073,GT501B
+Holland Energy Park,59093,10
+Holland Energy Park,59093,11
+Wildcat Point Generation Facility,59220,CT1
+Wildcat Point Generation Facility,59220,CT2
+Kings Mountain Energy Center,59325,ES-1
+Middletown Energy Center,59326,1
+Oregon Clean Energy Center,59764,01
+Oregon Clean Energy Center,59764,02
+Carroll County Energy,59773,1
+Carroll County Energy,59773,2
+Wolf Hollow II,59812,CGT4
+Wolf Hollow II,59812,CGT5
+Exelon West Medway II,59882,J4
+Exelon West Medway II,59882,J5
+Moxie Freedom Generation Plant,59906,201
+Moxie Freedom Generation Plant,59906,202
+Greensville County Power Station,59913,1A
+Greensville County Power Station,59913,1B
+Greensville County Power Station,59913,1C
+Alpine Power Plant,59926,AL1
+Alpine Power Plant,59926,AL2
+Colorado Bend II,60122,CT7
+Colorado Bend II,60122,CT8
+Bacliff Generating Station,60264,BCGT1
+Bacliff Generating Station,60264,BCGT2
+Bacliff Generating Station,60264,BCGT3
+Bacliff Generating Station,60264,BCGT4
+Bacliff Generating Station,60264,BCGT5
+Bacliff Generating Station,60264,BCGT6
+Keys Energy Center,60302,11
+Keys Energy Center,60302,12
+Albany Green Energy LLC,60340,B0004
+Okeechobee Clean Energy Center,60345,OCEC1A
+Okeechobee Clean Energy Center,60345,OCEC1B
+Okeechobee Clean Energy Center,60345,OCEC1C
+"South Field Energy, LLC",60356,1
+"South Field Energy, LLC",60356,2
+Lackawanna Energy Center,60357,1
+Lackawanna Energy Center,60357,2
+Lackawanna Energy Center,60357,3
+Hummel Station,60368,CT1
+Hummel Station,60368,CT2
+Hummel Station,60368,CT3
+"Clean Energy Future - Lordstown, LLC",60376,1
+"Clean Energy Future - Lordstown, LLC",60376,2
+Invenergy Nelson Expansion LLC,60387,3
+Invenergy Nelson Expansion LLC,60387,4
+Port Comfort Peaking Facility,60459,CT1
+Port Comfort Peaking Facility,60459,CT2
+"Chamon Power, LLC",60460,CT1
+"Chamon Power, LLC",60460,CT2
+Tenaska Westmoreland Generating Station,60464,101
+Tenaska Westmoreland Generating Station,60464,102
+Tejas Power Generation Unit 1,60468,CT-1
+"CPV Fairview, LLC",60589,CT-1
+"CPV Fairview, LLC",60589,CT-2
+Stanton Energy Reliability Center,60698,D1
+Stanton Energy Reliability Center,60698,D7
+Salem Harbor Station NGCC,60903,1
+Salem Harbor Station NGCC,60903,2
+NET Power La Porte Station,60910,1GT
+Montgomery County Power Station,60925,CT1
+Montgomery County Power Station,60925,CT2
+St. Charles Power Station,60926,1A
+St. Charles Power Station,60926,1B
+Lake Charles Power Station,60927,1A
+Lake Charles Power Station,60927,1B
+Hickory Run Energy Station,61028,CT1
+Hickory Run Energy Station,61028,CT2
+Birdsboro Power,61035,01
+Astoria Station,61144,1
+Victoria City Peaking Facility,61241,CT1
+Victoria City Peaking Facility,61241,CT2
+Victoria Port Peaking Facility,61242,CT1
+Victoria Port Peaking Facility,61242,CT2
+Long Ridge Energy Generation,61322,CC1
+Victoria Port Power II Peaking Facility,61966,CT1
+Victoria Port Power II Peaking Facility,61966,CT2
+Blue Water Energy Center,62192,11
+Blue Water Energy Center,62192,12
+SJRR Power Peaking Facility,62548,CT1
+SJRR Power Peaking Facility,62548,CT2
+Hill Top Energy Center,62565,01
+"Jackson Generation, LLC",62926,CTG-01
+"Jackson Generation, LLC",62926,CTG-02
+Guernsey Power Station,62949,P001
+Guernsey Power Station,62949,P002
+Guernsey Power Station,62949,P003
+Delta Energy Park,63259,DEPC2
+Delta Energy Park,63259,DEPC3
+Delta Energy Park,63259,DEPS1
+HO Clarke Generating,63335,CT-1
+HO Clarke Generating,63335,CT-2
+HO Clarke Generating,63335,CT-3
+HO Clarke Generating,63335,CT-4
+HO Clarke Generating,63335,CT-5
+HO Clarke Generating,63335,CT-6
+HO Clarke Generating,63335,CT-7
+HO Clarke Generating,63335,CT-8
+MMWEC Simple Cycle Gas Turbine,63559,1
+Topaz Generating,63688,CT-1
+Topaz Generating,63688,CT-10
+Topaz Generating,63688,CT-2
+Topaz Generating,63688,CT-3
+Topaz Generating,63688,CT-4
+Topaz Generating,63688,CT-5
+Topaz Generating,63688,CT-6
+Topaz Generating,63688,CT-7
+Topaz Generating,63688,CT-8
+Topaz Generating,63688,CT-9
+CPV Three Rivers Energy Center,63931,1
+CPV Three Rivers Energy Center,63931,2
+Braes Bayou Plant,64383,CT-1
+Braes Bayou Plant,64383,CT-2
+Braes Bayou Plant,64383,CT-3
+Braes Bayou Plant,64383,CT-4
+Braes Bayou Plant,64383,CT-5
+Braes Bayou Plant,64383,CT-6
+Braes Bayou Plant,64383,CT-7
+Braes Bayou Plant,64383,CT-8
+Primient,64854,CT1
+Primient,64854,CT2
+Mark One Power Station,65372,CT-1
+Mark One Power Station,65372,CT-2
+Mark One Power Station,65372,CT-3
+Mark One Power Station,65372,CT-4
+Mark One Power Station,65372,CT-5
+Mark One Power Station,65372,CT-6
+Mark One Power Station,65372,CT-7
+Brotman Power Station,65373,CT-1
+Brotman Power Station,65373,CT-2
+Brotman Power Station,65373,CT-3
+Brotman Power Station,65373,CT-4
+Brotman Power Station,65373,CT-5
+Brotman Power Station,65373,CT-6
+Brotman Power Station,65373,CT-7
+Brotman Power Station,65373,CT-8
+Bushy Park Combustion Turbine Facility,66600,CT3
+Remy Jade Power Station,66604,CT-1
+Remy Jade Power Station,66604,CT-2
+Remy Jade Power Station,66604,CT-3
+Remy Jade Power Station,66604,CT-4
+Remy Jade Power Station,66604,CT-5
+Remy Jade Power Station,66604,CT-6
+Remy Jade Power Station,66604,CT-8
+Hartwell Energy Facility,70454,MAG1
+Hartwell Energy Facility,70454,MAG2
+GSA Central Heating,880004,3
+GSA Central Heating,880004,4
+GSA Central Heating,880004,5C
+Vicinity Energy Philadelphia Edison Sta,880006,1
+Vicinity Energy Philadelphia Edison Sta,880006,2
+Vicinity Energy Philadelphia Edison Sta,880006,3
+Vicinity Energy Philadelphia Edison Sta,880006,4
+AdvanSix Resins & Chemicals LLC,880007,052
+Kneeland Station,880023,K1
+Kneeland Station,880023,K2
+Kneeland Station,880023,K3
+Kneeland Station,880023,K4
+Trainer Refinery,880025,034
+Trainer Refinery,880025,035
+Ascend (Decatur Plant),880041,X015
+Wood River Refinery,880067,BLR15
+Wood River Refinery,880067,BLR16
+Wood River Refinery,880067,BLR17
+Wood River Refinery,880067,BLR19
+Tate & Lyle-Loudon,880079,37
+Tate & Lyle-Loudon,880079,38
+Ravenswood Steam Plant,880100,BLR001
+Ravenswood Steam Plant,880100,BLR002
+Ravenswood Steam Plant,880100,BLR003
+Ravenswood Steam Plant,880100,BLR004
+"AES Puerto Rico, LP",880102,1
+"AES Puerto Rico, LP",880102,2
+ETMT Marcus Hook Terminal,880107,AB01
+ETMT Marcus Hook Terminal,880107,AB03
+ETMT Marcus Hook Terminal,880107,AB04
+Carl Bailey,202,1
+McClellan,203,1
+Mountain,3111,031
+Mountain,3111,032
+Tolna,3116,031
+Tolna,3116,032
+Olive,6013,01
+Stony Brook Energy Center,6081,004
+Midland Cogeneration Venture,10745,3
+Midland Cogeneration Venture,10745,4
+Midland Cogeneration Venture,10745,5
+Midland Cogeneration Venture,10745,6
+"Pratt & Whitney, East Hartford",54605,001
+Lakewood,54640,001001
+Lakewood,54640,002001
+Genesee Power Station,54751,01
+Cottage Grove Cogeneration,55010,01
+Whitewater Cogeneration Facility,55011,01
+Blackhawk Station,55064,001
+Blackhawk Station,55064,002
+Remy Jade Power Station,66604,CT-7
+Branford,540,10
+Cos Cob,542,10
+Cos Cob,542,11
+Cos Cob,542,12
+Cos Cob,542,13
+Cos Cob,542,14
+Devon,544,10
+Franklin Drive,561,10
+Middletown,562,10
+Torrington Terminal,565,10
+Delaware City,592,10
+Edge Moor,593,10
+Indian River,594,10
+West Substation,597,10
+Framingham Station,1586,FJ-1
+Framingham Station,1586,FJ-2
+Framingham Station,1586,FJ-3
+Kendall Green Energy LLC,1595,S6
+Lost Nation,2362,CT1
+Merrimack,2364,CT1
+Merrimack,2364,CT2
+Schiller,2367,CT1
+White Lake,2369,CT1
+Sayreville,2390,012001
+Sayreville,2390,014001
+Sayreville,2390,015001
+Sayreville,2390,016001
+Gilbert Generating Station,2393,04
+59th Street,2503,CT0001
+Cardinal,2828,B008
+Cardinal,2828,B010
+Weleetka,2966,4
+Weleetka,2966,5
+Johnsonville,3406,JCT21
+Johnsonville,3406,JCT22
+Johnsonville,3406,JCT23
+Johnsonville,3406,JCT24
+Johnsonville,3406,JCT25
+Johnsonville,3406,JCT27
+Johnsonville,3406,JCT28
+Johnsonville,3406,JCT29
+Johnsonville,3406,JCT30
+John E Amos,3935,AUX1
+John E Amos,3935,AUX3
+Mitchell (WV),3948,AUX1
+Olive,6013,2
+Stony Brook Energy Center,6081,003
+Rockport,6166,AB1
+Rockport,6166,AB2
+Mountaineer (1301),6264,AUX1
+Mountaineer (1301),6264,AUX2
+Gen J M Gavin,8102,B001
+Gen J M Gavin,8102,B002
+RockTenn West Point Mill,10017,002
+Pixelle Specialty Solutions LLC,10244,B002
+Pixelle Specialty Solutions LLC,10244,B003
+T B Simon Power Plant,10328,UNIT1
+T B Simon Power Plant,10328,UNIT2
+T B Simon Power Plant,10328,UNIT3
+T B Simon Power Plant,10328,UNIT4
+Chemours Belle Plant,10788,612
+"BioUrja Renewables - Peoria, IL",10866,13
+"BioUrja Renewables - Peoria, IL",10866,14
+McCracken Power House,50044,B132
+UCC South Charleston Plant,50151,B26
+UCC South Charleston Plant,50151,B27
+Cornell University Ithaca Campus,50368,CT1
+Cornell University Ithaca Campus,50368,CT2
+Pixelle Specialty Solutions,50397,038
+Pixelle Specialty Solutions,50397,039
+Procter & Gamble Paper Products,50463,328001
+Procter & Gamble Paper Products,50463,328002
+Covanta Niagara,50472,BLR05
+"GP Big Island, LLC",50479,6
+Eastman Chemical Company,50481,253-25
+Eastman Chemical Company,50481,253-26
+Eastman Chemical Company,50481,253-27
+Eastman Chemical Company,50481,253-28
+Eastman Chemical Company,50481,253-29
+Eastman Chemical Company,50481,325-30
+Eastman Chemical Company,50481,325-31
+Eastman Chemical Company,50481,83-23
+Eastman Chemical Company,50481,83-24
+Exxonmobil Oil Corporation,50627,20B1
+Exxonmobil Oil Corporation,50627,55B100
+US Steel (Clairton Coke),50729,CLBLR1
+US Steel (Clairton Coke),50729,CLBLR2
+US Steel Corp - Gary Works,50733,701B1
+US Steel Corp - Gary Works,50733,701B2
+US Steel Corp - Gary Works,50733,701B3
+US Steel Corp - Gary Works,50733,701B5
+US Steel Corp - Gary Works,50733,701B6
+US Steel Corp - Gary Works,50733,720B1
+US Steel Corp - Gary Works,50733,720B2
+US Steel Corp - Gary Works,50733,720B3
+WestRock Virginia Corp Covington Ops,50900,005
+WestRock Virginia Corp Covington Ops,50900,011
+Celanese Acetate LLC,52089,BLR010
+Celanese Acetate LLC,52089,BLR011
+Celanese Acetate LLC,52089,BLR012
+Celanese Acetate LLC,52089,BLR013
+Celanese Acetate LLC,52089,BLR014
+BP Whiting Business Unit,52130,3SPS31
+BP Whiting Business Unit,52130,3SPS32
+BP Whiting Business Unit,52130,3SPS33
+BP Whiting Business Unit,52130,3SPS34
+BP Whiting Business Unit,52130,3SPS36
+Riverbay Corp. - Co-Op City,52168,00001
+Riverbay Corp. - Co-Op City,52168,00004
+Riverbay Corp. - Co-Op City,52168,00006
+Riverbay Corp. - Co-Op City,52168,0003HP
+Riverbay Corp. - Co-Op City,52168,HPB02
+University of NC Chapel Hill,54276,ES001
+University of NC Chapel Hill,54276,ES002
+University of NC Chapel Hill,54276,ES003
+Massena Energy Facility,54592,1
+"Domtar Paper Company, LLC",54638,40
+"Domtar Paper Company, LLC",54638,41
+Portside Energy,55096,BLR1
+Portside Energy,55096,BLR2
+Portside Energy,55096,CT
+"Morris Cogeneration, LLC",55216,B-5
+"Morris Cogeneration, LLC",55216,B-6
+"DTE Calvert City, LLC",55308,A
+"DTE Calvert City, LLC",55308,B
+"DTE Calvert City, LLC",55308,C
+"Valero Refining Company-Tennessee, LLC",55703,P049
+"Otsego Paper, Inc.",55799,0024
+"Otsego Paper, Inc.",55799,0025
+"Waterside Power, LLC",56189,4
+"Waterside Power, LLC",56189,5
+"Waterside Power, LLC",56189,7
+Tinker,63628,5A-1
+Tinker,63628,5A-2
+Tinker,63628,5B-1
+Tinker,63628,5B-2
+Turtle Creek Station,64547,CT-1
+Turtle Creek Station,64547,CT-2
+Mark One Power Station,65372,CT-8
+Trainer Refinery,880025,053
+Marathon Petroleum Company LP,880029,0002
+Ohio Refining Company LLC,880030,B034
+Ohio Refining Company LLC,880030,B035
+Corteva Agriscience LLC,880031,0401
+Corteva Agriscience LLC,880031,0402
+"Catlettsburg Refining, LLC",880038,B026
+Cleveland-Cliffs Steel - Middletown,880042,P009
+Cleveland-Cliffs Steel - Middletown,880042,P010
+Cleveland-Cliffs Steel - Middletown,880042,P011
+Cleveland-Cliffs Steel - Middletown,880042,P012
+University of Michigan,880045,260-03
+University of Michigan,880045,260-04
+University of Michigan,880045,260-06
+Altivia Services Institute Facility,880053,B016
+Altivia Services Institute Facility,880053,B017
+Phoenix Paper Wickliffe LLC,880065,01
+Phoenix Paper Wickliffe LLC,880065,02
+Armagh Compressor Station,880071,31301
+Entriken Compressor Station,880072,31601
+Lemont Refinery,880076,430B-1
+Lemont Refinery,880076,430B24
+Lemont Refinery,880076,431B25
+Tate & Lyle-Loudon,880079,34
+Tate & Lyle-Loudon,880079,35
+Lima Refinery,880083,B026
+"Alto Central, LLC",880086,6
+"Alto Central, LLC",880086,UNITE
+"Alto Central, LLC",880086,UNITF
+Marathon Petroleum Company LP,880088,59F-3
+Marathon Petroleum Company LP,880088,59F-4
+"INEOS Joliet, LLC",880089,CB706
+AdvanSix Resins and Chemicals - Hopewell,880093,10D
+AdvanSix Resins and Chemicals - Hopewell,880093,10E
+AdvanSix Resins and Chemicals - Hopewell,880093,10F
+Grain Processing Corporation,880108,BLR1
+Grain Processing Corporation,880108,BLR2
+Pratt Paper (OH),880109,B001
+Holston Army Ammunition Plant,880110,1
+Holston Army Ammunition Plant,880110,2
+Holston Army Ammunition Plant,880110,3
+Holston Army Ammunition Plant,880110,4
+Apache Station,160,5
+Apache Station,160,6
+Parr Combustion Turbine Facility,3291,CT5
+Parr Combustion Turbine Facility,3291,CT6
+Johnsonville,3406,JCT26
+Stony Brook Energy Center,6081,5
+A B Brown Generating Station,6137,6
+Intermountain,6481,3SGA
+Ebensburg Power Company,10603,31
+Allegany Station No. 133,10619,1
+Midland Cogeneration Venture,10745,007
+Midland Cogeneration Venture,10745,008
+Linden Cogeneration Facility,50006,4001
+Linden Cogeneration Facility,50006,5001
+Linden Cogeneration Facility,50006,6001
+Linden Cogeneration Facility,50006,7001
+Linden Cogeneration Facility,50006,8001
+Linden Cogeneration Facility,50006,9001
+Pixelle Specialty Solutions,50397,38
+Pixelle Specialty Solutions,50397,39
+Pioneer Generating Station,57881,CT5
+Hillburn,2628,1
+Stony Brook Energy Center,6081,001
+Stony Brook Energy Center,6081,002
+A B Brown Generating Station,6137,5
+Intermountain,6481,4SGA
+Lake,7987,1
+Sundance Power Plant,55522,CT11
+Sundance Power Plant,55522,CT12
+Pioneer Generating Station,57881,CT4
+Trumbull Energy Center,66918,GT11
+Trumbull Energy Center,66918,GT12
+Mountain Peak Power Station,68386,CT-1
+Mountain Peak Power Station,68386,CT-2
+Mountain Peak Power Station,68386,CT-3
+Mountain Peak Power Station,68386,CT-4
+Mountain Peak Power Station,68386,CT-5
+Mountain Peak Power Station,68386,CT-6
