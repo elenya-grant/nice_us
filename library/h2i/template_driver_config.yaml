@@ -1,0 +1,13 @@
+---
+general:
+  folder_output: outputs
+  create_om_reports: false
+recorder:
+  flag: true
+  file: case.sql
+  overwrite_recorder: true
+  # Single problem-level recorder: a fixed analysis evaluates the model once, so
+  # the final (only) design point captured after run_driver holds everything the
+  # dashboards / multi-site postprocessing need.
+  # recorder_attachment:
+  # includes:
