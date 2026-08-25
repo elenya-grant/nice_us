@@ -10,7 +10,7 @@ git clone https://github.com/elenya-grant/nice_us.git
 cd nice_us
 
 
-conda create --name nice python=3.11 -y
+conda create --name nice python=3.13 -y
 conda activate nice
 conda install geopandas
 
