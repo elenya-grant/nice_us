@@ -21,7 +21,7 @@ technology_interconnections:
   - [second_demand, grid_sell_solar, electricity, cable]
 resource_to_tech_connections:
   # connect the wind resource to the wind technology
-  - [site.solar_resource, add_on_pv, solar_resource_data]
+  - [site.solar_resource, solar_add_on, solar_resource_data]
 finance_parameters:
   finance_groups:
   cost_adjustment_parameters:
