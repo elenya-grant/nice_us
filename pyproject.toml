@@ -33,7 +33,8 @@ dependencies = [
     "NREL-rex",
     "geopy",
     "dill",
-    "openpyxl"
+    "openpyxl",
+    "pyarrow>=20.0.0"
 ]
 
 

@@ -115,4 +115,4 @@ def generate_annual_and_monthly_spi_from_eia(
             df["Nameplate Capacity (MW)"] * df[f"{month} Surplus Interconnect Factor"]
         )
 
-        return df
+    return df

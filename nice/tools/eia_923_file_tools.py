@@ -40,7 +40,10 @@ def load_eia_923(file: str, sheet: str = None, year: int = 2024):
             msg = f"{sheet} is an unrecognized sheet name. Options include {sheets_for_file}"
             raise ValueError(msg)
     if file == "M_12":
-        data = pd.read_excel(fpath, sheet_name=sheet, header=5)
+        if year == 2025:  # only if early-release
+            data = pd.read_excel(fpath, sheet_name=sheet, header=6)
+        else:
+            data = pd.read_excel(fpath, sheet_name=sheet, header=5)
         col_rename = {c: c.replace("\n", " ") for c in data.columns.to_list()}
     else:
         data = pd.read_excel(fpath, sheet_name=sheet, header=4)

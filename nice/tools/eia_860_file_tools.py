@@ -107,7 +107,10 @@ def load_eia_860(file: str, sheet: str = None, year: int = 2024):
         else:
             sheet = "Operable"
 
-    data = pd.read_excel(fpath, sheet_name=sheet, header=1)
+    if year == 2025:  # only if early-release
+        data = pd.read_excel(fpath, sheet_name=sheet, header=2)
+    else:
+        data = pd.read_excel(fpath, sheet_name=sheet, header=1)
     if "Plant Code" in data.columns.to_list():
         nan_idx = data[data["Plant Code"].isna()].index
         if len(nan_idx) > 0:
