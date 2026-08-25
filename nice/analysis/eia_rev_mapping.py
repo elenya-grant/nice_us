@@ -1,10 +1,12 @@
 from datetime import datetime
 
 import geopandas as gpd
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
 from nice import DATA_DIR, ROOT_DIR
+from nice.plotting.plot_tools import make_discrete_color_dict
 from nice.tools.eia_860_file_tools import load_eia_860
 from nice.tools.geo_data_file_tools import load_us_state_boundaries
 from nice.tools.geospatial import STATE_BORDERS, US_STATE_MAP
@@ -20,9 +22,11 @@ def create_eia_rev_mapper_file(
 ):
     # takes about 5-6 min
 
-    # Plant ID 3750 is said to be in state VT but is actually in state NH
-    # Plant ID 1109 is said to be in state IA but is actually in state IL
-    # Plant ID 64670 is said to be in state AR but is actually in state CA
+    # Plant ID 3750 is said to be in VT but is actually in NH
+    # Plant ID 1109 is said to be in IA but is actually in IL
+    # Plant ID 64670 is said to be in AR but is actually in CA
+
+    # Distance from center to corner of 11.5x11.5km grid cell
     max_distance = np.sqrt((11.5**2) + (11.5**2)) / 2
 
     # This is the cleaned-up version of what existed in:
@@ -30,20 +34,20 @@ def create_eia_rev_mapper_file(
     # - nice/plotting/plot_rev_grid.py
     # - nice/analysis/eia_rev_siting_follow_on.py
 
+    # Filepath to save the file to
     out_fpath = (
         DATA_DIR
         / "nice_data_aggregated"
         / f"EIA_{data_year}_to_Rev_plant_id_mapper.csv"
     )
-    # if (not run_mapping) and (not out_fpath.is_file()):
-    #     run_mapping = True
 
+    # Load EIA data and format
     plant = load_eia_860("Plant", year=data_year)
     plant["Plant Code"] = plant["Plant Code"].astype(int)  # 16132
-
     plant.set_index(keys="Plant Code", inplace=True)
     plant["Latitude"] = pd.to_numeric(plant["Latitude"], errors="coerce")
     plant["Longitude"] = pd.to_numeric(plant["Longitude"], errors="coerce")
+    # Convert EIA lat/lon to geodataframe
     plant_geo = gpd.GeoDataFrame(
         plant,
         geometry=gpd.points_from_xy(
@@ -60,29 +64,29 @@ def create_eia_rev_mapper_file(
     # 28 plants w/o lat/lon data
     plant_geo.drop(index=nan_plant_ids, inplace=True)
 
-    # if run_mapping:
+    # Load rev grid cells and data
     rev_gpd = load_reference_pv_supply_curve(crs=crs)
-    # else:
-    #     rev_gpd = load_reference_pv_supply_curve(crs=crs, as_gpd=False)
-
     rev_gpd["state"] = rev_gpd["state"].replace(to_replace=US_STATE_MAP)
 
     common_states = set(plant_geo["State"].to_list()) & set(rev_gpd["state"].to_list())
 
+    # Remove EIA sites that are in states that aren't included in the rev data
     plant_geo_noncommon_states = set(plant_geo["State"].to_list()) - common_states
     for n in list(plant_geo_noncommon_states):
         plant_geo = plant_geo[plant_geo["State"] != n]
 
+    # Load the state boundaries
     us_states = load_us_state_boundaries()
 
-    # if run_mapping:
     t_start = datetime.now()
 
     # plant ID to rev ID
-    plant_to_rev_id = {}
-    plant_id_to_recheck = []
-    plant_id_multi_rev_cells = []
+    # plant_to_rev_id = {}
+    # plant_id_to_recheck = []
+    # plant_id_multi_rev_cells = []
 
+    # Initialize the dataframe containing EIA sites and
+    # the corresponding rev grid cell
     plant_to_rev_id_df = pd.DataFrame(
         index=plant_geo.index.to_list(),
         columns=[
@@ -97,33 +101,41 @@ def create_eia_rev_mapper_file(
     for state in list(common_states):
         plant_state = plant_geo[plant_geo["State"] == state]
 
-        ids_missing = []
+        # ids_missing = []
         for plant_id in plant_state.index.to_list():
+            # Update the state and add EIA plant code to the df
             plant_to_rev_id_df.loc[plant_id, "State"] = state
             plant_to_rev_id_df.loc[plant_id, "EIA Plant Code"] = plant_id
 
+            # Determine which rec grid cells contain the plant location
             rev_pt = rev_gpd["geometry"][
                 rev_gpd["geometry"].contains(plant_state.loc[plant_id]["geometry"])
             ]
+
             if len(rev_pt) == 0:
-                # no rev thing contains the plant
-                # calculate distance to nearest Rev
-                plant_id_to_recheck.append(plant_id)
-                ids_missing.append(plant_id)
+                # no rev cell contains the plant
+                # calculate distance to nearest rev site
+                # plant_id_to_recheck.append(plant_id)
+                # ids_missing.append(plant_id)
 
                 # Check that the site is within this state!
                 check_state = us_states[
                     us_states.contains(plant_geo.loc[plant_id]["geometry"])
                 ].STUSPS.to_list()
+
                 if bool(check_state) and check_state[0] != state:
+                    # EIA state was incorrect
+                    # get bounding states and rev sites within the correct state
                     rev_data_state = rev_gpd[rev_gpd["state"] == check_state[0]]
                     bounding_states = STATE_BORDERS.get(check_state[0], [])
                     plant_to_rev_id_df.loc[plant_id, "State"] = check_state[0]
                     print(
-                        f"Plant ID {plant_id} is said to be in state {state} but is "
-                        f"actually in state {check_state[0]}"
+                        f"Plant ID {plant_id} is said to be in state {state} "
+                        f"but is actually in state {check_state[0]}"
                     )
                 else:
+                    # EIA state was correct
+                    # get bounding states and rev sites within that state
                     bounding_states = STATE_BORDERS.get(state, [])
                     rev_data_state = rev_gpd[rev_gpd["state"] == state]
 
@@ -174,7 +186,7 @@ def create_eia_rev_mapper_file(
             elif len(rev_pt) == 1:
                 # found 1 matching site
                 rev_id = rev_pt.index.to_list()[0]
-                plant_to_rev_id[plant_id] = rev_pt.index.to_list()[0]
+                # plant_to_rev_id[plant_id] = rev_pt.index.to_list()[0]
                 plant_to_rev_id_df.loc[plant_id, "REV SC GID"] = rev_pt.index.to_list()[
                     0
                 ]
@@ -206,22 +218,14 @@ def create_eia_rev_mapper_file(
                     distance_to_sites.min()
                 )
 
-                plant_id_multi_rev_cells.append(plant_id)
-                plant_to_rev_id[plant_id] = rev_pt.index.to_list()
+                # plant_id_multi_rev_cells.append(plant_id)
+                # plant_to_rev_id[plant_id] = rev_pt.index.to_list()
 
-    print(f"{len(plant_id_to_recheck)} sites to recheck")
-    print(f"{len(plant_id_multi_rev_cells)} sites with multiple rev cells")
-    plant_to_rev_id_df.index.name = "Plant Code"
-    # plant_to_rev_id_df.to_csv(DATA_DIR / "nice_data_aggregated" / "temp_mapper.csv")
     t_end = datetime.now()
     time_to_run = (t_end - t_start).seconds / 60
     print(f"done, took {time_to_run:.2f} minutes")
-    # else:
-    #     plant_to_rev_id_df = pd.read_csv(
-    #         DATA_DIR / "nice_data_aggregated" / "temp_mapper.csv",
-    #         index_col="Plant Code",
-    #     )
 
+    plant_to_rev_id_df.index.name = "Plant Code"
     plant_to_rev_id_df.sort_index(inplace=True)
     plant_geo.sort_index(inplace=True)
     plant_geo.rename(
@@ -248,10 +252,12 @@ def create_eia_rev_mapper_file(
     ]
     eia_data_cols = ["Plant Longitude", "Plant Latitude"]
 
+    # Add additional EIA data to the final df
     mapper_df = pd.concat(
         [plant_to_rev_id_df, plant_geo.loc[plant_to_rev_id_df.index][eia_data_cols]],
         axis=1,
     )
+    # Add additional rev data to the final df
     mapper_df.reset_index(drop=False, inplace=True)
     mapper_df.set_index(keys=["REV SC GID"], inplace=True)
     rev_id_indx = plant_to_rev_id_df["REV SC GID"].to_list()
@@ -275,10 +281,6 @@ def create_eia_rev_mapper_file(
     mapper_df.to_csv(out_fpath)
 
     if plot_furthest_sites:
-        import matplotlib.pyplot as plt
-
-        from nice.plotting.plot_tools import make_discrete_color_dict
-
         recheck_pids = plant_to_rev_id_df[
             plant_to_rev_id_df["Distance to Rev GID (km)"] > max_distance
         ].index.to_list()
