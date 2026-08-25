@@ -16,7 +16,7 @@ from nice.tools.rev_supply_curve_tools import (
 
 
 def create_eia_rev_mapper_file(
-    data_year=2024, run_mapping=False, crs="EPSG:4326", plot_furthest_sites=False
+    data_year=2024, crs="EPSG:4326", plot_furthest_sites=False
 ):
     # takes about 5-6 min
 
@@ -35,13 +35,12 @@ def create_eia_rev_mapper_file(
         / "nice_data_aggregated"
         / f"EIA_{data_year}_to_Rev_plant_id_mapper.csv"
     )
-    if (not run_mapping) and (not out_fpath.is_file()):
-        run_mapping = True
-    # run_mapping = False if out_fpath.is_file() else True
+    # if (not run_mapping) and (not out_fpath.is_file()):
+    #     run_mapping = True
 
     plant = load_eia_860("Plant", year=data_year)
     plant["Plant Code"] = plant["Plant Code"].astype(int)  # 16132
-    set(plant["Plant Code"].to_list())
+
     plant.set_index(keys="Plant Code", inplace=True)
     plant["Latitude"] = pd.to_numeric(plant["Latitude"], errors="coerce")
     plant["Longitude"] = pd.to_numeric(plant["Longitude"], errors="coerce")
@@ -61,10 +60,10 @@ def create_eia_rev_mapper_file(
     # 28 plants w/o lat/lon data
     plant_geo.drop(index=nan_plant_ids, inplace=True)
 
-    if run_mapping:
-        rev_gpd = load_reference_pv_supply_curve(crs=crs)
-    else:
-        rev_gpd = load_reference_pv_supply_curve(crs=crs, as_gpd=False)
+    # if run_mapping:
+    rev_gpd = load_reference_pv_supply_curve(crs=crs)
+    # else:
+    #     rev_gpd = load_reference_pv_supply_curve(crs=crs, as_gpd=False)
 
     rev_gpd["state"] = rev_gpd["state"].replace(to_replace=US_STATE_MAP)
 
@@ -76,158 +75,152 @@ def create_eia_rev_mapper_file(
 
     us_states = load_us_state_boundaries()
 
-    if run_mapping:
-        t_start = datetime.now()
+    # if run_mapping:
+    t_start = datetime.now()
 
-        # plant ID to rev ID
-        plant_to_rev_id = {}
-        plant_id_to_recheck = []
-        plant_id_multi_rev_cells = []
-        # columns=["State", "Found method", "Distance to REV GID", "EIA Plant Code", "REV SC GID", "rev_latitude", "rev_longitude", "plant_latitude", "plant_longitude"]
+    # plant ID to rev ID
+    plant_to_rev_id = {}
+    plant_id_to_recheck = []
+    plant_id_multi_rev_cells = []
 
-        plant_to_rev_id_df = pd.DataFrame(
-            index=plant_geo.index.to_list(),
-            columns=[
-                "State",
-                "Found method",
-                "EIA Plant Code",
-                "REV SC GID",
-                "Distance to Rev GID (km)",
-            ],
-        )
+    plant_to_rev_id_df = pd.DataFrame(
+        index=plant_geo.index.to_list(),
+        columns=[
+            "State",
+            "Found method",
+            "EIA Plant Code",
+            "REV SC GID",
+            "Distance to Rev GID (km)",
+        ],
+    )
 
-        for state in list(common_states):
-            plant_state = plant_geo[plant_geo["State"] == state]
+    for state in list(common_states):
+        plant_state = plant_geo[plant_geo["State"] == state]
 
-            ids_missing = []
-            for plant_id in plant_state.index.to_list():
-                plant_to_rev_id_df.loc[plant_id, "State"] = state
-                plant_to_rev_id_df.loc[plant_id, "EIA Plant Code"] = plant_id
+        ids_missing = []
+        for plant_id in plant_state.index.to_list():
+            plant_to_rev_id_df.loc[plant_id, "State"] = state
+            plant_to_rev_id_df.loc[plant_id, "EIA Plant Code"] = plant_id
 
-                rev_pt = rev_gpd["geometry"][
-                    rev_gpd["geometry"].contains(plant_state.loc[plant_id]["geometry"])
-                ]
-                if len(rev_pt) == 0:
-                    # no rev thing contains the plant
-                    # calculate distance to nearest Rev
-                    plant_id_to_recheck.append(plant_id)
-                    ids_missing.append(plant_id)
+            rev_pt = rev_gpd["geometry"][
+                rev_gpd["geometry"].contains(plant_state.loc[plant_id]["geometry"])
+            ]
+            if len(rev_pt) == 0:
+                # no rev thing contains the plant
+                # calculate distance to nearest Rev
+                plant_id_to_recheck.append(plant_id)
+                ids_missing.append(plant_id)
 
-                    # Check that the site is within this state!
-                    check_state = us_states[
-                        us_states.contains(plant_geo.loc[plant_id]["geometry"])
-                    ].STUSPS.to_list()
-                    if bool(check_state) and check_state[0] != state:
-                        rev_data_state = rev_gpd[rev_gpd["state"] == check_state[0]]
-                        bounding_states = STATE_BORDERS.get(check_state[0], [])
-                        plant_to_rev_id_df.loc[plant_id, "State"] = check_state[0]
-                        print(
-                            f"Plant ID {plant_id} is said to be in state {state} but is actually in state {check_state[0]}"
-                        )
-                    else:
-                        bounding_states = STATE_BORDERS.get(state, [])
-                        rev_data_state = rev_gpd[rev_gpd["state"] == state]
-
-                    distance_to_sites = rev_data_state.apply(
-                        find_distance,
-                        axis=1,
-                        args=(
-                            plant_geo.loc[plant_id]["Latitude"],
-                            plant_geo.loc[plant_id]["Longitude"],
-                        ),
+                # Check that the site is within this state!
+                check_state = us_states[
+                    us_states.contains(plant_geo.loc[plant_id]["geometry"])
+                ].STUSPS.to_list()
+                if bool(check_state) and check_state[0] != state:
+                    rev_data_state = rev_gpd[rev_gpd["state"] == check_state[0]]
+                    bounding_states = STATE_BORDERS.get(check_state[0], [])
+                    plant_to_rev_id_df.loc[plant_id, "State"] = check_state[0]
+                    print(
+                        f"Plant ID {plant_id} is said to be in state {state} but is "
+                        f"actually in state {check_state[0]}"
                     )
+                else:
+                    bounding_states = STATE_BORDERS.get(state, [])
+                    rev_data_state = rev_gpd[rev_gpd["state"] == state]
 
-                    if distance_to_sites.min() > max_distance:
-                        min_distance = distance_to_sites.min()
-                        min_distance_id = distance_to_sites.idxmin()
-                        found_method = 1
+                distance_to_sites = rev_data_state.apply(
+                    find_distance,
+                    axis=1,
+                    args=(
+                        plant_geo.loc[plant_id]["Latitude"],
+                        plant_geo.loc[plant_id]["Longitude"],
+                    ),
+                )
 
-                        for b_state in bounding_states:
-                            rev_data_bounding_state = rev_gpd[
-                                rev_gpd["state"] == b_state
-                            ]
-                            distances = rev_data_bounding_state.apply(
-                                find_distance,
-                                axis=1,
-                                args=(
-                                    plant_geo.loc[plant_id]["Latitude"],
-                                    plant_geo.loc[plant_id]["Longitude"],
-                                ),
-                            )
-                            if distances.min() < min_distance:
-                                min_distance = distances.min()
-                                min_distance_id = distances.idxmin()
-                                found_method = 3
+                if distance_to_sites.min() > max_distance:
+                    min_distance = distance_to_sites.min()
+                    min_distance_id = distance_to_sites.idxmin()
+                    found_method = 1
 
-                        plant_to_rev_id_df.loc[plant_id, "REV SC GID"] = min_distance_id
-                        plant_to_rev_id_df.loc[plant_id, "Found method"] = found_method
-                        plant_to_rev_id_df.loc[plant_id, "Distance to Rev GID (km)"] = (
-                            min_distance
+                    for b_state in bounding_states:
+                        rev_data_bounding_state = rev_gpd[rev_gpd["state"] == b_state]
+                        distances = rev_data_bounding_state.apply(
+                            find_distance,
+                            axis=1,
+                            args=(
+                                plant_geo.loc[plant_id]["Latitude"],
+                                plant_geo.loc[plant_id]["Longitude"],
+                            ),
                         )
+                        if distances.min() < min_distance:
+                            min_distance = distances.min()
+                            min_distance_id = distances.idxmin()
+                            found_method = 3
 
-                    else:
-                        plant_to_rev_id_df.loc[plant_id, "REV SC GID"] = (
-                            distance_to_sites.idxmin()
-                        )
-                        plant_to_rev_id_df.loc[plant_id, "Found method"] = 1
-                        plant_to_rev_id_df.loc[plant_id, "Distance to Rev GID (km)"] = (
-                            distance_to_sites.min()
-                        )
-
-                elif len(rev_pt) == 1:
-                    # found 1 matching site
-                    rev_id = rev_pt.index.to_list()[0]
-                    plant_to_rev_id[plant_id] = rev_pt.index.to_list()[0]
-                    plant_to_rev_id_df.loc[plant_id, "REV SC GID"] = (
-                        rev_pt.index.to_list()[0]
-                    )
-                    plant_to_rev_id_df.loc[plant_id, "Found method"] = 0
+                    plant_to_rev_id_df.loc[plant_id, "REV SC GID"] = min_distance_id
+                    plant_to_rev_id_df.loc[plant_id, "Found method"] = found_method
                     plant_to_rev_id_df.loc[plant_id, "Distance to Rev GID (km)"] = (
-                        calc_distance(
-                            rev_gpd.loc[rev_id]["latitude"],
-                            rev_gpd.loc[rev_id]["longitude"],
-                            plant_state.loc[plant_id]["Latitude"],
-                            plant_state.loc[plant_id]["Longitude"],
-                        )
+                        min_distance
                     )
 
                 else:
-                    # found multiple
-                    distance_to_sites = rev_gpd.loc[rev_pt.index.to_list()].apply(
-                        find_distance,
-                        axis=1,
-                        args=(
-                            plant_geo.loc[plant_id]["Latitude"],
-                            plant_geo.loc[plant_id]["Longitude"],
-                        ),
-                    )
                     plant_to_rev_id_df.loc[plant_id, "REV SC GID"] = (
                         distance_to_sites.idxmin()
                     )
-                    plant_to_rev_id_df.loc[plant_id, "Found method"] = 2
+                    plant_to_rev_id_df.loc[plant_id, "Found method"] = 1
                     plant_to_rev_id_df.loc[plant_id, "Distance to Rev GID (km)"] = (
                         distance_to_sites.min()
                     )
 
-                    plant_id_multi_rev_cells.append(plant_id)
-                    plant_to_rev_id[plant_id] = rev_pt.index.to_list()
-            # if len(ids_missing)>0:
-            #     ids_missing_per_state[state] = ids_missing
-            #     print(f"{len(ids_missing)} of {len(plant_state)} ids missing in state {state}")
+            elif len(rev_pt) == 1:
+                # found 1 matching site
+                rev_id = rev_pt.index.to_list()[0]
+                plant_to_rev_id[plant_id] = rev_pt.index.to_list()[0]
+                plant_to_rev_id_df.loc[plant_id, "REV SC GID"] = rev_pt.index.to_list()[
+                    0
+                ]
+                plant_to_rev_id_df.loc[plant_id, "Found method"] = 0
+                plant_to_rev_id_df.loc[plant_id, "Distance to Rev GID (km)"] = (
+                    calc_distance(
+                        rev_gpd.loc[rev_id]["latitude"],
+                        rev_gpd.loc[rev_id]["longitude"],
+                        plant_state.loc[plant_id]["Latitude"],
+                        plant_state.loc[plant_id]["Longitude"],
+                    )
+                )
 
-        print(f"{len(plant_id_to_recheck)} sites to recheck")
-        print(f"{len(plant_id_multi_rev_cells)} sites with multiple rev cells")
-        plant_to_rev_id_df.index.name = "Plant Code"
-        plant_to_rev_id_df.to_csv(DATA_DIR / "nice_data_aggregated" / "temp_mapper.csv")
-        t_end = datetime.now()
-        time_to_run = (t_end - t_start).seconds / 60
-        print(f"done, took {time_to_run:.2f} minutes")
-    else:
-        plant_to_rev_id_df = pd.read_csv(
-            DATA_DIR / "nice_data_aggregated" / "temp_mapper.csv",
-            index_col="Plant Code",
-        )
-        # plant_to_rev_id_df.index.name = "Plant Code"
+            else:
+                # found multiple
+                distance_to_sites = rev_gpd.loc[rev_pt.index.to_list()].apply(
+                    find_distance,
+                    axis=1,
+                    args=(
+                        plant_geo.loc[plant_id]["Latitude"],
+                        plant_geo.loc[plant_id]["Longitude"],
+                    ),
+                )
+                plant_to_rev_id_df.loc[plant_id, "REV SC GID"] = (
+                    distance_to_sites.idxmin()
+                )
+                plant_to_rev_id_df.loc[plant_id, "Found method"] = 2
+                plant_to_rev_id_df.loc[plant_id, "Distance to Rev GID (km)"] = (
+                    distance_to_sites.min()
+                )
+
+                plant_id_multi_rev_cells.append(plant_id)
+                plant_to_rev_id[plant_id] = rev_pt.index.to_list()
+
+    print(f"{len(plant_id_to_recheck)} sites to recheck")
+    print(f"{len(plant_id_multi_rev_cells)} sites with multiple rev cells")
+    plant_to_rev_id_df.index.name = "Plant Code"
+    # plant_to_rev_id_df.to_csv(DATA_DIR / "nice_data_aggregated" / "temp_mapper.csv")
+    t_end = datetime.now()
+    time_to_run = (t_end - t_start).seconds / 60
+    print(f"done, took {time_to_run:.2f} minutes")
+    # else:
+    #     plant_to_rev_id_df = pd.read_csv(
+    #         DATA_DIR / "nice_data_aggregated" / "temp_mapper.csv",
+    #         index_col="Plant Code",
+    #     )
 
     plant_to_rev_id_df.sort_index(inplace=True)
     plant_geo.sort_index(inplace=True)
@@ -273,7 +266,7 @@ def create_eia_rev_mapper_file(
         ]
         tmp_df = pd.concat(rev_tmp_df, axis=1)
         rev_repeated_df.loc[rev_id] = tmp_df.T
-    # mapper_df = pd.concat([mapper_df.loc[rev_id_indx], rev_gpd.loc[rev_id_indx][rev_data_cols]],axis=1)
+
     mapper_df = pd.concat(
         [mapper_df.loc[rev_id_indx], rev_repeated_df.loc[rev_id_indx]], axis=1
     )
@@ -310,7 +303,6 @@ def create_eia_rev_mapper_file(
         )
 
         colors = [ids_to_colors[i] for i in recheck_pids]
-        # rev_data_co.boundary.plot(ax=ax, alpha=1.0, edgecolor="tab:red", linewidth=0.25)
         ax.scatter(
             x=plant_geo.loc[recheck_pids]["Longitude"],
             y=plant_geo.loc[recheck_pids]["Latitude"],
