@@ -8,6 +8,7 @@ import pandas as pd
 from nice import DATA_DIR, ROOT_DIR
 from nice.plotting.plot_tools import make_discrete_color_dict
 from nice.tools.eia_860_file_tools import load_eia_860
+from nice.tools.file_tools import check_create_folder
 from nice.tools.geo_data_file_tools import load_us_state_boundaries
 from nice.tools.geospatial import STATE_BORDERS, US_STATE_MAP
 from nice.tools.rev_supply_curve_tools import (
@@ -288,7 +289,11 @@ def create_eia_rev_mapper_file(
         print(f"{len(recheck_pids)} sites that are far from a REV site")
         fig, ax = plt.subplots(1, 1, figsize=[12, 12])
 
-        figfpath = ROOT_DIR.parent / "map_figures" / "far_away_sites_map.png"
+        figfpath = (
+            ROOT_DIR.parent / "map_figures" / f"far_away_rev_sites_map_{data_year}.png"
+        )
+
+        check_create_folder(figfpath.parent)
 
         us_states = load_us_state_boundaries()
         us_states.boundary.plot(ax=ax, alpha=0.5, edgecolor="tab:gray", linewidth=0.625)
