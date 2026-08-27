@@ -1,0 +1,27 @@
+---
+performance_model:
+  model: PYSAMWindPlantPerformanceModel
+cost_model:
+  model: ATBWindPlantCostModel
+model_inputs:
+  performance_parameters:
+    num_turbines: 216  # number of turbines in the farm
+    turbine_rating_kw: 6000  # 6 MW turbines (matches NREL_6MW_170)
+    rotor_diameter: 170.
+    hub_height: 115.
+    create_model_from: default
+    config_name: WindPowerSingleOwner
+    pysam_options: !include "pysam_options_6MW.yaml"
+    run_recalculate_power_curve: true
+    layout:
+      layout_mode: basicgrid
+      layout_options:
+        row_D_spacing: 7.0
+        turbine_D_spacing: 7.0
+        rotation_angle_deg: 0.0
+        row_phase_offset: 0.0
+        layout_shape: square
+  cost_parameters:  # TODO: update with more recent ATB numbers
+    capex_per_kW: 1380.0
+    opex_per_kW_per_year: 29.0
+    cost_year: 2019
