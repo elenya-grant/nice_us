@@ -301,8 +301,8 @@ def create_eia_rev_mapper_file(
         ids_to_colors = make_discrete_color_dict(recheck_pids, cmap_name="hsv")
 
         ax.scatter(
-            x=rev_gpd["longitude"],
-            y=rev_gpd["latitude"],
+            x=rev_gpd["REV Longitude"],
+            y=rev_gpd["REV Latitude"],
             s=0.20,
             c="tab:blue",
             alpha=0.10,
@@ -311,8 +311,8 @@ def create_eia_rev_mapper_file(
 
         colors = [ids_to_colors[i] for i in recheck_pids]
         ax.scatter(
-            x=plant_geo.loc[recheck_pids]["Longitude"],
-            y=plant_geo.loc[recheck_pids]["Latitude"],
+            x=plant_geo.loc[recheck_pids]["Plant Longitude"],
+            y=plant_geo.loc[recheck_pids]["Plant Latitude"],
             s=0.6,
             c=colors,
             alpha=1.0,
@@ -324,8 +324,8 @@ def create_eia_rev_mapper_file(
         rev_site_recheck = plant_to_rev_id_df.loc[recheck_pids]["REV SC GID"].to_list()
 
         ax.scatter(
-            x=rev_gpd.loc[rev_site_recheck]["longitude"],
-            y=rev_gpd.loc[rev_site_recheck]["latitude"],
+            x=rev_gpd.loc[rev_site_recheck]["REV Longitude"],
+            y=rev_gpd.loc[rev_site_recheck]["REV Latitude"],
             s=0.4,
             c=colors,
             alpha=0.60,
@@ -336,8 +336,14 @@ def create_eia_rev_mapper_file(
 
         for i in recheck_pids:
             rev_id = plant_to_rev_id_df.loc[i, "REV SC GID"]
-            x_vals = [plant_geo.loc[i]["Longitude"], rev_gpd.loc[rev_id]["longitude"]]
-            y_vals = [plant_geo.loc[i]["Latitude"], rev_gpd.loc[rev_id]["latitude"]]
+            x_vals = [
+                plant_geo.loc[i]["Plant Longitude"],
+                rev_gpd.loc[rev_id]["REV Longitude"],
+            ]
+            y_vals = [
+                plant_geo.loc[i]["Plant Latitude"],
+                rev_gpd.loc[rev_id]["REV Latitude"],
+            ]
             ax.plot(x_vals, y_vals, lw=0.5, color=ids_to_colors[i])
 
         ax.spines[["right", "top", "bottom", "left"]].set_visible(False)
