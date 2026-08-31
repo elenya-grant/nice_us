@@ -51,3 +51,6 @@ design_variables:
     interconnection_size:
       flag: true
       units: MW
+    plant_code:
+      flag: true
+      units: unitless

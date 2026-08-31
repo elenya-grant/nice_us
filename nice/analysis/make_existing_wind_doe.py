@@ -25,6 +25,7 @@ rev_mapper_fpath = (
 rev_df = pd.read_csv(rev_mapper_fpath)
 rev_df.drop_duplicates(inplace=True)
 convert_to_type(rev_df, "Plant Code", "Plant Code", int)
+convert_to_type(rev_df, "EIA Plant Code", "EIA Plant Code", int)
 
 
 # Load the Wind Generator Data from EIA 860
@@ -117,6 +118,7 @@ rev_cols = [
     "Plant Longitude",
     "area_developable_fraction",
     "REV PV Capacity (MW-DC)",
+    "EIA Plant Code",
 ]
 # ["area_developable_sq_km", "REV PV Capacity (MW-DC)", "REV PV Capacity (MW-AC)"]
 
@@ -132,6 +134,7 @@ col_rename = {
     "Nameplate Capacity (MW)": "poi_demand.electricity_demand",
     "Nameplate Capacity 2 (MW)": "grid_sell_solar.interconnection_size",
     "REV PV Capacity (MW-DC)": "add_on_solar.system_capacty_DC",
+    "EIA Plant Code": "grid_sell_solar.plant_code",
 }
 
 drop_cols = [k for k in sitelist.columns.to_list() if k not in col_rename]
