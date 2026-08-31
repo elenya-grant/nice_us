@@ -1,32 +1,26 @@
 ---
 performance_model:
   model: PYSAMSolarPlantPerformanceModel
-cost_model:
-  model: ATBUtilityPVCostModel
 model_inputs:
   performance_parameters:
-    pv_capacity_kWdc: 200000  # sweep value in DOE
-    dc_ac_ratio: 1.34  # based on ATB value
+    pv_capacity_kWdc: 200000  # comes from DOE csv
+    dc_ac_ratio: 1.34  # comes from DOE csv default to 1.34 if DC Net Capacity (MW) is not populated in EIA860
     create_model_from: new
-    tilt_angle_func: lat-func
-    tilt: 0
+    tilt_angle_func: none
+    tilt: 0  # comes from DOE csv
     pysam_options:
       SystemDesign:
         gcr: 0.3
-        array_type: 2  # 2: 1-axis tracking, 1: fixed roof mount, 4: 2-axis tracking
-        bifaciality: 0.65
+        array_type: 0  # fixed open rack
+        bifaciality: 0
         inv_eff: 96.0
         losses: 14.0757  # dc losses Pvwattsv8 default
         module_type: 1  # 0: standard (19%), 1: premium (21%), 2: thin film (18%)
         azimuth: 180  # 180 is south-facing
-        rotlim: 45  #
+        # rotlim: 45  # not used in fixed axis
       SolarResource:
         use_wf_albedo: 1  # 1: use albedo from weather file
         albedo_default: 0.2
-  cost_parameters:
-    capex_per_kWac: 1254  # overnight capital cost in $/kW-AC moderate 2025. capex 1473 $/kw-AC moderate 2025.
-    opex_per_kWac_per_year: 24  # fixed O&M $/kw-AC/year moderate 2025.
-    cost_year: 2023
     # CdTe 19%
     # A-SI: 14%
     # CIGS: 23%
