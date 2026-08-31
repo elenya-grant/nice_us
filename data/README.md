@@ -10,3 +10,7 @@ Download Egrid data from [here](https://www.epa.gov/egrid/detailed-data). The fi
 - Download the following files and put them in this folder in a subfolder called "RevSupplyCurves_UtilityPV_2024"
 - [Solar PV Rev Supply Curve Column Lookup](https://data.openei.org/files/8319/pv_column_lookup.csv)
 - [Reference Access Utility-scale PV supply curve](https://data.openei.org/files/8319/solar_reference_access_2035_moderate_supply_curve.csv)
+
+
+# Other
+- Download the CAMPD data caveats file from [here](https://api.epa.gov/easey/content-mgmt/campd/documents/data_caveats_current.xlsx)
