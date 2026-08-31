@@ -1,0 +1,24 @@
+---
+performance_model:
+  model: StoragePerformanceModel
+cost_model:
+  model: ATBBatteryCostModel
+control_strategy:
+  model: DemandOpenLoopStorageController  # need to figure out what controller to use for grid
+model_inputs:
+  shared_parameters:
+    commodity: electricity
+    commodity_rate_units: kW
+    max_charge_rate: 50000.0  # kW/time step, 50 MW, 4 hour battery
+    max_capacity: 200000.0  # kWh, 200 MWh set from DOE csv, 4 hour battery
+    max_soc_fraction: 1.0  # fraction (0-1)
+    min_soc_fraction: 0.1  # fraction (0-1)
+    init_soc_fraction: 0.1  # fraction (0-1)
+    max_discharge_rate: 50000.0  # kW/time step
+    round_trip_efficiency: 0.85  # fraction (0-1)
+    demand_profile: 100000  # kW, 100 MW
+  cost_parameters:
+    cost_year: 2023
+    energy_capex: 223  # $/kWh 2025 moderate utility-scale Battery R&D overnight capital cost
+    power_capex: 356  # $/kW 2025 moderate utility-scale Battery R&D overnight capital cost
+    opex_fraction: 0.04  # percent of overnight capital cost per year

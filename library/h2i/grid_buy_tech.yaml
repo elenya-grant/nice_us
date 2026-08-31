@@ -1,0 +1,14 @@
+---
+performance_model:
+  model: GridPerformanceModel
+cost_model:
+  model: GridCostModel
+model_inputs:
+  shared_parameters:
+    interconnection_size: 1.e6  # kW  # set based on DOE csv
+  cost_parameters:
+    cost_year: 2022  # TODO make sure this is the correct year for the cost data
+    electricity_buy_price: 0  # $/kWh - only buying, no selling based on ABB energy values
+    interconnection_capex_per_kw: 0.0  # $/kW capital cost
+    interconnection_opex_per_kw: 0.0  # $/kW/year O&M cost
+    fixed_interconnection_cost: 0.0  # $ one-time fixed cost
