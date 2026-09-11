@@ -9,6 +9,7 @@ model_inputs:
   cost_parameters:
     cost_year: 2022  # TODO make sure this is the correct year for the cost data
     electricity_sell_price: 0.0  # $/kWh set using ABB and calculated capacity value
+    sell_price_mode: per_timestep
     interconnection_capex_per_kw: 0.0  # $/kW capital cost
     interconnection_opex_per_kw: 0.0  # $/kW/year O&M cost
     fixed_interconnection_cost: 0.0  # $ one-time fixed cost

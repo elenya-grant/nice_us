@@ -1,0 +1,8 @@
+---
+performance_model:
+  model: GenericDemandComponent
+model_inputs:
+  performance_parameters:
+    commodity: electricity
+    commodity_rate_units: kW
+    demand_profile: 0.  # demand is set in the doe
