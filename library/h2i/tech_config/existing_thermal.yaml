@@ -1,6 +1,7 @@
 ---
 performance_model:
   model: CAMPDPerformance
+  model_location:
 model_inputs:
   performance_parameters:
     data_directory: /projects/surint/campd_spheres/nationwide/

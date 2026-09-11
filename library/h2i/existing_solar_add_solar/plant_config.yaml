@@ -23,7 +23,7 @@ resource_to_tech_connections:
   - [site.solar_resource, existing_plant, solar_resource_data]
   - [site.solar_resource, solar_add_on, solar_resource_data]
 finance_parameters:
-  finance_groups: !include finance_groups.yaml
+  finance_groups: !include ./finance_groups.yaml
   finance_subgroups:
     added_electricity:
       commodity: electricity

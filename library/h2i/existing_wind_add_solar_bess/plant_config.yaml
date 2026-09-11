@@ -70,7 +70,7 @@ system_level_control:
     solver_option_kwargs:
       use_aitken: true
 finance_parameters:
-  finance_groups: !include finance_groups.yaml
+  finance_groups: !include ./finance_groups.yaml
   finance_subgroups:
     added_electricity:
       commodity: electricity

@@ -8,6 +8,7 @@ model_inputs:
     rotor_diameter: 170.  # read in from DOE csv
     hub_height: 115.  # read in from DOE csv
     create_model_from: new
+    run_recalculate_power_curve: true
     layout:
       layout_mode: basicgrid
       layout_options:
@@ -16,3 +17,9 @@ model_inputs:
         rotation_angle_deg: 0.0
         row_phase_offset: 0.0
         layout_shape: square
+    pysam_options:
+      Resource:
+        wind_resource_model_choice: 0  # 0: hourly, 1: weibull, 2: distribution
+      Farm:
+        wind_farm_wake_model: 0.0  # 0: simple, 1: park, 2: EV, 3: constant
+        wind_resource_turbulence_coeff: 0.1  # turbulence coefficient

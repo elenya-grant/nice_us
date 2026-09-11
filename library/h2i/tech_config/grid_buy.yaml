@@ -3,6 +3,7 @@ performance_model:
   model: GridPerformanceModel
 cost_model:
   model: CustomGridCostModel
+  model_location:
 model_inputs:
   shared_parameters:
     interconnection_size: 1.e6  # kW  # set based on DOE csv
