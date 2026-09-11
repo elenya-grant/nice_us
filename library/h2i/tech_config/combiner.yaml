@@ -1,0 +1,7 @@
+---
+performance_model:
+  model: GenericCombinerPerformanceModel
+model_inputs:
+  performance_parameters:
+    commodity: electricity
+    commodity_rate_units: kW
