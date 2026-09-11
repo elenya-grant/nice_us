@@ -111,8 +111,9 @@ rev_df.drop(index=filter_drop_3, inplace=True)
 wind_data_agg.sort_index(inplace=True)
 rev_df.sort_index(inplace=True)
 
-pv_capacity_density = 43.0  # MW-dc/km^2
-assumed_plant_area_sq_km = 11.5  #
+# pv_capacity_density = 43.0  # MW-dc/km^2
+# assumed_plant_area_sq_km = 11.5  #
+
 rev_cols = [
     "Plant Latitude",
     "Plant Longitude",
@@ -124,17 +125,20 @@ rev_cols = [
 
 sitelist = pd.concat([wind_data_agg, rev_df[rev_cols]], axis=1)
 sitelist["Nameplate Capacity 2 (MW)"] = sitelist["Nameplate Capacity (MW)"]
+sitelist["EIA Plant Code 2"] = sitelist["EIA Plant Code"]
 col_rename = {
     "Turbine Hub Height (m)": "wind.wind_turbine_hub_ht",
     "Estimated Rotor Diameter (m)": "wind.wind_turbine_rotor_diameter",
     "Number of Turbines": "wind.num_turbines",
     "turb_size_mw": "wind.wind_turbine_rating",
+    # above is specific to wind
     "Plant Latitude": "site.latitude",
     "Plant Longitude": "site.longitude",
+    # plant lat/lon is not needed if thermal plant with add on battery
     "Nameplate Capacity (MW)": "poi_demand.electricity_demand",
-    "Nameplate Capacity 2 (MW)": "grid_sell_solar.interconnection_size",
-    "REV PV Capacity (MW-DC)": "add_on_solar.system_capacty_DC",
-    "EIA Plant Code": "grid_sell_solar.plant_code",
+    "Nameplate Capacity 2 (MW)": "grid_sell.interconnection_size",
+    "REV PV Capacity (MW-DC)": "add_on_solar.system_capacity_DC",
+    "EIA Plant Code": "grid_sell.plant_code",
 }
 
 drop_cols = [k for k in sitelist.columns.to_list() if k not in col_rename]
@@ -154,7 +158,7 @@ sitelist.to_csv(output_sitelist_fpath, index=False)
 # len(wind_data_agg[wind_data_agg["Nameplate Capacity (MW)"]<=10].index.unique()) # 288 plants
 # len(wind_data[wind_data["Nameplate Capacity (MW)"]<=10].index.unique())
 
-[]
+
 # Filter out certain sites based on capacity, generator type (offshore), or distance to rev site
 # less than 10 MW
 #
