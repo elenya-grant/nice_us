@@ -1,0 +1,8 @@
+---
+performance_model:
+  model: CAMPDPerformance
+model_inputs:
+  performance_parameters:
+    data_directory: /projects/surint/campd_spheres/nationwide/
+    eia_923_data: /projects/surint/campd_spheres/nationwide/eia_923.csv
+    maintenance_nans: 168  # 1 week

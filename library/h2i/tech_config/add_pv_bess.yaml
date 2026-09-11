@@ -1,0 +1,91 @@
+---
+# ATB Representative Plant: single-axis tracking utility scale + 4 hour utility scale battery
+# Utility-Scale PV-Plus-Batt R&D 2025 ATB
+solar_add_on:
+  performance_model:
+    model: PYSAMSolarPlantPerformanceModel
+  cost_model:
+    model: ATBUtilityPVCostModel
+  model_inputs:
+    performance_parameters:
+      pv_capacity_kWdc: 200000  # sweep value in DOE
+      dc_ac_ratio: 1.34  # based on 2025 ATB assumption
+      create_model_from: new
+      tilt_angle_func: lat-func  # determine appropriate tilt based on latitude
+      tilt: 0
+      pysam_options:
+        SystemDesign:
+          gcr: 0.3
+          array_type: 2  # 2: 1-axis tracking, 1: fixed roof mount, 4: 2-axis tracking
+          bifaciality: 0.65
+          inv_eff: 96.0
+          losses: 14.0757  # dc losses Pvwattsv8 default
+          module_type: 1  # 0: standard (19%), 1: premium (21%), 2: thin film (18%)
+          azimuth: 180  # 180 is south-facing
+          rotlim: 45  # typical rotational limit
+        SolarResource:
+          use_wf_albedo: 1  # 1: use albedo from weather file
+          albedo_default: 0.2
+    cost_parameters:
+    # overnight capital cost = (PV System Cost + Battery Storage Cost * (Battery Power MWAC/Inverter MWAC)) * (Co-location savings rate)
+    # 1841$/kw = (1247$/kw + (223 $/kwh * 4h + 356 $/kw) * (60 / 100)) * 0.923
+
+    # fixed_opex = (PV Fixed O&M Expenses + 10 + Battery Overnight capital cost (year 2040))*0.8/30
+    # 57 $/kw-yr  = (24 + 10 + 861) * 0.8 / 30
+      capex_per_kWac: 1150.981  # overnight capital cost in $/kW-AC moderate Utility-Scale PV-Plus-Batt R&D 2025. (2025 ATB)
+      opex_per_kWac_per_year: 35.63  # split the opex based on percentage of PV capex/total capex.
+      # fixed O&M $/kw-AC/year moderate Utility-Scale PV-Plus-Batt R&D 2025. (2025 ATB)
+      cost_year: 2023
+      # CdTe 19%
+      # A-SI: 14%
+      # CIGS: 23%
+      # Crystalline Silicon: 24-26%
+      # https://solarmagazine.com/solar-panels/thin-film-solar-panels/
+battery:
+  performance_model:
+    model: StoragePerformanceModel
+  cost_model:
+    model: ATBBatteryCostModel
+  model_inputs:
+    shared_parameters:
+      commodity: electricity
+      commodity_rate_units: kW
+      max_charge_rate: 50000.0  # kW/time step, 50 MW, 4 hour battery
+      max_capacity: 200000.0  # kWh, 200 MWh set from DOE csv, 4 hour battery
+      max_soc_fraction: 1.0  # fraction (0-1)
+      min_soc_fraction: 0.1  # fraction (0-1)
+      init_soc_fraction: 0.1  # fraction (0-1)
+      max_discharge_rate: 50000.0  # kW/time step
+      round_trip_efficiency: 0.85  # fraction (0-1) 2025 moderate Utility-Scale PV-Plus-Batt R&D 2025 ATB assumption (2025 ATB)
+      demand_profile: 0.
+    cost_parameters:
+      cost_year: 2023
+      energy_capex: 123.4974  # $/kWh 2025 moderate Utility-Scale PV-Plus-Batt R&D 2025 ATB overnight capital cost (2025 ATB)
+      power_capex: 197.1528  # $/kW 2025 moderate Utility-Scale PV-Plus-Batt R&D 2025 ATB overnight capital cost (2025 ATB)
+      opex_fraction: 0.03  # percent of overnight capital cost per year 2025 moderate Utility-Scale PV-Plus-Batt R&D 2025 ATB (2025 ATB)
+      # 21.3639777295$/kw-yr / 123.4974$/kwh * 4h +197.1528$/kw = ~0.03 fraction
+      # 21.3639777295$/kw-yr = (1 - 1150.981/1841) * 57  # derived from PV-Plus-Batt cost structure
+charge_combiner:
+  performance_model:
+    model: GenericCombinerPerformanceModel
+  model_inputs:
+    performance_parameters:
+      commodity: electricity
+      commodity_rate_units: kW
+      in_streams: 2  # grid imports + the existing plant's spill
+out_combiner:
+  performance_model:
+    model: GenericCombinerPerformanceModel
+  model_inputs:
+    performance_parameters:
+      commodity: electricity
+      commodity_rate_units: kW
+      in_streams: 2  # aggregated source bus + battery net output
+electrical_load_demand:
+  performance_model:
+    model: GenericDemandComponent
+  model_inputs:
+    performance_parameters:
+      commodity: electricity
+      commodity_rate_units: kW
+      demand_profile: 0.  # merchant plant: no on-site load, everything is exported
