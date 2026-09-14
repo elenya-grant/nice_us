@@ -3,6 +3,9 @@ import pandas as pd
 
 from nice.tools.eia_860_file_tools import load_eia_860
 
+net_load_dir = "/projects/surint/campd_spheres/net_load/"
+lmp_dir = ""
+
 data_year = 2025
 
 """
@@ -100,9 +103,9 @@ price_node_mapper.replace(
 )
 
 
-net_load_dir = "/projects/surint/campd_spheres/net_load/"
 # for each unique plant code in generators
 # net_load = pd.read_csv(path + f"EIA930_BALANCE_{data_year}_with_Net_Load.csv")
+# NOTE: or should we be using Net_Load.csv?
 net_load1 = pd.read_csv(net_load_dir + f"EIA930_BALANCE_{data_year}_Jan_Jun.csv")
 net_load2 = pd.read_csv(net_load_dir + +f"EIA930_BALANCE_{data_year}_Jul_Dec.csv")
 net_load_df = pd.concat([net_load1, net_load2], axis=1)
@@ -116,8 +119,11 @@ for p in plants["Plant Code"].unique():
     # pull energy market price per plant
     # use day-ahead LMP
     # stored on HPC in /projects/surint/campd_spheres/nationwide/
-    path = "/projects/surint/campd_spheres/nationwide/"
-    lmp = pd.read_csv(path + f"plant_{int(inputs['plant_code'][0])}.csv")
+    # path = "/projects/surint/campd_spheres/nationwide/"
+    # Get LMP Price node name from price_node_mapper
+    # Get LMP Price node number from price node mapper
+
+    lmp = pd.read_csv(lmp_dir + f"plant_{int(inputs['plant_code'][0])}.csv")
 
     lmp_da = lmp[
         "LMP_DA"
