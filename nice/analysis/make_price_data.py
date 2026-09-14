@@ -62,8 +62,53 @@ net_cone = {
 net_cone["OTHER"] = np.average(list(net_cone.values()))
 net_cone_per_kw_year = {iso: value * 12 for iso, value in net_cone.items()}  # $/kw-year
 
+# load LMP plant id to price node mapper
+price_node_mapper_path = (
+    "/projects/surint/campd_spheres/nationwide/facility_lmp_mapping(in).csv"
+)
+price_node_cols = [
+    "Plant Code",
+    "Generator ID",
+    "Prime Mover",
+    "Mapped_Price_Node",
+    "Mapped_ISO_Name",
+    "Mapped_Price_Node_ID",
+]
+price_node_mapper = pd.read_csv(price_node_mapper_path, usecols=price_node_cols)
+price_node_mapper = price_node_mapper[
+    price_node_mapper["Prime Mover"].isin(prime_movers)
+]
+price_node_mapper = price_node_mapper[
+    price_node_mapper["Plant Code"].isin(plant_capacity.index)
+]
+price_node_mapper = price_node_mapper[
+    price_node_mapper["Plant Code"].isin(generators["Plant Code"].unique())
+]
 
+price_node_mapper_iso_rename = {
+    "Midcontinent ISO": "MISO",
+    "PJM ISO": "PJM",
+    "California ISO": "CISO",
+    "ERCOT ISO": "ERCO",
+    "New England ISO": "???",  # what is this?
+    "New York ISO": "NYIS",
+}
+
+# rename ISOs in price node mapper
+price_node_mapper.replace(
+    to_replace={"Mapped_ISO_Name": price_node_mapper_iso_rename}, inplace=True
+)
+
+
+net_load_dir = "/projects/surint/campd_spheres/net_load/"
 # for each unique plant code in generators
+# net_load = pd.read_csv(path + f"EIA930_BALANCE_{data_year}_with_Net_Load.csv")
+net_load1 = pd.read_csv(net_load_dir + f"EIA930_BALANCE_{data_year}_Jan_Jun.csv")
+net_load2 = pd.read_csv(net_load_dir + +f"EIA930_BALANCE_{data_year}_Jul_Dec.csv")
+net_load_df = pd.concat([net_load1, net_load2], axis=1)
+net_load_df.set_index(keys="Balancing Authority", inplace=True)
+
+
 for p in plants["Plant Code"].unique():
     inputs = {"plant_code": [p]}
 
@@ -83,9 +128,9 @@ for p in plants["Plant Code"].unique():
         0
     ]
 
-    net_load = pd.read_csv(path + f"EIA930_BALANCE_{data_year}_with_Net_Load.csv")
+    # net_load = net_load[net_load["Balancing Authority"] == ba_code]
+    net_load = net_load_df.loc[ba_code].copy(deep=True)
 
-    net_load = net_load[net_load["Balancing Authority"] == ba_code]
     net_load.set_index("UTC Time at End of Hour", inplace=True)
     net_load.index = pd.to_datetime(net_load.index, utc=True)
     net_load.sort_index(inplace=True)
