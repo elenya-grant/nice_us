@@ -72,7 +72,7 @@ def load_dill_pickle(filepath):
 
 
 def write_yaml(filename, data):
-    if ".yaml" not in filename:
+    if ".yaml" not in str(filename):
         filename = filename + ".yaml"
 
     with open(filename, "w+") as file:

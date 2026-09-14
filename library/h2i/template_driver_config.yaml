@@ -2,6 +2,13 @@
 general:
   folder_output: outputs
   create_om_reports: false
+driver:
+  parameter_sweep:
+    flag: true
+    debug_print: false
+    generator: csvgen
+    filename: csv_doe_fname.csv
+    run_parallel: true
 recorder:
   flag: true
   file: case.sql
