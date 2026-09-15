@@ -15,11 +15,13 @@ if run_local:
     lmp_dir = DATA_DIR / "lmp"
     net_load_dir = DATA_DIR / "net_load"
     net_load_fname = "Net_Load_subset_2025.csv"
+    price_profile_output_dir = DATA_DIR / "price_profiles"
 else:
     net_load_dir = Path("/projects/surint/campd_spheres/net_load")
     net_load_fname = "Net_Load.csv"
     lmp_dir = Path("/projects/surint/campd_spheres/lmp_data")
     price_node_mapper_path = lmp_dir / "facility_lmp_mapping(in).csv"
+    price_profile_output_dir = Path("/projects/surint/campd_spheres/price_profiles")
 
 data_year = 2025
 # load_year = 2025
@@ -84,9 +86,12 @@ net_cone = {
 }
 net_cone["OTHER"] = np.average(list(net_cone.values()))
 net_cone_per_kw_year = {iso: value * 12 for iso, value in net_cone.items()}  # $/kw-year
+# Convert to USD/MW-year
+net_cone_per_MW_year = {
+    iso: value * 1000 for iso, value in net_cone_per_kw_year.items()
+}
 
 # load LMP plant id to price node mapper
-
 price_node_cols = [
     "Plant Code",
     "Generator ID",
@@ -183,24 +188,39 @@ for p in plants["Plant Code"].unique():
 
     lmp_fpath = lmp_dir / f"{price_node_id}_{data_year}.csv"
     if lmp_fpath.exists():
+        # Load LMP File
         lmp = pd.read_csv(lmp_fpath)
-        lmp["Time Profile (UTC)"] = pd.to_datetime(
-            lmp["GMT Datetime (Hour Ending)"], utc=True
-        )
+        lmp_time_profile = pd.to_datetime(lmp["GMT Datetime (Hour Ending)"], utc=True)
+        lmp["Year (UTC)"] = [
+            lmp_time_profile.iloc[i].year for i in range(len(lmp_time_profile))
+        ]
+        # Filter data to data_year
+        lmp = lmp[lmp["Year (UTC)"] == data_year]
+        lmp["Time Profile (UTC)"] = lmp_time_profile
+        # Set index to time profile and sort
         lmp.set_index(keys=["Time Profile (UTC)"], inplace=True)
         lmp.sort_index(inplace=True)
 
+        # Get the lmp price data
         lmp_da = lmp["Price ($/MWh)"].values
 
-        # TODO: add check in that lmp_da is 8760
-
-    # lmp_da = lmp["LMP_DA"].values
-    # TODO: local time? UTC? get correct year, units MW or kw??
+        # Check the length of the LMP data
+        if len(lmp_da) != 8760:
+            msg = (
+                f"Facility ID {p} (with LMP Price Node ID {price_node_id}) "
+                f"for {data_year} has price of length {len(lmp_da)}"
+            )
+            warnings.warn(msg, UserWarning, stacklevel=3)
+    else:
+        lmp_da = np.zeros(8760)
+        msg = f"LMP file {lmp_fpath} does not exist."
+        warnings.warn(msg, UserWarning, stacklevel=3)
 
     # ----- Get Net Load For Balancing Authority-----
     net_load = net_load_df.loc[ba_code].copy(deep=True)
     net_load.set_index("Time Profile (UTC)", inplace=True)
     net_load.sort_index(inplace=True)
+    time_index = net_load.index.to_list()
 
     # get net load for capacity value calculation
     net_load = net_load["Net_Load"].values * 1000  # MW -> kW
@@ -230,6 +250,21 @@ for p in plants["Plant Code"].unique():
     if iso_name not in net_cone:  # NOTE: balancing authority or ISO?
         iso_name = "OTHER"
     # distributed the net_cone_per_kw_year over highest net load hours of the year
-    capacity_value = net_cone_per_kw_year[iso_name] * net_load_ratio  # $/kw
+    capacity_value = net_cone_per_MW_year[iso_name] * net_load_ratio  # $/MW
+
+    # Combine capacity value with lmp_da, price
+    # price_profile = capacity_value + lmp_da
+
+    price_profile_df = pd.DataFrame(
+        {
+            "LMP ($/MWh)": lmp_da,
+            "Capacity Payment ($/MWh)": capacity_value,
+            "Time (UTC)": time_index,
+        }
+    )
+    price_profile_output_fpath = (
+        price_profile_output_dir / f"{p}_{data_year}_price_profile.csv"
+    )
+    price_profile_df.to_csv(price_profile_output_fpath)
 
     # TODO: save capacity_value + lmp_da to a csv file named as the facility name
