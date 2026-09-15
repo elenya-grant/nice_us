@@ -20,6 +20,23 @@ def find_tracking_type(row):
     return -1
 
 
+def find_tracking_type_binary(row):
+    # `array_type`:
+    # 1 is fixed, 2, is 1-axis tracking, 4 is 2-axis tracking
+    yes_to_array_type = {
+        "Fixed Tilt?": 1,
+        "Single-Axis Tracking?": 2,
+        "Dual-Axis Tracking?": 2,
+    }
+    array_type = [v for k, v in yes_to_array_type.items() if row[k] == "Y"]
+    if bool(array_type):
+        if array_type[0] == 2:
+            return "one_axis"
+        if array_type[0] == 1:
+            return "fixed"
+    return "fixed"
+
+
 def find_is_bifacial(row):
     if row["Bifacial?"] == "Y":
         return True
@@ -32,16 +49,47 @@ def dc_capacity(row):
     return float(row["DC Net Capacity (MW)"])
 
 
-def azimuth(row):
-    if row["Azimuth Angle"] == " ":
+def dc_capacity_df(group_df):
+    if all(v == " " for v in group_df["DC Net Capacity (MW)"].values):
+        return group_df["Nameplate Capacity (MW)"].sum() * 1.34
+    if any(v == " " for v in group_df["DC Net Capacity (MW)"].values):
+        non_str_vals = [
+            i for i, v in enumerate(group_df["DC Net Capacity (MW)"].values) if v != " "
+        ]
+        dc_vals = group_df["DC Net Capacity (MW)"].values[non_str_vals].sum()
+        ac_vals = group_df["Nameplate Capacity (MW)"].values[non_str_vals].sum()
+        dc_ac_ratio = dc_vals / ac_vals
+        return group_df["Nameplate Capacity (MW)"] * dc_ac_ratio
+
+    return group_df["DC Net Capacity (MW)"].sum()
+
+
+def azimuth_df(group_df):
+    if all(v == " " for v in group_df["Azimuth Angle"].values):
         return 180.0
-    return float(row["Azimuth Angle"])
+    if any(v == " " for v in group_df["Azimuth Angle"].values):
+        azimuth_vals = [v for v in group_df["Azimuth Angle"].values if v != " "]
+        return np.median(azimuth_vals)
+
+    return group_df["Azimuth Angle"].mean()
+
+    # if row["Azimuth Angle"] == " ":
+    #     return 180.0
+    # return float(row["Azimuth Angle"])
 
 
-def tilt(row):
-    if row["Tilt Angle"] == " ":
+def tilt_df(group_df):
+    if all(v == " " for v in group_df["Tilt Angle"].values):
         return 45.0
-    return float(row["Tilt Angle"])
+    if any(v == " " for v in group_df["Tilt Angle"].values):
+        tilt_vals = [v for v in group_df["Tilt Angle"].values if v != " "]
+        return np.median(tilt_vals)
+
+    return group_df["Tilt Angle"].mean()
+
+    # if row["Tilt Angle"] == " ":
+    #     return 45.0
+    # return float(row["Tilt Angle"])
 
 
 def make_existing_solar_plant_sitelist(array_type, data_year=2025):
@@ -74,10 +122,11 @@ def make_existing_solar_plant_sitelist(array_type, data_year=2025):
     solar_data["Array Type"] = solar_data.apply(find_tracking_type, axis=1)
     # solar_data["Cell Design Type"] = solar_data.apply(find_cell_type, axis=1)
     solar_data["Bifacial"] = solar_data.apply(find_is_bifacial, axis=1)
+    solar_data["Tracking Type"] = solar_data.apply(find_tracking_type_binary, axis=1)
 
-    solar_data["Tilt"] = solar_data.apply(tilt, axis=1)
-    solar_data["DC Capacity (MW)"] = solar_data.apply(dc_capacity, axis=1)
-    solar_data["Azimuth"] = solar_data.apply(azimuth, axis=1)
+    # solar_data["Tilt"] = solar_data.apply(tilt, axis=1)
+    # solar_data["DC Capacity (MW)"] = solar_data.apply(dc_capacity, axis=1)
+    # solar_data["Azimuth"] = solar_data.apply(azimuth, axis=1)
 
     # solar_data[solar_data["DC Net Capacity (MW)"]==" "].index.to_list()
     # solar_data[solar_data["Azimuth Angle"]==" "].index.to_list()
@@ -86,9 +135,9 @@ def make_existing_solar_plant_sitelist(array_type, data_year=2025):
     # solar_data["dc_ac_ratio"] = (
     #     solar_data["DC Net Capacity (MW)"] / solar_data["Nameplate Capacity (MW)"]
     # )
-    solar_data["dc_ac_ratio"] = (
-        solar_data["DC Capacity (MW)"] / solar_data["Nameplate Capacity (MW)"]
-    )
+    # solar_data["dc_ac_ratio"] = (
+    #     solar_data["DC Capacity (MW)"] / solar_data["Nameplate Capacity (MW)"]
+    # )
 
     # Drop solar sites that have wrong tracking type:
     if array_type == "one_axis":
@@ -111,11 +160,11 @@ def make_existing_solar_plant_sitelist(array_type, data_year=2025):
     # Aggregate solar data to the plant-level
     # Add xxx
     solar_data_cols = [
-        "Array Type",
-        # "Azimuth Angle",
-        # "Tilt Angle",
+        # "Array Type",
         "Azimuth",
         "Tilt",
+        # "Azimuth",
+        # "Tilt",
         # "Cell Design Type",
         # "Bifacial",
         "dc_ac_ratio",
@@ -127,6 +176,17 @@ def make_existing_solar_plant_sitelist(array_type, data_year=2025):
     solar_data_agg.index.name = "Plant Code"
 
     # Filter data
+    solar_data_agg["Nameplate Capacity (MW)"] = solar_data.groupby(level="Plant Code")[
+        "Nameplate Capacity (MW)"
+    ].sum()
+    solar_data_agg["DC Capacity (MW)"] = solar_data.groupby(level="Plant Code").apply(
+        dc_capacity_df
+    )
+    solar_data_agg["Azimuth"] = solar_data.groupby(level="Plant Code").apply(azimuth_df)
+    solar_data_agg["Tilt"] = solar_data.groupby(level="Plant Code").apply(tilt_df)
+    solar_data_agg["dc_ac_ratio"] = (
+        solar_data_agg["DC Capacity (MW)"] / solar_data_agg["Nameplate Capacity (MW)"]
+    )
 
     # TODO: add other filters (such as capacity)
     filter_drop_1 = list(
