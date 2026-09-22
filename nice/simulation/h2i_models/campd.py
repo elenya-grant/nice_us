@@ -62,6 +62,7 @@ class CAMPDPerformance(om.ExplicitComponent):
             "facility_id",
             val=0.0,
             shape=1,
+            units="unitless",
             desc="Facility ID",
         )
 
