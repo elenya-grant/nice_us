@@ -18,7 +18,10 @@ def write_driver_file(design_var_to_units, driver_fpath, doe_csv_fname):
                 "upper": None,
             }
         }
-        design_vars[tech] = d_var_entry
+        if tech in design_vars:
+            design_vars[tech][tech_var] = d_var_entry[tech_var]
+        else:
+            design_vars[tech] = d_var_entry
 
     driver_template["design_variables"] = design_vars
     write_yaml(driver_fpath, driver_template)
