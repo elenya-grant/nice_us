@@ -7,6 +7,7 @@ import pandas as pd
 from nice import DATA_DIR
 from nice.tools.df_tools import convert_to_type
 from nice.tools.eia_860_file_tools import load_eia_860
+from nice.tools.file_tools import check_create_folder
 
 run_local = True
 
@@ -22,6 +23,8 @@ else:
     lmp_dir = Path("/projects/surint/campd_spheres/lmp_data")
     price_node_mapper_path = lmp_dir / "facility_lmp_mapping(in).csv"
     price_profile_output_dir = Path("/projects/surint/campd_spheres/price_profiles")
+
+check_create_folder(price_profile_output_dir)
 
 data_year = 2025
 # load_year = 2025
@@ -165,6 +168,13 @@ for p in plants["Plant Code"].unique():
     ba_code = plants.loc[plants["Plant Code"] == p, "Balancing Authority Code"].values[
         0
     ]
+
+    if ba_code in non_yearly_bas:
+        warnings.warn(
+            f"Balancing Authority {ba_code} has non-yearly net_load",
+            UserWarning,
+            stacklevel=3,
+        )
 
     if isinstance(price_node_mapper.loc[p, "Mapped_ISO_Name"], str):
         # just one generator in the price_node_mapper
