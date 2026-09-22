@@ -21,15 +21,14 @@ class CAMPDConfig(BaseConfig):
             it will be considered a maintenance period and the corresponding gross load time steps
             will be set to 0 in the output. All NaN values below this threshold will be set to max
             gross load for the generator. This is to account for missing data in the CAMPD dataset.
-        campd_eia_filepath (Path): path to file containing ratio of net generation to gross load 
+        campd_eia_filepath (Path): path to file containing ratio of net generation to gross load
             aggregated at the facility level
     """
 
     data_directory: Path | str = field()
     # eia_923_data: Path = field()
     # maintenance_nans: int = field()
-    campd_eia_filepath: Path | str = field() 
-
+    campd_eia_filepath: Path | str = field()
 
 
 class CAMPDPerformance(om.ExplicitComponent):
@@ -38,6 +37,9 @@ class CAMPDPerformance(om.ExplicitComponent):
         3600,
     )  # (min, max) time step lengths (in seconds) compatible with this model
     _control_classifier = "fixed"
+    commodity = "electricity"
+    commodity_rate_units = "MW"
+    commodity_amount_units = "MW*h"
 
     def initialize(self):
         self.options.declare("driver_config", types=dict)
@@ -46,7 +48,9 @@ class CAMPDPerformance(om.ExplicitComponent):
 
     def setup(self):
         self.plant_life = int(self.options["plant_config"]["plant"]["plant_life"])
-        self.n_timesteps = int(self.options["plant_config"]["simulation"]["n_timesteps"])
+        self.n_timesteps = int(
+            self.options["plant_config"]["simulation"]["n_timesteps"]
+        )
 
         self.config = CAMPDConfig.from_dict(
             merge_shared_inputs(
@@ -70,7 +74,7 @@ class CAMPDPerformance(om.ExplicitComponent):
 
         self.add_output(
             "rated_electricity_production",
-            shape=1, 
+            shape=1,
             units="MW",
             desc="Electricity produced from the facility",
         )
@@ -88,37 +92,41 @@ class CAMPDPerformance(om.ExplicitComponent):
         df.set_index(keys=["Facility ID"], inplace=True)
         self.campd_eia_df = df
 
-
     def compute(self, inputs, outputs):
         facility_id = int(inputs["facility_id"][0])
-        
+
         # read campd data
         campd_df = pd.read_csv(
             Path(self.config.data_directory) / f"facility_{facility_id}.csv"
         )
         # ["Net Generation (Megawatthours)", "Total Gross Load (MW)", "ratio (net/gross)"]
         net_to_gross = self.campd_eia_df.loc[facility_id, "ratio (net/gross)"]
-        outputs["rated_electricity_production"] = self.campd_eia_df.loc[facility_id, "Nameplate Capacity (MW)"]
-        if net_to_gross==0.0:
+        outputs["rated_electricity_production"] = self.campd_eia_df.loc[
+            facility_id, "Nameplate Capacity (MW)"
+        ]
+        if net_to_gross == 0.0:
             outputs["capacity_factor"] = 0.0
             outputs["electricity_out"] = np.zeros(self.n_timesteps)
-            return 
-        
+            return
+
         # time_utc,Facility Name,Facility ID,Unit ID,Gross Load (MW),Heat Input (mmBtu),Year
-        
+
         # pull out all the generator IDs for the given facility_id
         unit_ids = campd_df["Unit ID"].unique()
         campd_df.set_index(keys=["Unit ID", "time_utc"], inplace=True)
         gross_load_profile = np.zeros(8760)
         for gen_id in unit_ids:
             # get the gross load profile from start of year to end of year
-            gl = campd_df.loc[gen_id].sort_index(ascending=True)["Gross Load (MW)"].values
-            gross_load_profile += np.nan_to_num(gl) # convert nans to zeros
-        net_load_profile = net_to_gross*gross_load_profile # convert gross to net
+            gl = (
+                campd_df.loc[gen_id]
+                .sort_index(ascending=True)["Gross Load (MW)"]
+                .values
+            )
+            gross_load_profile += np.nan_to_num(gl)  # convert nans to zeros
+        net_load_profile = net_to_gross * gross_load_profile  # convert gross to net
         outputs["electricity_out"] = net_load_profile
-        max_annual_prod = outputs["rated_electricity_production"]*self.n_timesteps
-        outputs["capacity_factor"] = outputs["electricity_out"].sum()/max_annual_prod
-
+        max_annual_prod = outputs["rated_electricity_production"] * self.n_timesteps
+        outputs["capacity_factor"] = outputs["electricity_out"].sum() / max_annual_prod
 
     # def old_compute(self, inputs, outputs):
     #     # read csv file using facility_id
