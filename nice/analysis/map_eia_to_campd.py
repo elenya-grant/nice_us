@@ -212,10 +212,13 @@ combo["ratio (net/gross)"] = combo["Net Generation (Megawatthours)"]/combo["Tota
 # ---- BELOW IS WHAT WHAT USED TO MAKE LIST -----
 plant.index.name = "Facility ID"
 fac_ids = sorted(set(plant["Plant Id"].to_list()) & set(match_len))
+plant_capacity.index.name = "Facility ID"
+
 # gross = plant.loc[fac_ids].groupby("Plant Code")["Net Generation (Megawatthours)"].sum()
 gross = plant.loc[fac_ids].groupby("Facility ID")["Net Generation (Megawatthours)"].sum()
 net = campd.loc[fac_ids].groupby("Facility ID")["Total Gross Load (MW)"].sum()
-combo = pd.concat([gross, net],axis=1)
+
+combo = pd.concat([gross, net, plant_capacity.loc[fac_ids]],axis=1)
 for c in netgen_cols:
     fac_id_missing_netgen = plant.loc[fac_ids][plant.loc[fac_ids][c]=="."][c].index.to_list()
     plant[c] = plant[c].replace(to_replace={".":0.0})
@@ -223,7 +226,12 @@ for c in netgen_cols:
     combo = pd.concat([combo,plant.loc[fac_ids].groupby("Facility ID")[c].sum()], axis=1)
 combo["ratio (net/gross)"] = combo["Net Generation (Megawatthours)"]/combo["Total Gross Load (MW)"]
 combo_save = combo[combo["ratio (net/gross)"]<=1] # 518
-combo_save[["Net Generation (Megawatthours)", "Total Gross Load (MW)", "ratio (net/gross)"]].to_csv(DATA_DIR/f"campd_ratio_sitelist_{len(combo_save)}_facilities.csv")
+# set negative net loads to 0
+idx_negative = combo_save[combo_save["ratio (net/gross)"]<0].index.to_list()
+combo_save.loc[idx_negative,"ratio (net/gross)"]=0.0 # set negative ratios to 0
+# combo_save = combo_save[combo_save["ratio (net/gross)"]>=0.0] # 518
+cols_needed = ["Net Generation (Megawatthours)", "Total Gross Load (MW)", "ratio (net/gross)", "Nameplate Capacity (MW)"]
+combo_save[cols_needed].to_csv(DATA_DIR/f"campd_ratio_sitelist_{len(combo_save)}_facilities.csv")
 combo_save.to_csv(DATA_DIR/f"campd_ratio_sitelist_{len(combo_save)}_facilities_with_monthly.csv")
 []
 # ---- ABOVE IS WHAT WHAT USED TO MAKE LIST -----
