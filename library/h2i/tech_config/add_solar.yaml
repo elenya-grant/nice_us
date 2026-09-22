@@ -10,7 +10,8 @@ model_inputs:
     dc_ac_ratio: 1.34  # based on 2025 ATB assumption
     create_model_from: new
     tilt_angle_func: lat-func  # determine appropriate tilt based on latitude
-    tilt: 0
+    # tilt: 0
+    azimuth_angle_func: lat-func
     pysam_options:
       SystemDesign:
         gcr: 0.3

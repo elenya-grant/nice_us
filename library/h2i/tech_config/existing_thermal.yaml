@@ -1,9 +1,10 @@
 ---
 performance_model:
   model: CAMPDPerformance
-  model_location:
+  model_location: /projects/surint/campd_spheres/national_analysis/software/nice_us/nice/simulation/h2i_models/campd.py
 model_inputs:
   performance_parameters:
     data_directory: /projects/surint/campd_spheres/nationwide/
-    eia_923_data: /projects/surint/campd_spheres/nationwide/eia_923.csv
-    maintenance_nans: 168  # 1 week
+    campd_eia_filepath: /projects/surint/campd_spheres/national_analysis/software/nice_us/data/campd_ratio_sitelist_518_facilities.csv
+    # eia_923_data: /projects/surint/campd_spheres/nationwide/eia_923.csv
+    # maintenance_nans: 168  # 1 week

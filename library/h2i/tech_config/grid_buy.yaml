@@ -3,7 +3,7 @@ performance_model:
   model: GridPerformanceModel
 cost_model:
   model: CustomGridCostModel
-  model_location:
+  model_location: /projects/surint/campd_spheres/national_analysis/software/nice_us/nice/simulation/h2i_models/custom_grid.py
 model_inputs:
   shared_parameters:
     interconnection_size: 1.e6  # kW  # set based on DOE csv
