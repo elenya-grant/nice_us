@@ -44,6 +44,7 @@ def make_copy_of_example(case_subfolder_name, copy_case_subfolder_name, case_fac
     driver_file = list(original.glob(f"driver_config{driver_desc}*"))[0]
     driver_config = load_yaml(driver_file)
     driver_config["driver"]["parameter_sweep"]["filename"] = str(new_doe_fpath)
+    driver_config["general"]["folder_output"] = str(new_dir/"outputs")
     write_yaml(str(new_dir/"driver_config.yaml"), driver_config)
     # shutil.copy(original/driver_file, new_dir/"driver_config.yaml")
     
@@ -67,6 +68,8 @@ def make_copy_of_example(case_subfolder_name, copy_case_subfolder_name, case_fac
 
 
 if __name__ == "__main__":
+    from h2integrate import H2IntegrateModel
+    from h2integrate.core.file_utils import check_file_format_for_csv_generator
     
     # example_facilities = [1355, 7526, 7790, 9]
     # 7790_2025_price_profile.csv
@@ -118,14 +121,29 @@ if __name__ == "__main__":
             tech_config_fpath = case_folder/"tech_config.yaml"
             write_yaml(str(tech_config_fpath), tech_config)
 
+            driver_config = load_yaml(case_folder/"driver_config.yaml")
+
             config = {
                 "plant_config": plant_config,
                 "tech_config": tech_config,
-                "driver_config": case_folder/"driver_config.yaml",
+                "driver_config": driver_config,
             }
+
+            # Update formatting for CSV file
+            
+            check_file_format_for_csv_generator(
+                Path(driver_config["driver"]["parameter_sweep"]["filename"]),
+                driver_config,
+                check_only=False,
+                overwrite_file=True,
+            )
+            
 
             # TODO: add H2I run in!
             print(f"Starting existing {existing_case_desc} add-on {add_on_case}")
 
-
+            h2i = H2IntegrateModel(config)
+            h2i.setup()
+            h2i.run()
+            
 
