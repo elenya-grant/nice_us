@@ -54,8 +54,10 @@ def make_existing_wind_doe(add_on_case, data_year=2025):
     }
 
     wind_col_rename = {
-        "Turbine Hub Height (m)": "existing_plant.wind_turbine_hub_ht",
-        "Estimated Rotor Diameter (m)": "existing_plant.wind_turbine_rotor_diameter",
+        # "Turbine Hub Height (m)": "existing_plant.wind_turbine_hub_ht",
+        "Turbine Hub Height (m)": "existing_plant.hub_height",
+        # "Estimated Rotor Diameter (m)": "existing_plant.wind_turbine_rotor_diameter",
+        "Estimated Rotor Diameter (m)": "existing_plant.rotor_diameter",
         "Number of Turbines": "existing_plant.num_turbines",
         "turb_size_mw": "existing_plant.wind_turbine_rating",
         # above is specific to wind
