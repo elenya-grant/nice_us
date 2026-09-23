@@ -25,6 +25,7 @@ solar_capacity_multiplier_cases = {
     },
 }
 
+solar_capacity_multiplier_upper_bound_case = 2
 # TODO: update so that we only use solar capacity <= REV PV Capacity (MW-DC)
 
 battery_charge_rates_mw = [10.0, 25.0, 60.0, 100.0]
@@ -185,18 +186,63 @@ def add_solar_capacities_to_sitelist(df):
     df_add_on.set_index(keys=["solar_add_on_indx"], inplace=True)
 
     cnt = 0
-    for _, pv_capac_mult_case in solar_capacity_multiplier_cases.items():
+    ub_casei = None  # only used for upper-bound capacity
+    for casei, pv_capac_mult_case in solar_capacity_multiplier_cases.items():
         ref_colname = pv_capac_mult_case["column"]
         multiplier_vals = (
             np.array(pv_capac_mult_case["multipliers"])
             * pv_capac_mult_case["flat_multiplier"]
         )
+
+        if casei == solar_capacity_multiplier_upper_bound_case:
+            ub_casei = cnt
         for m in multiplier_vals:
             df_add_on.loc[cnt, "add_on_solar.system_capacity_DC"] = (
                 df_add_on.loc[cnt, ref_colname] * m
             )
             cnt += 1
 
-    df_add_on.reset_index(drop=True, inplace=True)
-    df_add_on.sort_values(by="EIA Plant Code", inplace=True)
+    if solar_capacity_multiplier_upper_bound_case is None:
+        df_add_on.reset_index(drop=True, inplace=True)
+        df_add_on.sort_values(by="EIA Plant Code", inplace=True)
+
+        return df_add_on
+
+    # Need to limit the number of add-on solar cases
+
+    # ub_df = df_add_on.loc[ub_casei].copy(deep=True)
+    upper_bound_df = df_add_on.loc[ub_casei].copy(deep=True)
+    other_case_indx = list(
+        set(df_add_on.index.get_level_values("solar_add_on_indx").to_list())
+        - set([ub_casei])
+    )
+    lower_bound_df = df_add_on.loc[other_case_indx].copy(deep=True)
+
+    # tmp = [ub_df for i in range(len(other_case_indx))]
+    # upper_bound_df = pd.concat(tmp, axis=0)
+
+    lower_bound_df.reset_index(drop=False, inplace=True)
+    upper_bound_df.set_index(keys="Plant Code", inplace=True)
+    lower_bound_df.set_index(keys="Plant Code", inplace=True)
+
+    upper_bound_df.sort_index(inplace=True)
+    lower_bound_df.sort_index(inplace=True)
+
+    lb_df = lower_bound_df[
+        lower_bound_df["add_on_solar.system_capacity_DC"].le(
+            upper_bound_df["add_on_solar.system_capacity_DC"],
+            axis=0,
+            level="Plant Code",
+        )
+    ].copy(deep=True)
+    lb_df.drop(columns=["solar_add_on_indx"], inplace=True)
+
+    add_on_df = pd.concat([lb_df, upper_bound_df], axis=0)
+    add_on_df.sort_index(inplace=True)
+    add_on_df.reset_index(drop=False, inplace=True)
     return df_add_on
+
+    # df_add_on.reset_index(drop=True, inplace=True)
+    # df_add_on.sort_values(by="EIA Plant Code", inplace=True)
+
+    # return df_add_on
