@@ -7,7 +7,10 @@ model_inputs:
     turbine_rating_kw: 6000  # read in from DOE csv
     rotor_diameter: 170.  # read in from DOE csv
     hub_height: 115.  # read in from DOE csv
-    create_model_from: new
+    create_model_from: default
+    config_name: WindPowerSingleOwner
+    pysam_options: !include "pysam_options_6MW.yaml"
+    # could consider using pysam_options_GE_1.5MW.yaml
     run_recalculate_power_curve: true
     layout:
       layout_mode: basicgrid
