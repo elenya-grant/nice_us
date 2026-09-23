@@ -27,7 +27,7 @@ technology_interconnections:
   - [electrical_load_demand, grid_sell, [unused_electricity_out, electricity_set_point]]
   - [electrical_load_demand, grid_sell, [unused_electricity_out, electricity_in]]
 site_to_tech_connections:
-  - [site.solar_resource, existing_plant, electricity, cable]
+  - [site.solar_resource, existing_plant, solar_resource_data]
 plant:
   plant_life: 30
   simulation:
