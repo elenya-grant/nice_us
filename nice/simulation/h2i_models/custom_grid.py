@@ -113,9 +113,13 @@ class CustomGridCostModel(CostModelBaseClass):
     def compute(self, inputs, outputs, discrete_inputs, discrete_outputs):
         # load correct price file for the facility from data directory
         price_file = (
-            self.config.data_directory + f"/LMP_facility_{inputs['plant_code']}.csv"
+            self.config.data_directory
+            + f"/{inputs['plant_code']}_2025_price_profile.csv"
         )
         price_data = pd.read_csv(price_file)  # combined day-ahead LMP + capacity value
+        price_data["price_data"] = (
+            price_data["LMP ($/MWh)"] + price_data["Capacity Payment ($/MWh)"]
+        )
 
         interconnection_size = inputs["interconnection_size"]
 
@@ -133,7 +137,7 @@ class CustomGridCostModel(CostModelBaseClass):
 
         # Add buying costs if buy price is configured
         if self.config.electricity_buy_price is not None:
-            buy_price = price_data["price_data"].values
+            buy_price = price_data["price_data"].values / 1000  # $/MWh to $/kWh
             outputs["electricity_buy_price"] = buy_price
             # Scalar or per-timestep: same cost each year
             varopex += np.sum((self.dt / 3600) * inputs["electricity_out"] * buy_price)
@@ -143,7 +147,7 @@ class CustomGridCostModel(CostModelBaseClass):
 
         # Add selling revenue if sell price is configured
         if self.config.electricity_sell_price is not None:
-            sell_price = price_data["price_data"].values
+            sell_price = price_data["price_data"].values / 1000  # $/MWh to $/kWh
             outputs["electricity_sell_price"] = sell_price
             varopex -= np.sum(
                 (self.dt / 3600) * inputs["electricity_sold"] * sell_price
