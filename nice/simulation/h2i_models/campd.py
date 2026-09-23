@@ -49,7 +49,7 @@ class CAMPDPerformance(om.ExplicitComponent):
     def setup(self):
         self.plant_life = int(self.options["plant_config"]["plant"]["plant_life"])
         self.n_timesteps = int(
-            self.options["plant_config"]["simulation"]["n_timesteps"]
+            self.options["plant_config"]["plant"]["simulation"]["n_timesteps"]
         )
 
         self.config = CAMPDConfig.from_dict(

@@ -9,7 +9,7 @@ import pandas as pd
 from nice.tools.df_tools import add_extra_cols
 
 solar_add_on_units = {
-    "add_on_solar.system_capacity_DC": "MW",
+    "solar_add_on.system_capacity_DC": "MW",
 }
 
 solar_capacity_multiplier_cases = {
@@ -88,7 +88,7 @@ def get_col_renames_for_add_on_case(existing_plant_case, add_on_case):
         case_rename_units |= {"Plant Latitude": "deg", "Plant Longitude": "deg"}
 
     # if "solar" in add_on_case:
-    #     case_renames |= {"REV PV Capacity (MW-DC)": "add_on_solar.system_capacity_DC"}
+    #     case_renames |= {"REV PV Capacity (MW-DC)": "solar_add_on.system_capacity_DC"}
 
     return case_renames, case_rename_units
 
@@ -107,7 +107,7 @@ def add_battery_capacities_to_sitelist(df):
 
     indexer_info = ["ref_plant_id"]
     if n_rep_per_plant > 1:
-        df = add_extra_cols(df, "add_on_solar.system_capacity_DC", "solar_size")
+        df = add_extra_cols(df, "solar_add_on.system_capacity_DC", "solar_size")
         df.set_index(keys=["solar_size"], append=True, inplace=True)
         indexer_info += ["solar_size"]
 
@@ -150,7 +150,7 @@ def add_battery_capacities_to_sitelist(df):
     # ref_colname = pv_capac_mult_case["column"]
     # multiplier_vals = np.array(pv_capac_mult_case["multipliers"])*pv_capac_mult_case["flat_multiplier"]
     # for m in multiplier_vals:
-    #     df_add_on.loc[cnt, "add_on_solar.system_capacity_DC"] = df_add_on.loc[cnt,ref_colname]*m
+    #     df_add_on.loc[cnt, "solar_add_on.system_capacity_DC"] = df_add_on.loc[cnt,ref_colname]*m
     #     cnt += 1
 
     df_add_on.reset_index(drop=True, inplace=True)
@@ -167,7 +167,7 @@ def add_solar_capacities_to_sitelist(df):
     df.set_index(keys=["ref_plant_id"], inplace=True)
     # plant_ids = df['EIA Plant Code'].unique()
 
-    new_cols = ["add_on_solar.system_capacity_DC"]
+    new_cols = ["solar_add_on.system_capacity_DC"]
     n_pv_capacities = sum(
         len(v["multipliers"]) for _, v in solar_capacity_multiplier_cases.items()
     )
@@ -197,7 +197,7 @@ def add_solar_capacities_to_sitelist(df):
         if casei == solar_capacity_multiplier_upper_bound_case:
             ub_casei = cnt
         for m in multiplier_vals:
-            df_add_on.loc[cnt, "add_on_solar.system_capacity_DC"] = (
+            df_add_on.loc[cnt, "solar_add_on.system_capacity_DC"] = (
                 df_add_on.loc[cnt, ref_colname] * m
             )
             cnt += 1
@@ -229,8 +229,8 @@ def add_solar_capacities_to_sitelist(df):
     lower_bound_df.sort_index(inplace=True)
 
     lb_df = lower_bound_df[
-        lower_bound_df["add_on_solar.system_capacity_DC"].le(
-            upper_bound_df["add_on_solar.system_capacity_DC"],
+        lower_bound_df["solar_add_on.system_capacity_DC"].le(
+            upper_bound_df["solar_add_on.system_capacity_DC"],
             axis=0,
             level="Plant Code",
         )
