@@ -6,8 +6,8 @@ model_inputs:
     pv_capacity_kWdc: 200000  # comes from DOE csv
     dc_ac_ratio: 1.34  # comes from DOE csv default to 1.34 if DC Net Capacity (MW) is not populated in EIA860
     create_model_from: new
-    tilt_angle_func: input
-    azimuth_angle_func: input
+    tilt_angle_setting: input
+    azimuth_angle_setting: input
     tilt: 0  # comes from DOE csv
     azimuth: 180
     pysam_options:

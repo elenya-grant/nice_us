@@ -19,7 +19,7 @@ technology_interconnections:
   - [poi_demand, second_demand, [unmet_electricity_demand_out, electricity_demand]]
   - [solar_add_on, second_demand, electricity, cable]
   - [second_demand, grid_sell, electricity, cable]
-resource_to_tech_connections:
+site_to_tech_connections:
   - [site.solar_resource, solar_add_on, solar_resource_data]
 finance_parameters:
   finance_groups: !include ./finance_groups.yaml
