@@ -240,7 +240,7 @@ def add_solar_capacities_to_sitelist(df):
     add_on_df = pd.concat([lb_df, upper_bound_df], axis=0)
     add_on_df.sort_index(inplace=True)
     add_on_df.reset_index(drop=False, inplace=True)
-    return df_add_on
+    return add_on_df
 
     # df_add_on.reset_index(drop=True, inplace=True)
     # df_add_on.sort_values(by="EIA Plant Code", inplace=True)
