@@ -25,6 +25,8 @@ solar_capacity_multiplier_cases = {
     },
 }
 
+# TODO: update so that we only use solar capacity <= REV PV Capacity (MW-DC)
+
 battery_charge_rates_mw = [10.0, 25.0, 60.0, 100.0]
 battery_durations_hrs = [4.0]
 battery_add_on_units = {

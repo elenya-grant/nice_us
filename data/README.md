@@ -14,3 +14,4 @@ Download Egrid data from [here](https://www.epa.gov/egrid/detailed-data). The fi
 
 # Other
 - Download the CAMPD data caveats file from [here](https://api.epa.gov/easey/content-mgmt/campd/documents/data_caveats_current.xlsx)
+- Download the `epa_eia_crosswalk.csv` file from [here](https://github.com/USEPA/camd-eia-crosswalk/blob/master/epa_eia_crosswalk.csv) and place in the `data` folder
