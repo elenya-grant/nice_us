@@ -66,6 +66,7 @@ class CustomGridCostModel(CostModelBaseClass):
             "plant_code",
             val=0.0,
             shape=1,
+            units="unitless",
             desc="Plant code for the grid interconnection point",
         )
 
@@ -114,7 +115,7 @@ class CustomGridCostModel(CostModelBaseClass):
         # load correct price file for the facility from data directory
         price_file = (
             self.config.data_directory
-            + f"/{inputs['plant_code']}_2025_price_profile.csv"
+            + f"/{int(inputs['plant_code'][0])}_2025_price_profile.csv"
         )
         price_data = pd.read_csv(price_file)  # combined day-ahead LMP + capacity value
         price_data["price_data"] = (
@@ -136,24 +137,22 @@ class CustomGridCostModel(CostModelBaseClass):
         varopex = np.zeros(self.plant_life)
 
         # Add buying costs if buy price is configured
-        if self.config.electricity_buy_price is not None:
-            buy_price = price_data["price_data"].values / 1000  # $/MWh to $/kWh
-            outputs["electricity_buy_price"] = buy_price
-            # Scalar or per-timestep: same cost each year
-            varopex += np.sum((self.dt / 3600) * inputs["electricity_out"] * buy_price)
-            outputs["gross_electricity_cost"] = np.sum(
-                (self.dt / 3600) * inputs["electricity_out"] * buy_price
-            )
+        # if self.config.electricity_buy_price is not None:
+        buy_price = price_data["price_data"].values / 1000  # $/MWh to $/kWh
+        outputs["electricity_buy_price"] = buy_price
+        # Scalar or per-timestep: same cost each year
+        varopex += np.sum((self.dt / 3600) * inputs["electricity_out"] * buy_price)
+        outputs["gross_electricity_cost"] = np.sum(
+            (self.dt / 3600) * inputs["electricity_out"] * buy_price
+        )
 
         # Add selling revenue if sell price is configured
-        if self.config.electricity_sell_price is not None:
-            sell_price = price_data["price_data"].values / 1000  # $/MWh to $/kWh
-            outputs["electricity_sell_price"] = sell_price
-            varopex -= np.sum(
-                (self.dt / 3600) * inputs["electricity_sold"] * sell_price
-            )
-            outputs["gross_electricity_revenue"] = np.sum(
-                (self.dt / 3600) * inputs["electricity_sold"] * sell_price
-            )
+        # if self.config.electricity_sell_price is not None:
+        sell_price = price_data["price_data"].values / 1000  # $/MWh to $/kWh
+        outputs["electricity_sell_price"] = sell_price
+        varopex -= np.sum((self.dt / 3600) * inputs["electricity_sold"] * sell_price)
+        outputs["gross_electricity_revenue"] = np.sum(
+            (self.dt / 3600) * inputs["electricity_sold"] * sell_price
+        )
 
         outputs["VarOpEx"] = varopex
