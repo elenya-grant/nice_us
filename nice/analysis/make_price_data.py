@@ -4,12 +4,31 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from nice import DATA_DIR
+from nice import DATA_DIR, LIBRARY_DIR
 from nice.tools.df_tools import convert_to_type
 from nice.tools.eia_860_file_tools import load_eia_860
 from nice.tools.file_tools import check_create_folder
 
 run_local = True
+use_sitelists = True
+
+
+def load_facility_files(data_year=2025, n_thermal_facs=515):
+    sitelist_dir = LIBRARY_DIR / "h2i"
+    existing_plant_types = ["one_axis_solar", "fixed_solar", "wind", "thermal"]
+    facility_ids = set()
+    for existing_type in existing_plant_types:
+        if existing_type == "thermal":
+            fname = f"existing_{existing_type}_plant_sitelist_{data_year}_{n_thermal_facs}_facilities.csv"
+        else:
+            fname = f"existing_{existing_type}_plant_sitelist_{data_year}.csv"
+
+        sitelist_fpath = sitelist_dir / fname
+        df = pd.read_csv(sitelist_fpath, usecols=["Plant Code"])
+        facility_ids.update(set(df["Plant Code"].astype(int).to_list()))
+
+    return sorted(facility_ids)
+
 
 if run_local:
     price_node_mapper_path = DATA_DIR / "lmp" / "facility_lmp_mapping(in).csv"
@@ -29,6 +48,7 @@ check_create_folder(price_profile_output_dir)
 data_year = 2025
 # load_year = 2025
 
+
 """
 This script processes EIA 860 generator and plant data to calculate capacity value based on net load and LMP data.
 It filters plants by size and prime mover, and distributes net cone values over the highest net load hours.
@@ -39,42 +59,56 @@ that's calculated using the ratio of the net load in that hour to the total net 
 The resulting value is then added to the day-ahead LMP to get the final price signal for each hour.
 This should be output for each facility as a time series of hourly prices.
 """
-# only need data for plants that are > 10 MW
-generators = load_eia_860(file="Generator", sheet="Operable", year=data_year)
-convert_to_type(generators, "Plant Code", "Plant Code", int)
+if use_sitelists:
+    facility_ids = load_facility_files(data_year=data_year)
+    plants = load_eia_860(file="Plant", sheet="Plant", year=data_year)
+    convert_to_type(plants, "Plant Code", "Plant Code", int)
+    plant_cols = ["Plant Code", "Balancing Authority Code"]
+    plants.drop(
+        columns=list(set(plants.columns.to_list()) - set(plant_cols)), inplace=True
+    )
+    plants = plants[plants["Plant Code"].isin(facility_ids)]
+    if len(plants["Plant Code"].unique()) != len(facility_ids):
+        msg = (
+            f"Mismatch. EIA Plant data has {len(plants['Plant Code'].unique())} facilities, "
+            f"but {len(facility_ids)} facilities were found in the sitelist"
+        )
+else:
+    # only need data for plants that are > 10 MW
+    generators = load_eia_860(file="Generator", sheet="Operable", year=data_year)
+    convert_to_type(generators, "Plant Code", "Plant Code", int)
 
+    # sum "Nameplate Capacity (MW)" for each "Plant Code"
+    plant_capacity = generators.groupby("Plant Code")["Nameplate Capacity (MW)"].sum()
+    # filter out plants that are <= 10 MW
+    plant_capacity = plant_capacity[plant_capacity > 10]
 
-# sum "Nameplate Capacity (MW)" for each "Plant Code"
-plant_capacity = generators.groupby("Plant Code")["Nameplate Capacity (MW)"].sum()
-# filter out plants that are <= 10 MW
-plant_capacity = plant_capacity[plant_capacity > 10]
+    # only keep "Prime Movers" == "ST", "GT", "IC", "CA", "CT", "CS", "PV", "WT"
+    # ST = Steam turbine, including nuclear, geothermal, and solar steam
+    # GT = Combustion (Gas) Turbine (does not include the combustion turbine part of a combined cycle; see code CT, below
+    # IC = Internal Combustion Engine  (diesel, piston, reciprocating)
+    # CA = Combined Cycle Steam Part
+    # CT = Combined Cycle Combustion Turbine Part
+    # CS = Combined Cycle Single Shaft (combustion turbine and steam turbine share a single generator)
+    # CC = Combined Cycle Total Unit (use only for plants/generators that are in planning stage
+    # PV = Photovoltaic
+    # WT = Wind Turbine, Onshore
+    prime_movers = ["ST", "GT", "IC", "CA", "CT", "CS", "PV", "WT"]
+    generators = generators[generators["Prime Mover"].isin(prime_movers)]
 
-# only keep "Prime Movers" == "ST", "GT", "IC", "CA", "CT", "CS", "PV", "WT"
-# ST = Steam turbine, including nuclear, geothermal, and solar steam
-# GT = Combustion (Gas) Turbine (does not include the combustion turbine part of a combined cycle; see code CT, below
-# IC = Internal Combustion Engine  (diesel, piston, reciprocating)
-# CA = Combined Cycle Steam Part
-# CT = Combined Cycle Combustion Turbine Part
-# CS = Combined Cycle Single Shaft (combustion turbine and steam turbine share a single generator)
-# CC = Combined Cycle Total Unit (use only for plants/generators that are in planning stage
-# PV = Photovoltaic
-# WT = Wind Turbine, Onshore
-prime_movers = ["ST", "GT", "IC", "CA", "CT", "CS", "PV", "WT"]
-generators = generators[generators["Prime Mover"].isin(prime_movers)]
+    # only keep plants that are > 10 MW
+    generators = generators[generators["Plant Code"].isin(plant_capacity.index)]
 
-# only keep plants that are > 10 MW
-generators = generators[generators["Plant Code"].isin(plant_capacity.index)]
+    # Use plant file to get BA Code
+    plants = load_eia_860(file="Plant", sheet="Plant", year=data_year)
+    convert_to_type(plants, "Plant Code", "Plant Code", int)
+    # convert_to_type(plants, "Primary Purpose (NAICS Code)", "Primary Purpose (NAICS Code)", int)
 
-# Use plant file to get BA Code
-plants = load_eia_860(file="Plant", sheet="Plant", year=data_year)
-convert_to_type(plants, "Plant Code", "Plant Code", int)
-# convert_to_type(plants, "Primary Purpose (NAICS Code)", "Primary Purpose (NAICS Code)", int)
+    # Primary Purpose (NAICS Code) only keep plants with code 22
+    plants = plants[plants["Primary Purpose (NAICS Code)"] == 22]
 
-# Primary Purpose (NAICS Code) only keep plants with code 22
-plants = plants[plants["Primary Purpose (NAICS Code)"] == 22]
-
-# only keep plants that have the same "Plant Code" that are in generators
-plants = plants[plants["Plant Code"].isin(generators["Plant Code"].unique())]
+    # only keep plants that have the same "Plant Code" that are in generators
+    plants = plants[plants["Plant Code"].isin(generators["Plant Code"].unique())]
 
 # get net cone value for correct ISO
 # https://www.lazard.com/research-insights/levelized-cost-of-energyplus-lcoeplus/
