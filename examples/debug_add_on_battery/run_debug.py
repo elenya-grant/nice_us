@@ -1,12 +1,16 @@
 import os
 from pathlib import Path
 
-from h2integrate import H2IntegrateModel
+from h2integrate import H2IntegrateModel, load_yaml
 
-from nice import DATA_DIR, ROOT_DIR
-from nice.tools.file_tools import load_yaml
+# uncomment below if nice_us is installed and so is H2I
+# (using Elenya's H2I branch called 'spheres/arbitrage')
+# from nice import DATA_DIR, ROOT_DIR
 
+# below is used if nice_us isn't installed, but H2I is
 this_dir = Path(__file__).parent
+ROOT_DIR = this_dir.parent.parent / "nice"
+DATA_DIR = this_dir.parent.parent / "data"
 
 os.chdir(this_dir)
 
