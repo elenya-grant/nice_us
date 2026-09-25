@@ -1,0 +1,72 @@
+---
+general:
+  folder_output: outputs
+  create_om_reports: false
+driver:
+  parameter_sweep:
+    flag: true
+    debug_print: true
+    generator: csvgen
+    filename: design_sweep_facility_9.csv
+    run_parallel: false
+recorder:
+  flag: true
+  file: case.sql
+  overwrite_recorder: true
+design_variables:
+  poi_demand:
+    electricity_demand:
+      flag: true
+      units: MW
+      lower: -1000000.0
+      upper: 1000000.0
+  grid_sell:
+    interconnection_size:
+      flag: true
+      units: MW
+      lower: -1000000.0
+      upper: 1000000.0
+    plant_code:
+      flag: true
+      units: unitless
+      lower: -1000000.0
+      upper: 1000000.0
+  grid_buy:
+    interconnection_size:
+      flag: true
+      units: MW
+      lower: -1000000.0
+      upper: 1000000.0
+    plant_code:
+      flag: true
+      units: unitless
+      lower: -1000000.0
+      upper: 1000000.0
+  existing_plant:
+    facility_id:
+      flag: true
+      units: unitless
+      lower: -1000000.0
+      upper: 1000000.0
+  site:
+    latitude:
+      flag: true
+      units: deg
+      lower: -1000000.0
+      upper: 1000000.0
+    longitude:
+      flag: true
+      units: deg
+      lower: -1000000.0
+      upper: 1000000.0
+  battery:
+    max_charge_rate:
+      flag: true
+      units: MW
+      lower: -1000000.0
+      upper: 1000000.0
+    storage_capacity:
+      flag: true
+      units: MW*h
+      lower: -1000000.0
+      upper: 1000000.0

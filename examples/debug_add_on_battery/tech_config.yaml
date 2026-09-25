@@ -1,0 +1,78 @@
+---
+technologies:
+  grid_sell:
+    performance_model:
+      model: GridPerformanceModel
+    cost_model:
+      model: CustomGridCostModel
+      model_location: nice_us/nice/simulation/h2i_models/custom_grid.py
+    model_inputs:
+      shared_parameters:
+        interconnection_size: 1.e6
+      cost_parameters:
+        data_directory: '' # cwd
+        cost_year: 2022
+        interconnection_capex_per_kw: 0.0
+        interconnection_opex_per_kw: 0.0
+        fixed_interconnection_cost: 0.0
+  poi_demand:
+    performance_model:
+      model: GenericDemandComponent
+    model_inputs:
+      performance_parameters:
+        commodity: electricity
+        commodity_rate_units: kW
+        demand_profile: 0.0
+  existing_plant:
+    performance_model:
+      model: CAMPDPerformance
+      model_location: nice_us/nice/simulation/h2i_models/campd.py
+    model_inputs:
+      performance_parameters:
+        data_directory: '' # cwd
+        campd_eia_filepath: nice_us/data/campd_ratio_sitelist_518_facilities.csv
+  battery:
+    performance_model:
+      model: StoragePerformanceModel
+    cost_model:
+      model: ATBBatteryCostModel
+    model_inputs:
+      shared_parameters:
+        commodity: electricity
+        commodity_rate_units: kW
+        max_charge_rate: 50000.0
+        max_capacity: 200000.0
+        max_soc_fraction: 1.0
+        min_soc_fraction: 0.1
+        init_soc_fraction: 0.1
+        max_discharge_rate: 50000.0
+        round_trip_efficiency: 0.85
+        demand_profile: 0.0
+      cost_parameters:
+        cost_year: 2023
+        energy_capex: 223
+        power_capex: 356
+        opex_fraction: 0.04
+  electrical_load_demand:
+    performance_model:
+      model: GenericDemandComponent
+    model_inputs:
+      performance_parameters:
+        commodity: electricity
+        commodity_rate_units: kW
+        demand_profile: 0.0
+  grid_buy:
+    performance_model:
+      model: GridPerformanceModel
+    cost_model:
+      model: CustomGridCostModel
+      model_location: nice_us/nice/simulation/h2i_models/custom_grid.py
+    model_inputs:
+      shared_parameters:
+        interconnection_size: 1.e6
+      cost_parameters:
+        data_directory: '' # cwd
+        cost_year: 2022
+        interconnection_capex_per_kw: 0.0
+        interconnection_opex_per_kw: 0.0
+        fixed_interconnection_cost: 0.0

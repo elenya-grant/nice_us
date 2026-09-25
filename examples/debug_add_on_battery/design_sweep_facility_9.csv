@@ -1,0 +1,5 @@
+existing_plant.facility_id,poi_demand.electricity_demand,site.latitude,site.longitude,grid_sell.plant_code,grid_sell.interconnection_size,grid_buy.interconnection_size,grid_buy.plant_code,battery.max_charge_rate,battery.storage_capacity
+9,86.9,31.7569,-106.375,9,86.9,86.9,9,10.0,40.0
+9,86.9,31.7569,-106.375,9,86.9,86.9,9,25.0,100.0
+9,86.9,31.7569,-106.375,9,86.9,86.9,9,60.0,240.0
+9,86.9,31.7569,-106.375,9,86.9,86.9,9,100.0,400.0
