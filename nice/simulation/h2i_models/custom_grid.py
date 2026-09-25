@@ -12,6 +12,10 @@ class CustomGridCostModelConfig(CostModelBaseConfig):
     """Configuration for the grid cost model.
 
     Attributes:
+        electricity_sell_price: dummy_value to ensure correct connections in
+            H2Integrate model.
+        electricity_buy_price: dummy_value to ensure correct connections in
+            H2Integrate model.
         interconnection_size: Maximum power capacity for grid connection in kW
         interconnection_capex_per_kw: Capital cost per kW of interconnection ($/kW)
         interconnection_opex_per_kw: Annual O&M cost per kW of interconnection ($/kW/year)
@@ -19,6 +23,8 @@ class CustomGridCostModelConfig(CostModelBaseConfig):
         data_directory: Directory where all the grid data files are saved.
     """
 
+    electricity_sell_price: float = field(default=0.0)  # $/kW*h
+    electricity_buy_price: float = field(default=0.0)  # $/kW*h
     interconnection_size: float = field()  # kW
     interconnection_capex_per_kw: float = field()  # $/kW
     interconnection_opex_per_kw: float = field()  # $/kW/year
