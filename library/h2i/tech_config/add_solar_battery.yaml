@@ -65,6 +65,10 @@ battery:
       opex_fraction: 0.03  # percent of overnight capital cost per year 2025 moderate Utility-Scale PV-Plus-Batt R&D 2025 ATB (2025 ATB)
       # 21.3639777295$/kw-yr / 123.4974$/kwh * 4h +197.1528$/kw = ~0.03 fraction
       # 21.3639777295$/kw-yr = (1 - 1150.981/1841) * 57  # derived from PV-Plus-Batt cost structure
+    financial_parameters:
+      capital_items:
+        replacement_cost_percent: 1
+        refurbishment_period_years: 15
 charge_combiner:
   performance_model:
     model: GenericCombinerPerformanceModel

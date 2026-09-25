@@ -22,6 +22,10 @@ battery:
       energy_capex: 223  # $/kWh 2025 moderate utility-scale Battery R&D overnight capital cost (2025 ATB)
       power_capex: 356  # $/kW 2025 moderate utility-scale Battery R&D overnight capital cost (2025 ATB)
       opex_fraction: 0.04  # percent of overnight capital cost per year 2025 moderate utility-scale Battery R&D (2025 ATB)
+    financial_parameters:
+      capital_items:
+        replacement_cost_percent: 1
+        refurbishment_period_years: 15
 electrical_load_demand:
   performance_model:
     model: GenericDemandComponent
