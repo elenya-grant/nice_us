@@ -9,6 +9,7 @@ model_inputs:
     interconnection_size: 1.e6  # kW  # set based on DOE csv
   cost_parameters:
     data_directory: /projects/surint/campd_spheres/national_analysis/
+    electricity_buy_price: 0.0
     cost_year: 2022  # TODO make sure this is the correct year for the cost data
     interconnection_capex_per_kw: 0.0  # $/kW capital cost
     interconnection_opex_per_kw: 0.0  # $/kW/year O&M cost
