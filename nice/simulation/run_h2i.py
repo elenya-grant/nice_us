@@ -15,21 +15,7 @@ def main():
             "python nice/simulation/run_plants.py --existing_plant wind --add_on_plant pv_bess"
         ),
     )
-    # python nice/simulation/run_plants.py --existing_plant wind --add_on_plant pv_bess
-    # parser.add_argument(
-    #     "--existing_plant",
-    #     "--e",
-    #     type=str,
-    #     help="Existing plant type (either 'wind', 'pv', 'campd')",
-    # )
-    # parser.add_argument(
-    #     "--add_on_plant",
-    #     "--a",
-    #     type=str,
-    #     help="Add on plant type (either 'pv','bess', or 'pv_bess')",
-    # )
 
-    # python nice/simulation/run_plants.py  wind  pv_bess
     parser.add_argument(
         "existing_plant",
         type=str,
@@ -106,3 +92,7 @@ def main():
     h2i = H2IntegrateModel(config)
     h2i.setup()
     h2i.run()
+
+
+if __name__ == "__main__":
+    main()
