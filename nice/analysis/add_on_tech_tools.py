@@ -28,11 +28,24 @@ solar_capacity_multiplier_cases = {
 solar_capacity_multiplier_upper_bound_case = 2
 # TODO: update so that we only use solar capacity <= REV PV Capacity (MW-DC)
 
+add_on_battery_calc_type = "multiplier_case"  # "multiplier_case" or "constant_size"
+
+# below is only used if "add_on_battery_calc_type" is "constant_size"
 battery_charge_rates_mw = [10.0, 25.0, 60.0, 100.0]
 battery_durations_hrs = [4.0]
 battery_add_on_units = {
     "battery.max_charge_rate": "MW",
     "battery.storage_capacity": "MW*h",
+}
+
+# below is only used if "add_on_battery_calc_type" is "multiplier_case"
+battery_capacity_multiplier_cases = {
+    1: {
+        "multipliers": [0.10, 0.25, 0.50, 0.75, 1.0],
+        "column": "Nameplate Capacity (MW)",
+        "flat_multiplier": 1.0,
+        "storage_duration_hrs": 4.0,
+    },
 }
 
 
@@ -93,7 +106,61 @@ def get_col_renames_for_add_on_case(existing_plant_case, add_on_case):
     return case_renames, case_rename_units
 
 
-def add_battery_capacities_to_sitelist(df):
+def add_battery_capacity_multiplier_cases_to_sitelist(df):
+    df_len_init = len(df)
+    df = add_extra_cols(df, "EIA Plant Code", "ref_plant_id")
+    df.set_index(keys=["ref_plant_id"], inplace=True)
+    # plant_ids = df['EIA Plant Code'].unique()
+
+    new_cols = ["battery.max_charge_rate", "battery.storage_capacity"]
+    n_bat_capacities = sum(
+        len(v["multipliers"]) for _, v in battery_capacity_multiplier_cases.items()
+    )
+
+    indexer_info = ["ref_plant_id"]
+
+    if "solar_add_on.system_capacity_DC" in df.columns.to_list():
+        df = add_extra_cols(df, "solar_add_on.system_capacity_DC", "solar_size")
+        df.set_index(keys=["solar_size"], append=True, inplace=True)
+        indexer_info += ["solar_size"]
+
+    df_concat_ls = [df for i in range(n_bat_capacities)]
+    df_add_on = pd.concat(df_concat_ls, axis=0)
+    df_add_on.sort_index(inplace=True)
+
+    bat_multiplier_indx = np.tile(np.arange(0, n_bat_capacities, 1), df_len_init)
+    df_add_on["battery_add_on_indx"] = bat_multiplier_indx.tolist()
+
+    for new_col in new_cols:
+        df_add_on[new_col] = [1.0] * len(df_add_on)
+
+    # df_add_on.set_index(keys=["solar_add_on_indx"], append=True, inplace=True)
+    df_add_on.set_index(keys=["battery_add_on_indx"], inplace=True)
+
+    cnt = 0
+    for _, bat_capac_mult_case in battery_capacity_multiplier_cases.items():
+        ref_colname = bat_capac_mult_case["column"]
+        storage_dur = bat_capac_mult_case["storage_duration_hrs"]
+        # charge rate
+        multiplier_vals = (
+            np.array(bat_capac_mult_case["multipliers"])
+            * bat_capac_mult_case["flat_multiplier"]
+        )
+
+        for m in multiplier_vals:
+            df_add_on.loc[cnt, "battery.max_charge_rate"] = (
+                df_add_on.loc[cnt, ref_colname] * m
+            )
+            df_add_on.loc[cnt, "battery.storage_capacity"] = (
+                df_add_on.loc[cnt, "battery.max_charge_rate"] * storage_dur
+            )
+            cnt += 1
+    df_add_on.reset_index(drop=True, inplace=True)
+    df_add_on.sort_values(by="EIA Plant Code", inplace=True)
+    return df_add_on
+
+
+def add_constant_battery_capacities_to_sitelist(df):
     df_len_init = len(df)
     df = add_extra_cols(df, "EIA Plant Code", "ref_plant_id")
     df.set_index(keys=["ref_plant_id"], inplace=True)
@@ -156,6 +223,14 @@ def add_battery_capacities_to_sitelist(df):
     df_add_on.reset_index(drop=True, inplace=True)
     df_add_on.sort_values(by="EIA Plant Code", inplace=True)
     return df_add_on
+
+
+def add_battery_capacities_to_sitelist(df):
+    if add_on_battery_calc_type == "multiplier_case":
+        df = add_battery_capacity_multiplier_cases_to_sitelist(df)
+        return df
+    if add_on_battery_calc_type == "constant_size":
+        df = add_constant_battery_capacities_to_sitelist(df)
 
 
 # def add_solar_capacity_to_sitelist(df, solar_capacity_mult_case):
