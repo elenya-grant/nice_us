@@ -199,12 +199,12 @@ def make_existing_solar_plant_sitelist(array_type, data_year=2025):
     solar_data_agg.drop(index=filter_drop_1, inplace=True)
     rev_df.drop(index=filter_drop_1, inplace=True)
 
-    max_distance = np.sqrt((11.5**2) + (11.5**2)) / 2
-    filter_drop_3 = list(
-        set(rev_df[rev_df["Distance to Rev GID (km)"] > max_distance].index.to_list())
-    )
-    solar_data_agg.drop(index=filter_drop_3, inplace=True)
-    rev_df.drop(index=filter_drop_3, inplace=True)
+    # max_distance = np.sqrt((11.5**2) + (11.5**2)) / 2
+    # filter_drop_3 = list(
+    #     set(rev_df[rev_df["Distance to Rev GID (km)"] > max_distance].index.to_list())
+    # )
+    # solar_data_agg.drop(index=filter_drop_3, inplace=True)
+    # rev_df.drop(index=filter_drop_3, inplace=True)
 
     solar_data_agg.sort_index(inplace=True)
     rev_df.sort_index(inplace=True)
@@ -215,6 +215,7 @@ def make_existing_solar_plant_sitelist(array_type, data_year=2025):
         "area_developable_fraction",
         "REV PV Capacity (MW-DC)",
         "EIA Plant Code",
+        "Distance to Rev GID (km)",
     ]
 
     sitelist = pd.concat([solar_data_agg, rev_df[rev_cols]], axis=1)

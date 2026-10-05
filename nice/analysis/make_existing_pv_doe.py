@@ -1,3 +1,4 @@
+import numpy as np
 import pandas as pd
 
 from nice import LIBRARY_DIR
@@ -38,6 +39,18 @@ def make_existing_solar_doe(array_type, add_on_case, data_year=2025):
 
     else:
         df = make_existing_solar_plant_sitelist(array_type, data_year=data_year)
+
+    if "solar" in add_on_case:
+        # Filter based on distance to Rev site if using solar-add-on
+        df = add_extra_cols(df, "EIA Plant Code", "INDX Plant Code")
+        df.set_index(keys="INDX Plant Code")
+        max_distance = np.sqrt((11.5**2) + (11.5**2)) / 2
+        filter_drop_3 = list(
+            set(df[df["Distance to Rev GID (km)"] > max_distance].index.to_list())
+        )
+        df.drop(index=filter_drop_3, inplace=True)
+        df.sort_index(inplace=True)
+        df.reset_index(inplace=True)
 
     df = add_extra_cols(df, "Nameplate Capacity (MW)", "Nameplate Capacity 2 (MW)")
     df = add_extra_cols(df, "Nameplate Capacity (MW)", "Nameplate Capacity 3 (MW)")

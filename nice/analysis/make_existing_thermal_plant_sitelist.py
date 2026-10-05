@@ -1,4 +1,3 @@
-import numpy as np
 import pandas as pd
 
 from nice import DATA_DIR, LIBRARY_DIR
@@ -51,6 +50,7 @@ def make_existing_thermal_plant_sitelist(campd_sitelist_fpath, data_year=2025):
         "area_developable_fraction",
         "REV PV Capacity (MW-DC)",
         "EIA Plant Code",
+        "Distance to Rev GID (km)",
     ]
 
     # Filter by capacity
@@ -62,13 +62,14 @@ def make_existing_thermal_plant_sitelist(campd_sitelist_fpath, data_year=2025):
         rev_df.drop(index=filter_drop_1, inplace=True)
 
     # Filter by distance to nearest rev site
-    max_distance = np.sqrt((11.5**2) + (11.5**2)) / 2
-    filter_drop_3 = list(
-        set(rev_df[rev_df["Distance to Rev GID (km)"] > max_distance].index.to_list())
-    )
-    if bool(filter_drop_3):
-        thermal_data.drop(index=filter_drop_3, inplace=True)
-        rev_df.drop(index=filter_drop_3, inplace=True)
+
+    # max_distance = np.sqrt((11.5**2) + (11.5**2)) / 2
+    # filter_drop_3 = list(
+    #     set(rev_df[rev_df["Distance to Rev GID (km)"] > max_distance].index.to_list())
+    # )
+    # if bool(filter_drop_3):
+    #     thermal_data.drop(index=filter_drop_3, inplace=True)
+    #     rev_df.drop(index=filter_drop_3, inplace=True)
 
     thermal_data.sort_index(inplace=True)
     rev_df.sort_index(inplace=True)
