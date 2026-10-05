@@ -55,7 +55,7 @@ def make_existing_thermal_plant_sitelist(campd_sitelist_fpath, data_year=2025):
 
     # Filter by capacity
     filter_drop_1 = list(
-        set(thermal_data[thermal_data["Nameplate Capacity (MW)"] <= 10].index.to_list())
+        set(thermal_data[thermal_data["Nameplate Capacity (MW)"] < 10].index.to_list())
     )
     if bool(filter_drop_1):
         thermal_data.drop(index=filter_drop_1, inplace=True)

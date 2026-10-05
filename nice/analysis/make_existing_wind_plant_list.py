@@ -91,9 +91,7 @@ def make_existing_wind_plant_sitelist(data_year=2025):
     # Filter by capacity
     filter_drop_1 = list(
         set(
-            wind_data_agg[
-                wind_data_agg["Nameplate Capacity (MW)"] <= 10
-            ].index.to_list()
+            wind_data_agg[wind_data_agg["Nameplate Capacity (MW)"] < 10].index.to_list()
         )
     )
     wind_data_agg.drop(index=filter_drop_1, inplace=True)

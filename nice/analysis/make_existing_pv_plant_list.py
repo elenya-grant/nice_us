@@ -192,7 +192,7 @@ def make_existing_solar_plant_sitelist(array_type, data_year=2025):
     filter_drop_1 = list(
         set(
             solar_data_agg[
-                solar_data_agg["Nameplate Capacity (MW)"] <= 10
+                solar_data_agg["Nameplate Capacity (MW)"] < 10
             ].index.to_list()
         )
     )
