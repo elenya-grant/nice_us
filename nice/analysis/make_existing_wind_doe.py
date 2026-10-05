@@ -55,7 +55,7 @@ def make_existing_wind_doe(add_on_case, data_year=2025):
     df = add_extra_cols(df, "Nameplate Capacity (MW)", "Nameplate Capacity 3 (MW)")
     df = add_extra_cols(df, "EIA Plant Code", "EIA Plant Code 2")
 
-    print(f"starting: {len(df)} sites in df")
+    print(f"starting add-on case {add_on_case}: {len(df)} sites in df")
 
     wind_cols_to_units = {
         "Turbine Hub Height (m)": "m",

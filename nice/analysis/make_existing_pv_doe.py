@@ -56,6 +56,7 @@ def make_existing_solar_doe(array_type, add_on_case, data_year=2025):
     df = add_extra_cols(df, "Nameplate Capacity (MW)", "Nameplate Capacity 3 (MW)")
     df = add_extra_cols(df, "EIA Plant Code", "EIA Plant Code 2")
 
+    print(f"starting add-on {add_on_case} (array type {array_type})")
     print(f"starting: {len(df)} sites in df")
 
     solar_cols_to_units = {
