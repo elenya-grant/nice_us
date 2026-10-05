@@ -5,6 +5,6 @@ performance_model:
 model_inputs:
   performance_parameters:
     data_directory: /projects/surint/campd_spheres/nationwide/
-    campd_eia_filepath: /projects/surint/campd_spheres/national_analysis/software/nice_us/data/campd_ratio_sitelist_518_facilities.csv
+    campd_eia_filepath: /projects/surint/campd_spheres/national_analysis/software/nice_us/data/campd_ratio_sitelist_619_facilities.csv
     # eia_923_data: /projects/surint/campd_spheres/nationwide/eia_923.csv
     # maintenance_nans: 168  # 1 week
