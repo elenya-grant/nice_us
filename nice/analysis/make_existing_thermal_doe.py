@@ -111,6 +111,6 @@ def make_existing_thermal_doe(n_facilities, add_on_case, data_year=2025):
 
 
 if __name__ == "__main__":
-    make_existing_thermal_doe(515, "solar_battery")
-    make_existing_thermal_doe(515, "battery")
-    make_existing_thermal_doe(515, "solar")
+    make_existing_thermal_doe(616, "solar_battery")
+    make_existing_thermal_doe(616, "battery")
+    make_existing_thermal_doe(616, "solar")

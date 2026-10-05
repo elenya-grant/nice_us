@@ -87,5 +87,5 @@ def make_existing_thermal_plant_sitelist(campd_sitelist_fpath, data_year=2025):
 
 
 if __name__ == "__main__":
-    campd_eia_fpath = DATA_DIR / "campd_ratio_sitelist_518_facilities.csv"
+    campd_eia_fpath = DATA_DIR / "campd_ratio_sitelist_619_facilities.csv"
     make_existing_thermal_plant_sitelist(campd_eia_fpath, data_year=2025)
