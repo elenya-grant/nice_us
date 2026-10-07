@@ -46,6 +46,7 @@ def make_facility_subset_doe_csv(
     if bool(facilities_to_exclude):
         fac_ids_include = list(set(fac_ids_sorted) - set(facilities_to_exclude))
         df = df[df[fac_id_col].isin(fac_ids_include)]
+        fac_ids_sorted = sorted(fac_ids_include)
 
     end_facid = n_facilities_start + n_facilities
     if end_facid >= len(fac_ids_sorted):
@@ -56,6 +57,10 @@ def make_facility_subset_doe_csv(
     sub_df = df[df[fac_id_col].isin(fac_ids_subset)].copy(deep=True)
     sub_df.to_csv(copy_doe_csv_fpath, index=False)
 
+    print(
+        f"df has {len(sub_df[fac_id_col].unique())} sites after exlcuding (from file {original_doe_csv_fpath.name}) \n"
+    )
+
 
 def make_copy_of_example(
     case_subfolder_name,
@@ -65,6 +70,7 @@ def make_copy_of_example(
     n_facilities,
     facility_subset_desc,
     fac_ids_to_exclude=[],
+    n_thermal_facs=616,
 ):
     original = example_main_folder / case_subfolder_name
     new_dir = example_copy_dir / copy_case_subfolder_name
@@ -88,7 +94,22 @@ def make_copy_of_example(
         doe_filenames = [
             f for f in original.glob("*.csv") if f.name.startswith("existing_")
         ]
-        doe_fpath = doe_filenames[0]
+        doe_filenames_thermal = [
+            f
+            for f in doe_filenames
+            if f.name.endswith(f"_{n_thermal_facs}_facilities.csv")
+        ]
+        doe_filenames_thermal_style = [
+            f for f in doe_filenames if f.name.endswith("_facilities.csv")
+        ]
+        if len(doe_filenames_thermal) > 0:
+            doe_fpath = doe_filenames_thermal[0]
+        else:
+            doe_fpath = doe_filenames[0]
+        if len(doe_filenames_thermal) == 0 and len(doe_filenames_thermal_style) > 0:
+            raise ValueError(
+                f"Could not find driver file for thermal plant ending in {n_thermal_facs}_facilities.csv. Found files {doe_filenames_thermal_style}"
+            )
 
     make_facility_subset_doe_csv(
         n_facility_start, n_facilities, doe_fpath, new_doe_fpath, fac_ids_to_exclude
@@ -139,14 +160,13 @@ def make_copy_of_example(
 
 
 if __name__ == "__main__":
-    from h2integrate import H2IntegrateModel
     from h2integrate.core.file_utils import check_file_format_for_csv_generator
 
     facility_exclusion_fpath = LIBRARY_DIR / "h2i" / "missing_price_data_facilities.csv"
     fac_exclusions = pd.read_csv(facility_exclusion_fpath)
     fac_ids_to_exclude = fac_exclusions["Plant Code"].astype(int).to_list()
 
-    run_parallel = True
+    run_parallel = False
     debug_print = False
     run_h2i = False
     save_debug_config_files = False
@@ -173,11 +193,15 @@ if __name__ == "__main__":
     }
 
     add_on_cases = ["solar", "battery", "solar_battery"]
-    # add_on_cases = ["solar"]
+    # add_on_cases = ["solar_battery"]
 
     fac_n0 = 0
-    n_facs = 2000  # all the facilities
-    fac_subset_desc = "subset0"
+    # below is for all the facilities
+    # n_facs = 2000  # all the facilities
+    # fac_subset_desc = "subset0"
+    # below is for a subset of facilities
+    n_facs = 6  # all the facilities
+    fac_subset_desc = "test_subset_6sites"
 
     for existing_case_desc, existing_plant_type in existing_cases.items():
         # case_fac_id = existing_cases_to_facilities[existing_case_desc]
@@ -269,14 +293,11 @@ if __name__ == "__main__":
                 overwrite_file=True,
             )
 
-            print(
-                f"Done setting-up {existing_case_desc} add-on {add_on_case} in folder {case_folder}"
-            )
-
             # TODO: add H2I run in!
             # print(f"Starting existing {existing_case_desc} add-on {add_on_case}")
-
             if run_h2i:
+                from h2integrate import H2IntegrateModel
+
                 print(f"Running H2I for {existing_case_desc} add-on {add_on_case}")
                 h2i = H2IntegrateModel(config)
                 h2i.setup()

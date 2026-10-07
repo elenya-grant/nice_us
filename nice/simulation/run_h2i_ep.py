@@ -1,9 +1,15 @@
 import argparse
 import copy
 import faulthandler
+import os
 import sys
 from datetime import datetime
 from pathlib import Path
+
+# OpenMDAO turns on MPI when SLURM_NTASKS > 1; keep every rank a plain serial process.
+# VERY IMPORTANT THAT THIS IS SET BEFORE H2I IS IMPORTED
+os.environ["OPENMDAO_USE_MPI"] = "0"
+
 
 import pandas as pd
 from h2integrate import H2IntegrateModel
@@ -38,22 +44,28 @@ def run_chunks(
     )
     doe_subset.to_csv(subset_fpath)
     driver_cnfg["driver"]["parameter_sweep"]["filename"] = str(subset_fpath)
-    driver_cnfg["driver"]["recorder"]["file"] = f"cases.sql_{rank_number}"
+    # print(f"driver config keys: {list(driver_cnfg.keys())}")
+    driver_cnfg["recorder"]["file"] = (
+        f"rank{rank_number}_cases.sql"  # f"cases.sql_{rank_number}"
+    )
+    # ["file"] = f"cases.sql_{rank_number}"
 
     # reformat the file as needed
     check_file_format_for_csv_generator(
         subset_fpath,
-        driver_cnfg,
+        driver_cnfg.copy(),
         check_only=False,
         overwrite_file=True,
     )
-    driver_cnfg["parameter_sweep"]["filename"]
 
     config = {
         "plant_config": copy.deepcopy(input_config["plant_config"]),
         "technology_config": copy.deepcopy(input_config["technology_config"]),
-        "driver_config": driver_cnfg,
+        "driver_config": copy.deepcopy(driver_cnfg),
     }
+
+    # OpenMDAO turns on MPI when SLURM_NTASKS > 1; keep every rank a plain serial process.
+    # os.environ["OPENMDAO_USE_MPI"] = "0"
 
     h2i = H2IntegrateModel(config)
 
@@ -71,16 +83,18 @@ name = MPI.Get_processor_name()
 
 
 def main(full_site_df, h2i_input_config, verbose=True):
+    fac_id_cols = [
+        k
+        for k in full_site_df.columns.to_list()
+        if ".plant_code" in k or ".facility_id" in k
+    ]
+    fac_id_col = fac_id_cols[0]
+
     if rank == 0:
         if verbose:
             print("i'm rank {}:".format(rank))
         ################################ split site_idx's
-        fac_id_cols = [
-            k
-            for k in full_site_df.columns.to_list()
-            if ".plant_code" in k or ".facility_id" in k
-        ]
-        fac_id_col = fac_id_cols[0]
+
         s_list = sorted(set(full_site_df[fac_id_col].to_list()))
 
         # check if number of ranks <= number of tasks
@@ -199,6 +213,14 @@ if __name__ == "__main__":
         help="0 to not overwrite recorder, 1 to have it overwrite recorder",
     )
 
+    parser.add_argument(
+        "--max_iter_slc",
+        "--m",
+        type=int,
+        default=30,
+        help="number of iterations to find convergence in SLC",
+    )
+
     args = parser.parse_args()
 
     # print(f"existing_plant: {args.existing_plant}")
@@ -247,6 +269,9 @@ if __name__ == "__main__":
         plant_config["system_level_control"]["solver_options"]["iprint"] = (
             args.iprint_setting
         )
+        plant_config["system_level_control"]["solver_options"]["max_iter"] = (
+            args.max_iter_slc
+        )
     output_dir = Path(driver_config["general"]["folder_output"])
     if not output_dir.exists():
         Path.mkdir(Path(output_dir), parents=True, exist_ok=True)
@@ -265,10 +290,6 @@ if __name__ == "__main__":
 
     initial_site_list_fpath = driver_config["driver"]["parameter_sweep"]["filename"]
     site_df = pd.read_csv(initial_site_list_fpath)
-    # fac_id_cols = [
-    #     k for k in site_df.columns.to_list() if ".plant_code" in k or ".facility_id" in k
-    # ]
-    # site_code_list = sorted(set(site_df[fac_id_cols[0]].to_list()))
 
     config = {
         "plant_config": copy.deepcopy(plant_config),
