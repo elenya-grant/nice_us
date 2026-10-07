@@ -26,6 +26,7 @@ battery:
       capital_items:
         replacement_cost_percent: 1
         refurbishment_period_years: 15
+        investment_tax_credit: 0.4  # fraction of capital cost eligible for investment tax credit
 electrical_load_demand:
   performance_model:
     model: GenericDemandComponent
