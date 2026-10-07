@@ -167,6 +167,38 @@ if __name__ == "__main__":
         help="Driver file description, like 'subset0'.",
     )
 
+    parser.add_argument(
+        "--iprint_setting",
+        "--i",
+        type=int,
+        default=0,
+        help="0 to not have print in SLC, 2 to enable printing",
+    )
+
+    parser.add_argument(
+        "--debug_print",
+        "--p",
+        type=int,
+        default=0,
+        help="0 to not have debug print on, 1 to have debug print on",
+    )
+
+    parser.add_argument(
+        "--verbose",
+        "--v",
+        type=int,
+        default=0,
+        help="0 to not have verbose, 1 to have it verbose",
+    )
+
+    parser.add_argument(
+        "--overwrite_recorder",
+        "--o",
+        type=int,
+        default=0,
+        help="0 to not overwrite recorder, 1 to have it overwrite recorder",
+    )
+
     args = parser.parse_args()
 
     # print(f"existing_plant: {args.existing_plant}")
@@ -212,7 +244,9 @@ if __name__ == "__main__":
 
     if "system_level_control" in plant_config:
         # dont print solver loops
-        plant_config["system_level_control"]["solver_options"]["iprint"] = 0
+        plant_config["system_level_control"]["solver_options"]["iprint"] = (
+            args.iprint_setting
+        )
     output_dir = Path(driver_config["general"]["folder_output"])
     if not output_dir.exists():
         Path.mkdir(Path(output_dir), parents=True, exist_ok=True)
@@ -225,9 +259,10 @@ if __name__ == "__main__":
         "driver"  # connect to driver when running in parallel
     )
     driver_config["driver"]["parameter_sweep"]["run_parallel"] = False
-    driver_config["driver"]["parameter_sweep"]["debug_print"] = False
+    driver_config["driver"]["parameter_sweep"]["debug_print"] = bool(args.debug_print)
     # don't overwrite the recorder, since doing manual parallelization
-    driver_config["recorder"]["overwrite_recorder"] = False
+    driver_config["recorder"]["overwrite_recorder"] = bool(args.overwrite_recorder)
+
     initial_site_list_fpath = driver_config["driver"]["parameter_sweep"]["filename"]
     site_df = pd.read_csv(initial_site_list_fpath)
     # fac_id_cols = [
@@ -241,4 +276,4 @@ if __name__ == "__main__":
         "driver_config": copy.deepcopy(driver_config),
     }
 
-    main(copy.deepcopy(site_df), copy.deepcopy(config), verbose=True)
+    main(copy.deepcopy(site_df), copy.deepcopy(config), verbose=bool(args.verbose))
