@@ -13,6 +13,20 @@ recorder:
   flag: true
   file: case.sql
   overwrite_recorder: true
+  includes: ['*']
+  excludes:
+    - '*resource_data'
+    - '*.*_in'
+    - '*.*_out'
+    - '*.*_command_value'
+    - '*.*_set_point'
+    - '*.SOC'
+    - '*.elevation'
+    - '*.CapEx'
+    - '*.OpEx'
+    - '*.marginal_cost'
+    - '*.operational_life'
+    - '*.cost_year'
   # Single problem-level recorder: a fixed analysis evaluates the model once, so
   # the final (only) design point captured after run_driver holds everything the
   # dashboards / multi-site postprocessing need.

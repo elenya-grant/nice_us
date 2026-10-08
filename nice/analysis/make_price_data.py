@@ -14,6 +14,7 @@ use_sitelists = True
 market_type = "DAH"  # RTH
 run_version = "v2b"
 
+
 def load_facility_files(data_year=2025, n_thermal_facs=616):
     sitelist_dir = LIBRARY_DIR / "h2i"
     existing_plant_types = ["one_axis_solar", "fixed_solar", "wind", "thermal"]
@@ -147,7 +148,9 @@ price_node_mapper = price_node_mapper[
     price_node_mapper["Plant Code"].isin(plants["Plant Code"].unique())
 ]
 
-missing_facility_ids = sorted(set(plants["Plant Code"].to_list()) - set(price_node_mapper["Plant Code"].to_list()))
+missing_facility_ids = sorted(
+    set(plants["Plant Code"].to_list()) - set(price_node_mapper["Plant Code"].to_list())
+)
 
 print(f"{len(missing_facility_ids)} facilities missing from LMP data")
 
@@ -255,15 +258,16 @@ for p in plants["Plant Code"].unique():
         lmp = pd.read_csv(lmp_fpath)
 
         if "Market" in lmp.columns.to_list():
-            
             if market_type in lmp["Market"].to_list():
                 lmp = lmp[lmp["Market"] == market_type]
             elif "HA15AVG" in lmp["Market"].to_list():
-                lmp = lmp[lmp["Market"] =="HA15AVG"]
-            # else:
+                lmp = lmp[lmp["Market"] == "HA15AVG"]
+            else:
+                buggy_facility_ids.append(lmp)
             #     if len(lmp)!=8760:
             #         buggy_facility_ids.append(lmp)
-
+        else:
+            buggy_facility_ids.append(lmp)
         # if len(lmp)!=8760:
         #     buggy_facility_ids.append(p)
 
@@ -334,10 +338,8 @@ for p in plants["Plant Code"].unique():
     # get the ratio of net load to sum of net load, distribute capacity payments over these hours
     total_peak_vals = np.sum(top_net_load)
 
-    if total_peak_vals==0.0:
-        msg = (
-            f"Plant {p} in BA {ba_code} has total peak vals of 0"
-        )
+    if total_peak_vals == 0.0:
+        msg = f"Plant {p} in BA {ba_code} has total peak vals of 0"
         warnings.warn(msg, UserWarning, stacklevel=3)
         buggy_facility_ids.append(p)
 
@@ -361,7 +363,6 @@ for p in plants["Plant Code"].unique():
             }
         )
 
-    
         # Only save it if not buggy
         price_profile_output_fpath = (
             price_profile_output_dir / f"{p}_{data_year}_price_profile.csv"
@@ -383,7 +384,9 @@ if bool(facilties_saved):
     print(f"{len(good)} facilities have complete data")
 
 if bool(facilties_saved):
-    facs_included = set(plants["Plant Code"].to_list()) - (set(buggy_facility_ids) | set(missing_facility_ids))
+    facs_included = set(plants["Plant Code"].to_list()) - (
+        set(buggy_facility_ids) | set(missing_facility_ids)
+    )
     sv = pd.Series(sorted(set(facs_included)), name="Plant Code")
     sv.to_csv(LIBRARY_DIR / "h2i" / f"valid_price_data_facilities_{run_version}.csv")
     print(f"{len(sv)} facilities have recently saved price data")
