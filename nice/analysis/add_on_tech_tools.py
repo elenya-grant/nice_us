@@ -16,7 +16,7 @@ solar_capacity_multiplier_cases = {
     1: {
         "multipliers": [2.0, 1.5, 1.25, 1.1, 1.0, 0.9, 0.75, 0.5, 0.25],
         "column": "Nameplate Capacity (MW)",
-        "flat_multiplier": 1.34,  # so solar capacity is in DC
+        "flat_multiplier": 1.32,  # so solar capacity is in DC
     },
     2: {
         "multipliers": [1.0],

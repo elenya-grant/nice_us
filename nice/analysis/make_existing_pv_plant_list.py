@@ -45,13 +45,13 @@ def find_is_bifacial(row):
 
 def dc_capacity(row):
     if row["DC Net Capacity (MW)"] == " ":
-        return row["Nameplate Capacity (MW)"] * 1.34
+        return row["Nameplate Capacity (MW)"] * 1.32
     return float(row["DC Net Capacity (MW)"])
 
 
 def dc_capacity_df(group_df):
     if all(v == " " for v in group_df["DC Net Capacity (MW)"].values):
-        return group_df["Nameplate Capacity (MW)"].sum() * 1.34
+        return group_df["Nameplate Capacity (MW)"].sum() * 1.32
     if any(v == " " for v in group_df["DC Net Capacity (MW)"].values):
         non_str_vals = [
             i for i, v in enumerate(group_df["DC Net Capacity (MW)"].values) if v != " "
