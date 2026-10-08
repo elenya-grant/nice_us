@@ -72,3 +72,9 @@ An example of this case is shown in `example_shared_batch.sh`
 
 ### Updating SRUN command for at least 1 node job
 An example of this case is shown in `example_multinode_batch.sh`
+
+# Other helpful links:
+
+- [commands](https://natlabrockies.github.io/HPC/Documentation/Slurm/monitor_and_control/)
+- [batch jobs](https://natlabrockies.github.io/HPC/Documentation/Slurm/batch_jobs/)
+- [batch script details](https://natlabrockies.github.io/HPC/Documentation/Slurm/batch_jobs/#script-details)
