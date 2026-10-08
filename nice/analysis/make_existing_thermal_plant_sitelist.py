@@ -85,7 +85,7 @@ def make_existing_thermal_plant_sitelist(campd_sitelist_fpath, data_year=2025):
     print(f"saved {output_sitelist_fpath.name}")
 
     sitelist.to_csv(output_sitelist_fpath)
-    return sitelist
+    return sitelist, len(thermal_data)
 
 
 if __name__ == "__main__":
