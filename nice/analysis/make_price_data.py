@@ -9,12 +9,12 @@ from nice.tools.df_tools import convert_to_type
 from nice.tools.eia_860_file_tools import load_eia_860
 from nice.tools.file_tools import check_create_folder
 
-run_local = True
+run_local = False
 use_sitelists = True
 market_type = "DAH"  # RTH
+run_version = "v2b"
 
-
-def load_facility_files(data_year=2025, n_thermal_facs=515):
+def load_facility_files(data_year=2025, n_thermal_facs=616):
     sitelist_dir = LIBRARY_DIR / "h2i"
     existing_plant_types = ["one_axis_solar", "fixed_solar", "wind", "thermal"]
     facility_ids = set()
@@ -42,7 +42,7 @@ else:
     net_load_fname = "Net_Load.csv"
     lmp_dir = Path("/projects/surint/campd_spheres/LMP/output_by_node_year")
     # lmp_dir = Path("/projects/surint/campd_spheres/lmp_data")
-    price_node_mapper_path = lmp_dir / "facility_lmp_mapping.csv"
+    price_node_mapper_path = lmp_dir.parent / "facility_lmp_mapping.csv"
     price_profile_output_dir = Path("/projects/surint/campd_spheres/price_profiles")
 
 check_create_folder(price_profile_output_dir)
@@ -147,12 +147,11 @@ price_node_mapper = price_node_mapper[
     price_node_mapper["Plant Code"].isin(plants["Plant Code"].unique())
 ]
 
-missing_facility_ids = sorted(
-    set(price_node_mapper["Plant Code"].to_list()) - set(plants["Plant Code"].to_list())
-)
+missing_facility_ids = sorted(set(plants["Plant Code"].to_list()) - set(price_node_mapper["Plant Code"].to_list()))
 
 print(f"{len(missing_facility_ids)} facilities missing from LMP data")
 
+plants = plants[plants["Plant Code"].isin(price_node_mapper["Plant Code"].unique())]
 # price_node_mapper = price_node_mapper[
 #     price_node_mapper["Prime Mover"].isin(prime_movers)
 # ]
@@ -207,7 +206,10 @@ non_yearly_bas = {
     k: len(net_load_df.loc[k]) for k in load_bas if len(net_load_df.loc[k]) != 8760
 }
 
+print(f"BAS with non-yearly data are: {list(non_yearly_bas.keys())}")
 buggy_facility_ids = []
+missing_market = []
+facilties_saved = []
 # NOTE: only Balancing authority that does not have yearly net load
 # info and is in the `plants`` dataframe is 'WWA'
 # and its only for 1 site (plant code 57995), which is a wind plant
@@ -225,6 +227,7 @@ for p in plants["Plant Code"].unique():
             UserWarning,
             stacklevel=3,
         )
+        # should we add the plant to the buggy lists or is that done later?
 
     if isinstance(price_node_mapper.loc[p, "Mapped_ISO_Name"], str):
         # just one generator in the price_node_mapper
@@ -250,7 +253,19 @@ for p in plants["Plant Code"].unique():
     if lmp_fpath.exists():
         # Load LMP File
         lmp = pd.read_csv(lmp_fpath)
-        lmp = lmp[lmp["Market"] == market_type]
+
+        if "Market" in lmp.columns.to_list():
+            
+            if market_type in lmp["Market"].to_list():
+                lmp = lmp[lmp["Market"] == market_type]
+            elif "HA15AVG" in lmp["Market"].to_list():
+                lmp = lmp[lmp["Market"] =="HA15AVG"]
+            # else:
+            #     if len(lmp)!=8760:
+            #         buggy_facility_ids.append(lmp)
+
+        # if len(lmp)!=8760:
+        #     buggy_facility_ids.append(p)
 
         lmp_time_profile = pd.to_datetime(lmp["GMT Datetime (Hour Ending)"], utc=True)
         lmp["Year (UTC)"] = [
@@ -264,7 +279,7 @@ for p in plants["Plant Code"].unique():
         lmp.sort_index(inplace=True)
 
         # Get the lmp price data
-        lmp_da = lmp["Price ($/MWh)"].values
+        lmp_da = lmp["Price $/MWh"].values
 
         # Check the length of the LMP data
         if len(lmp_da) != 8760:
@@ -277,10 +292,18 @@ for p in plants["Plant Code"].unique():
     else:
         lmp_da = np.zeros(8760)
         msg = f"LMP file {lmp_fpath} does not exist."
-        warnings.warn(msg, UserWarning, stacklevel=3)
+        # warnings.warn(msg, UserWarning, stacklevel=3)
         buggy_facility_ids.append(p)
 
+    if p in buggy_facility_ids:
+        continue
+
     # ----- Get Net Load For Balancing Authority-----
+    if ba_code not in load_bas:
+        buggy_facility_ids.append(p)
+        print(f"Plant {p} has invalid balancing authority {ba_code}")
+        continue
+
     net_load = net_load_df.loc[ba_code].copy(deep=True)
     net_load.set_index("Time Profile (UTC)", inplace=True)
     net_load.sort_index(inplace=True)
@@ -310,6 +333,14 @@ for p in plants["Plant Code"].unique():
     top_net_load = np.where(net_load > threshold_value, net_load, 0)
     # get the ratio of net load to sum of net load, distribute capacity payments over these hours
     total_peak_vals = np.sum(top_net_load)
+
+    if total_peak_vals==0.0:
+        msg = (
+            f"Plant {p} in BA {ba_code} has total peak vals of 0"
+        )
+        warnings.warn(msg, UserWarning, stacklevel=3)
+        buggy_facility_ids.append(p)
+
     net_load_ratio = top_net_load / total_peak_vals
 
     if iso_name not in net_cone:  # NOTE: balancing authority or ISO?
@@ -320,25 +351,41 @@ for p in plants["Plant Code"].unique():
     # Combine capacity value with lmp_da, price
     # price_profile = capacity_value + lmp_da
 
-    price_profile_df = pd.DataFrame(
-        {
-            "LMP ($/MWh)": lmp_da,
-            "Capacity Payment ($/MWh)": capacity_value,
-            "Time (UTC)": time_index,
-        }
-    )
-
     if p not in buggy_facility_ids:
+        # print(f"SUCCESS FOR FACILITY ID {p}")
+        price_profile_df = pd.DataFrame(
+            {
+                "LMP ($/MWh)": lmp_da,
+                "Capacity Payment ($/MWh)": capacity_value,
+                "Time (UTC)": time_index,
+            }
+        )
+
+    
         # Only save it if not buggy
         price_profile_output_fpath = (
             price_profile_output_dir / f"{p}_{data_year}_price_profile.csv"
         )
         price_profile_df.to_csv(price_profile_output_fpath)
+        facilties_saved.append(p)
 
     # TODO: save capacity_value + lmp_da to a csv file named as the facility name
 
 if bool(buggy_facility_ids) or bool(missing_facility_ids):
-    skip_ids = sorted(set(buggy_facility_ids) & set(missing_facility_ids))
+    skip_ids = sorted(set(buggy_facility_ids) | set(missing_facility_ids))
     srs = pd.Series(skip_ids, name="Plant Code")
-    srs.to_csv(LIBRARY_DIR / "h2i" / "missing_price_data_facilities.csv")
+    srs.to_csv(LIBRARY_DIR / "h2i" / f"missing_price_data_facilities_{run_version}.csv")
     print(f"{len(skip_ids)} facilities have missing or incomplete data")
+if bool(facilties_saved):
+    good = pd.Series(sorted(set(facilties_saved)), name="Plant Code")
+    # dont need to save below because its the same
+    # good.to_csv(LIBRARY_DIR / "h2i" / f"saved_price_data_facilities_{run_version}.csv")
+    print(f"{len(good)} facilities have complete data")
+
+if bool(facilties_saved):
+    facs_included = set(plants["Plant Code"].to_list()) - (set(buggy_facility_ids) | set(missing_facility_ids))
+    sv = pd.Series(sorted(set(facs_included)), name="Plant Code")
+    sv.to_csv(LIBRARY_DIR / "h2i" / f"valid_price_data_facilities_{run_version}.csv")
+    print(f"{len(sv)} facilities have recently saved price data")
+
+# print(f"{len(missing_market)} facilities missing 'Market' column: {missing_market}")
