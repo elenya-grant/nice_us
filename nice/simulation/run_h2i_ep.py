@@ -1,15 +1,13 @@
 import argparse
 import copy
 import faulthandler
-import os
 import sys
+import os
 from datetime import datetime
 from pathlib import Path
 
 # OpenMDAO turns on MPI when SLURM_NTASKS > 1; keep every rank a plain serial process.
-# VERY IMPORTANT THAT THIS IS SET BEFORE H2I IS IMPORTED
 os.environ["OPENMDAO_USE_MPI"] = "0"
-
 
 import pandas as pd
 from h2integrate import H2IntegrateModel
@@ -19,6 +17,8 @@ from mpi4py import MPI
 from nice import LIBRARY_DIR
 from nice.tools.file_tools import load_yaml
 
+
+# warnings.filterwarnings("ignore")
 faulthandler.enable()
 
 
@@ -38,16 +38,43 @@ def run_chunks(
 
     # copy the driver config
     driver_cnfg = copy.deepcopy(input_config["driver_config"])
-    subset_fpath = (
-        Path(driver_cnfg["driver"]["parameter_sweep"]["filename"]).parent
-        / f"doe_cases_rank_{rank_number}_doe.csv"
-    )
+    full_doe_fpath = Path(driver_cnfg["driver"]["parameter_sweep"]["filename"])
+
+    # get the subset description from the csv filename (this is based on code in prep_simulation_folders.py)
+    full_doe_fname = full_doe_fpath.name
+    doe_init_fname_desc = full_doe_fname.split("design_sweep_facilities_subset_")[-1].replace(".csv","")
+    new_doe_fname = f"sweep_cases_{doe_init_fname_desc}_rank_{rank_number}_doe.csv"
+    full_doe_dir = full_doe_fpath.parent
+    subset_fpath = full_doe_dir / new_doe_fname
+
+    # subset_fpath = (
+    #     Path(driver_cnfg["driver"]["parameter_sweep"]["filename"]).parent
+    #     / f"doe_cases_rank_{rank_number}_doe.csv"
+    # )
     doe_subset.to_csv(subset_fpath)
     driver_cnfg["driver"]["parameter_sweep"]["filename"] = str(subset_fpath)
-    # print(f"driver config keys: {list(driver_cnfg.keys())}")
-    driver_cnfg["recorder"]["file"] = (
-        f"rank{rank_number}_cases.sql"  # f"cases.sql_{rank_number}"
-    )
+    driver_cnfg["recorder"]["file"] = f"cases.sql_{rank_number}"
+
+    driver_cnfg["recorder"]["includes"] = ['*']
+    driver_cnfg["recorder"]["excludes"] = [
+                "*resource_data", 
+                # "capex_adjusted_*", 
+                # "varopex_adjusted_*", 
+                # "opex_adjusted_*", 
+                "*.*_in", 
+                "*.*_out",
+                "*.*_command_value",
+                "*.*_set_point",
+                "*.SOC",
+                "*.elevation",
+                "*.CapEx",
+                "*.OpEx",
+                "*.marginal_cost",
+                "*.operational_life",
+                "*.cost_year"
+                ]
+
+    # driver_cnfg["recorder"]["file"] = f"rank{rank_number}_cases.sql" #f"cases.sql_{rank_number}"
     # ["file"] = f"cases.sql_{rank_number}"
 
     # reformat the file as needed
@@ -84,17 +111,17 @@ name = MPI.Get_processor_name()
 
 def main(full_site_df, h2i_input_config, verbose=True):
     fac_id_cols = [
-        k
-        for k in full_site_df.columns.to_list()
-        if ".plant_code" in k or ".facility_id" in k
-    ]
+            k
+            for k in full_site_df.columns.to_list()
+            if ".plant_code" in k or ".facility_id" in k
+        ]
     fac_id_col = fac_id_cols[0]
 
     if rank == 0:
         if verbose:
             print("i'm rank {}:".format(rank))
         ################################ split site_idx's
-
+        
         s_list = sorted(set(full_site_df[fac_id_col].to_list()))
 
         # check if number of ranks <= number of tasks
@@ -146,12 +173,12 @@ def main(full_site_df, h2i_input_config, verbose=True):
 
 
 if __name__ == "__main__":
-    """Command-line entry point for run_plants.py"""
+    """Command-line entry point for run_h2i_ep.py"""
     parser = argparse.ArgumentParser(
         description="Run plants",
         epilog=(
             "Example: "
-            "python nice/simulation/run_plants.py --existing_plant wind --add_on_plant pv_bess"
+            "python nice/simulation/run_h2i_ep.py wind solar_battery"
         ),
     )
 
@@ -221,8 +248,10 @@ if __name__ == "__main__":
         help="number of iterations to find convergence in SLC",
     )
 
+
     args = parser.parse_args()
 
+    # os.environ["OPENMDAO_USE_MPI"] = "0"
     # print(f"existing_plant: {args.existing_plant}")
     # print(f"add_on_plant: {args.add_on_plant}")
     # print(f"library subdir {args.library_subdir}")
@@ -269,9 +298,7 @@ if __name__ == "__main__":
         plant_config["system_level_control"]["solver_options"]["iprint"] = (
             args.iprint_setting
         )
-        plant_config["system_level_control"]["solver_options"]["max_iter"] = (
-            args.max_iter_slc
-        )
+        plant_config["system_level_control"]["solver_options"]["max_iter"] = args.max_iter_slc
     output_dir = Path(driver_config["general"]["folder_output"])
     if not output_dir.exists():
         Path.mkdir(Path(output_dir), parents=True, exist_ok=True)
@@ -290,6 +317,10 @@ if __name__ == "__main__":
 
     initial_site_list_fpath = driver_config["driver"]["parameter_sweep"]["filename"]
     site_df = pd.read_csv(initial_site_list_fpath)
+    # fac_id_cols = [
+    #     k for k in site_df.columns.to_list() if ".plant_code" in k or ".facility_id" in k
+    # ]
+    # site_code_list = sorted(set(site_df[fac_id_cols[0]].to_list()))
 
     config = {
         "plant_config": copy.deepcopy(plant_config),
