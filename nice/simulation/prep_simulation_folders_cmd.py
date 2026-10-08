@@ -1,3 +1,4 @@
+import argparse
 import shutil
 from pathlib import Path
 
@@ -11,9 +12,9 @@ from nice.simulation.setup_tools import (
 from nice.tools.file_tools import check_create_folder, load_yaml, write_yaml
 
 example_main_folder = LIBRARY_DIR / "h2i"  # don't change this is
-example_copy_dir = LIBRARY_DIR / "h2i_sweep_0"  #
+# example_copy_dir = LIBRARY_DIR / "h2i_sweep_0"  #
 
-check_create_folder(example_copy_dir)
+# check_create_folder(example_copy_dir)
 
 
 def make_single_site_doe_csv(fac_id, original_doe_csv_fpath, copy_doe_csv_fpath):
@@ -79,6 +80,7 @@ def make_copy_of_example(
     n_facility_start,
     n_facilities,
     facility_subset_desc,
+    example_copy_dir,
     fac_ids_to_exclude=[],
     fac_ids_available=[],
     n_thermal_facs=616,
@@ -175,20 +177,33 @@ def make_copy_of_example(
     # shutil.copytree(original, new_dir, dirs_exist_ok=True)
 
 
-if __name__ == "__main__":
+def main(args):
     from h2integrate import H2IntegrateModel
     from h2integrate.core.file_utils import check_file_format_for_csv_generator
 
-    # facility_exclusion_fpath = LIBRARY_DIR / "h2i" / "missing_price_data_facilities.csv"
-    facility_exclusion_fpath = (
-        LIBRARY_DIR / "h2i" / "missing_price_data_facilities_v2.csv"
-    )
-    fac_exclusions = pd.read_csv(facility_exclusion_fpath)
-    fac_ids_to_exclude = fac_exclusions["Plant Code"].astype(int).to_list()
+    example_copy_dir = LIBRARY_DIR / args.library_subdir
+    check_create_folder(example_copy_dir)
 
-    fac_inclusion_fpath = LIBRARY_DIR / "h2i" / "valid_price_data_facilities_v2.csv"
-    fac_inclusions = pd.read_csv(fac_inclusion_fpath)
-    fac_ids_avail = fac_inclusions["Plant Code"].astype(int).to_list()
+    # facility_exclusion_fpath = LIBRARY_DIR / "h2i" / "missing_price_data_facilities.csv"
+    facility_exclusion_fpath = LIBRARY_DIR / "h2i" / args.missing_plant_ids_fname
+    if facility_exclusion_fpath.exists():
+        fac_exclusions = pd.read_csv(facility_exclusion_fpath)
+        fac_ids_to_exclude = fac_exclusions["Plant Code"].astype(int).to_list()
+    else:
+        fac_ids_to_exclude = []
+        print(
+            f"Facility exclusion file '{args.missing_plant_ids_fname}' does not exist, running without it."
+        )
+
+    fac_inclusion_fpath = LIBRARY_DIR / "h2i" / args.valid_plant_ids_fname
+    if fac_inclusion_fpath.exists():
+        fac_inclusions = pd.read_csv(fac_inclusion_fpath)
+        fac_ids_avail = fac_inclusions["Plant Code"].astype(int).to_list()
+    else:
+        fac_ids_avail = 0
+        print(
+            f"Facility inclusion file '{args.valid_plant_ids_fname}' does not exist, running without it."
+        )
 
     run_parallel = False
     debug_print = False
@@ -203,20 +218,26 @@ if __name__ == "__main__":
     # }
 
     # /projects/surint/campd_spheres/national_analysis
-    existing_cases = {
+    all_existing_cases = {
         "thermal": "thermal",
         "one_axis_solar": "solar",
         "fixed_solar": "solar",
         "wind": "wind",
     }
 
-    add_on_cases = ["solar", "battery", "solar_battery"]
+    existing_cases = {k: all_existing_cases[k] for k in args.existing_plants}
+
+    add_on_cases = args.add_on_plants
+    # add_on_cases = ["solar", "battery", "solar_battery"]
     # add_on_cases = ["solar_battery"]
 
-    fac_n0 = 0
+    fac_n0 = args.n_fac_start
     # below is for all the facilities
-    n_facs = 2000  # all the facilities
-    fac_subset_desc = "subset0"
+    n_facs = args.n_facilities
+    if args.driver_subset_desc == "":
+        fac_subset_desc = f"n_sites_{n_facs}_starting_at_{fac_n0}"
+    else:
+        fac_subset_desc = args.driver_subset_desc
     # below is for a subset of facilities
     # n_facs = 6  # all the facilities
     # fac_subset_desc = "test_subset_6sites"
@@ -234,18 +255,23 @@ if __name__ == "__main__":
             original_subdir_name = f"existing_{existing_plant_type}_add_{add_on_case}"
             new_subdir_name = f"existing_{existing_case_desc}_add_{add_on_case}"
 
+            print(f"facility subset description is {fac_subset_desc}")
             make_copy_of_example(
                 original_subdir_name,
                 new_subdir_name,
                 add_on_case,
-                0,
+                fac_n0,
                 n_facs,
                 fac_subset_desc,
+                example_copy_dir,
                 fac_ids_to_exclude=fac_ids_to_exclude,
                 fac_ids_available=fac_ids_avail,
+                n_thermal_facs=args.n_thermal_facilities,
             )
 
             case_folder = example_copy_dir / new_subdir_name
+
+            print(f"files are being saved to: {case_folder}")
 
             plant_config = load_yaml(case_folder / "plant_config.yaml")
             tech_names = get_techs_from_tech_connections(
@@ -268,6 +294,24 @@ if __name__ == "__main__":
 
             driver_config["driver"]["parameter_sweep"]["run_parallel"] = run_parallel
             driver_config["driver"]["parameter_sweep"]["debug_print"] = debug_print
+            driver_config["recorder"]["includes"] = ["*"]
+            driver_config["recorder"]["excludes"] = [
+                "*resource_data",
+                # "capex_adjusted_*",
+                # "varopex_adjusted_*",
+                # "opex_adjusted_*",
+                "*.*_in",
+                "*.*_out",
+                "*.*_command_value",
+                "*.*_set_point",
+                "*.SOC",
+                "*.elevation",
+                "*.CapEx",
+                "*.OpEx",
+                "*.marginal_cost",
+                "*.operational_life",
+                "*.cost_year",
+            ]
 
             for tech_name, tech_vars in driver_config["design_variables"].items():
                 # could remove this eventually ...
@@ -317,3 +361,95 @@ if __name__ == "__main__":
                 h2i = H2IntegrateModel(config)
                 h2i.setup()
                 h2i.run()
+
+
+if __name__ == "__main__":
+    """Command-line entry point for prep_simulation_folders_cmd.py"""
+    parser = argparse.ArgumentParser(
+        description="Run plants",
+        epilog=(
+            "Example: "
+            "python nice/simulation/prep_simulation_folders_cmd.py -e thermal wind one_axis_solar -a solar solar_battery --d fake_test --s 0 --n 20"
+        ),
+    )
+
+    # Source - https://stackoverflow.com/a/15753721
+    parser.add_argument(
+        "-existing_plants",
+        "-e",
+        nargs="+",
+        help="-e thermal wind one_axis_solar fixed_solar",
+        required=True,
+    )
+    parser.add_argument(
+        "-add_on_plants",
+        "-a",
+        nargs="+",
+        help="-e solar battery solar_battery",
+        required=True,
+    )
+    parser.add_argument(
+        "--driver_subset_desc",
+        "--d",
+        type=str,
+        help="Driver file description, like 'subset0'.",
+    )
+
+    parser.add_argument(
+        "--library_subdir",
+        "--l",
+        default="h2i_sweep_0",
+        type=str,
+        help="Subdirectory in 'libary' containing folders for runs (ex: 'h2i_sweep_0')",
+    )
+
+    # Use like:
+    # python arg.py -l 1234 2345 3456 4567
+    parser.add_argument(
+        "--n_fac_start",
+        "--s",
+        type=int,
+        default=0,
+        help="starting number of facilities to include",
+    )
+
+    parser.add_argument(
+        "--n_facilities",
+        "--n",
+        type=int,
+        default=2000,
+        help="total number of facilities to include",
+    )
+
+    parser.add_argument(
+        "--valid_plant_ids_fname",
+        "--v",
+        type=str,
+        default="valid_price_data_facilities_v2.csv",
+        help="filename of file containing plant ids with valid price data",
+    )
+
+    parser.add_argument(
+        "--missing_plant_ids_fname",
+        "--m",
+        type=str,
+        default="missing_price_data_facilities_v2.csv",
+        help="filename of file containing plant ids with missing price data",
+    )
+
+    parser.add_argument(
+        "--n_thermal_facilities",
+        "--t",
+        type=int,
+        default=616,
+        help="number of existing thermal facillities (used for finding filenames)",
+    )
+
+    args = parser.parse_args()
+
+    # print(f"existing plants: {args.existing_plants} (len {len(args.existing_plants)})")
+    # print(f"add-on plants: {args.add_on_plants} (len {len(args.add_on_plants)})")
+    # print(f"starting site: {args.n_fac_start}")
+    # print(f"number of sites: {args.n_facilities}")
+
+    main(args)
