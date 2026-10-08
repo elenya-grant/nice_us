@@ -107,6 +107,7 @@ def make_existing_thermal_doe(n_facilities, add_on_case, data_year=2025):
     # TODO: use H2I's check-csv file fpath
 
     # make driver_config template file
+    print(f"doe filepath: {doe_csv_fpath.name}")
     write_driver_file(new_col_units, driver_fpath, doe_csv_fpath.name)
 
 
