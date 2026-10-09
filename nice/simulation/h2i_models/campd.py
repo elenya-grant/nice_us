@@ -123,6 +123,15 @@ class CAMPDPerformance(om.ExplicitComponent):
                 .sort_index(ascending=True)["Gross Load (MW)"]
                 .values
             )
+
+
+            if len(gl) != len(gross_load_profile):
+                msg = (
+                    f"Facility ID {facility_id} with Generator ID {gen_id}: "
+                    f"gross load is incorrect length of {len(gl)}"
+                )
+                raise ValueError(msg)
+                
             gross_load_profile += np.nan_to_num(gl)  # convert nans to zeros
         net_load_profile = net_to_gross * gross_load_profile  # convert gross to net
         outputs["electricity_out"] = net_load_profile
