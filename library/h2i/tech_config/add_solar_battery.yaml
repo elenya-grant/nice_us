@@ -32,8 +32,8 @@ solar_add_on:
 
     # fixed_opex = (PV Fixed O&M Expenses + 10 + Battery Overnight capital cost (year 2040))*0.8/30
     # 57 $/kw-yr  = (24 + 10 + 861) * 0.8 / 30
-      capex_per_kWac: 1150.981  # overnight capital cost in $/kW-AC moderate Utility-Scale PV-Plus-Batt R&D 2025. (2025 ATB)
-      opex_per_kWac_per_year: 35.63  # split the opex based on percentage of PV capex/total capex.
+      capex_per_kWac: 1151  # overnight capital cost in $/kW-AC moderate Utility-Scale PV-Plus-Batt R&D 2025. (2025 ATB)
+      opex_per_kWac_per_year: 24  # split the opex based on percentage of PV capex/total capex.
       # fixed O&M $/kw-AC/year moderate Utility-Scale PV-Plus-Batt R&D 2025. (2025 ATB)
       cost_year: 2023
       # CdTe 19%
@@ -60,9 +60,9 @@ battery:
       demand_profile: 0.
     cost_parameters:
       cost_year: 2023
-      energy_capex: 123.4974  # $/kWh 2025 moderate Utility-Scale PV-Plus-Batt R&D 2025 ATB overnight capital cost (2025 ATB)
-      power_capex: 197.1528  # $/kW 2025 moderate Utility-Scale PV-Plus-Batt R&D 2025 ATB overnight capital cost (2025 ATB)
-      opex_fraction: 0.03  # percent of overnight capital cost per year 2025 moderate Utility-Scale PV-Plus-Batt R&D 2025 ATB (2025 ATB)
+      energy_capex: 288  # $/kWh 2025 moderate Utility-Scale PV-Plus-Batt R&D 2025 ATB overnight capital cost (2025 ATB)
+      power_capex: 0  # $/kW 2025 moderate Utility-Scale PV-Plus-Batt R&D 2025 ATB overnight capital cost (2025 ATB)
+      opex_fraction: 0.0417  # percent of overnight capital cost per year 2025 moderate Utility-Scale PV-Plus-Batt R&D 2025 ATB (2025 ATB) 12/288 per the table in the paper
       # 21.3639777295$/kw-yr / 123.4974$/kwh * 4h +197.1528$/kw = ~0.03 fraction
       # 21.3639777295$/kw-yr = (1 - 1150.981/1841) * 57  # derived from PV-Plus-Batt cost structure
     financial_parameters:
