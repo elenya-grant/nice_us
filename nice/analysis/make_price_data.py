@@ -263,11 +263,11 @@ for p in plants["Plant Code"].unique():
             elif "HA15AVG" in lmp["Market"].to_list():
                 lmp = lmp[lmp["Market"] == "HA15AVG"]
             else:
-                buggy_facility_ids.append(lmp)
+                buggy_facility_ids.append(p)
             #     if len(lmp)!=8760:
             #         buggy_facility_ids.append(lmp)
         else:
-            buggy_facility_ids.append(lmp)
+            buggy_facility_ids.append(p)
         # if len(lmp)!=8760:
         #     buggy_facility_ids.append(p)
 
