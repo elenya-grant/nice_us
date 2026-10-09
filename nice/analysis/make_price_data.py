@@ -11,7 +11,9 @@ from nice.tools.file_tools import check_create_folder
 
 run_local = False
 use_sitelists = True
-market_type = "DAH"  # RTH
+# unique markets currently in LMP data as of 20261009
+# ["RT5AVG", "DAH", "RTH", "HA15AVG", "RT15AVG", "RUC HOURLY"]
+market_type = "DAH"  # Can use "DAH" and "HA15AVG" for day-ahead markets
 run_version = "v2b"
 
 
@@ -144,16 +146,19 @@ price_node_cols = [
 price_node_mapper = pd.read_csv(price_node_mapper_path, usecols=price_node_cols)
 convert_to_type(price_node_mapper, "Plant Code", "Plant Code", int)
 
+# Filter price node mapper to only include plants that are in the filtered plants list
 price_node_mapper = price_node_mapper[
     price_node_mapper["Plant Code"].isin(plants["Plant Code"].unique())
 ]
 
+# Identify facilities that are missing from the price node mapper
 missing_facility_ids = sorted(
     set(plants["Plant Code"].to_list()) - set(price_node_mapper["Plant Code"].to_list())
 )
 
 print(f"{len(missing_facility_ids)} facilities missing from LMP data")
 
+# Filter plants to only include those that have a corresponding entry in the price node mapper
 plants = plants[plants["Plant Code"].isin(price_node_mapper["Plant Code"].unique())]
 # price_node_mapper = price_node_mapper[
 #     price_node_mapper["Prime Mover"].isin(prime_movers)
@@ -164,16 +169,40 @@ plants = plants[plants["Plant Code"].isin(price_node_mapper["Plant Code"].unique
 # price_node_mapper = price_node_mapper[
 #     price_node_mapper["Plant Code"].isin(generators["Plant Code"].unique())
 # ]
+# EIA_860 BA Codes
+# [nan, 'SOCO', 'EPE', 'MISO', 'CISO', 'TVA', 'PJM', 'SWPP', 'WACM',
+# 'NYIS', 'PSEI', 'SRP', 'AZPS', 'TEPC', 'SC', 'SEC', 'BANC', 'WALC',
+# 'PACE', 'TIDC', 'SPA', 'JEA', 'PACW', 'ERCO', 'IID', 'LDWP',
+# 'BPAT', 'PSCO', 'WAUW', 'ISNE', 'AVA', 'FMPP', 'FPL', 'SCL', 'FPC',
+# 'TEC', 'GVL', 'HST', 'NSB', 'TAL', 'SCEG', 'SEPA', 'IPCO', 'GCPD',
+# 'CPLE', 'AECI', 'LGEE', 'NBSO', 'NWMT', 'NEVP', 'PNM', 'DUK',
+# 'PGE', 'CHPD', 'DOPD', 'TPWR', 'YAD', 'AVRN', 'GRIF', 'DEAA',
+# 'GRID', 'HECO', 'GWA', 'WWA', 'GRIS', 'CPLW', 'CEA', 'GLHB']
 
+# Net_Load Balancing Authorities
+# ['AECI',  'AVA', 'AVRN', 'AZPS', 'BANC', 'BPAT', 'CHPD', 'CISO', 'CPLE',
+#  'CPLW', 'DEAA', 'DOPD',  'DUK',  'EPE', 'ERCO', 'FMPP',  'FPC',  'FPL',
+#  'GCPD', 'GRID',  'GVL',  'GWA', 'HGMA',  'HST',  'IID', 'IPCO', 'ISNE',
+#   'JEA', 'LDWP', 'LGEE', 'MISO', 'NEVP', 'NWMT', 'NYIS', 'PACE', 'PACW',
+#   'PGE',  'PJM',  'PNM', 'PSCO', 'PSEI',   'SC', 'SCEG',  'SCL',  'SEC',
+#  'SEPA', 'SIKE', 'SOCO',  'SPA',  'SRP', 'SWPP',  'TAL',  'TEC', 'TEPC',
+#  'TIDC', 'TPWR',  'TVA', 'WACM', 'WALC', 'WAUW',  'WWA',  'YAD', 'GRIF',
+#  'GLHB',  'AEC',  'EEI',  'NSB']
 
+# in EIA but not in Net_Load Balancing Authorities
+# 'NBSO', 'CEA', 'HECO', 'GRIS'
+# in Net_Load Balancing Authorities but not in EIA
+# 'HGMA', 'SIKE', 'AEC', 'EEI'
+
+# Facility mapper file Mapped ISO names
 price_node_mapper_iso_rename = {
     "Midcontinent ISO": "MISO",
     "PJM ISO": "PJM",
     "California ISO": "CISO",
     "ERCOT ISO": "ERCO",
-    "New England ISO": "OTHER",  # what is this?
+    "New England ISO": "ISNE", 
     "New York ISO": "NYIS",
-    "Northern Maine Independent System A": "OTHER",
+    "Northern Maine Independent System A": "OTHER", 
 }
 
 # rename ISOs in price node mapper
@@ -182,7 +211,6 @@ price_node_mapper.replace(
 )
 
 price_node_mapper.set_index(keys=["Plant Code"], inplace=True)
-
 
 # for each unique plant code in generators
 # net_load = pd.read_csv(path + f"EIA930_BALANCE_{data_year}_with_Net_Load.csv")
@@ -218,12 +246,21 @@ facilties_saved = []
 # and its only for 1 site (plant code 57995), which is a wind plant
 # plant_codes = [879]
 for p in plants["Plant Code"].unique():
+    # Generation only BAs: AVRN, DEAA, EEI, GLHB, GRID, GRIF, GWA, HGMA, SEPA, SIKE, WWA, YAD
+    gen_only_bas = ["AVRN", "DEAA", "EEI", "GLHB", "GRID", "GRIF", "GWA", "HGMA", "SEPA", "SIKE", "WWA", "YAD"]
     # plant id 69875 has 1 generatior, so does 69748
     # Get balancing authority code for this plant (for net-load data)
     ba_code = plants.loc[plants["Plant Code"] == p, "Balancing Authority Code"].values[
         0
     ]
-
+    if ba_code in gen_only_bas:
+        continue
+    
+    # match EIA_860 BA to Net_Load Balancing Authorities for the "Plant Code"
+    # use "Mapped_Price_Node_ID" to find the correct LMP file for the "Plant Code"
+    # if the BA is in the gen_only BAs we skip the net load process
+    
+    
     if ba_code in non_yearly_bas:
         warnings.warn(
             f"Balancing Authority {ba_code} has non-yearly net_load",
