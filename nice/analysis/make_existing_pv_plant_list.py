@@ -69,8 +69,15 @@ def azimuth_df(group_df):
         return 180.0
     if any(v == " " for v in group_df["Azimuth Angle"].values):
         azimuth_vals = [v for v in group_df["Azimuth Angle"].values if v != " "]
+
+        if np.median(azimuth_vals) < 0:
+            # adjust so positive
+            return 360 - np.median(azimuth_vals)
         return np.median(azimuth_vals)
 
+    if group_df["Azimuth Angle"].mean() < 0:
+        # adjust so positive
+        return 360 - group_df["Azimuth Angle"].mean()
     return group_df["Azimuth Angle"].mean()
 
     # if row["Azimuth Angle"] == " ":
@@ -83,9 +90,12 @@ def tilt_df(group_df):
         return 45.0
     if any(v == " " for v in group_df["Tilt Angle"].values):
         tilt_vals = [v for v in group_df["Tilt Angle"].values if v != " "]
-        return np.median(tilt_vals)
 
-    return group_df["Tilt Angle"].mean()
+        # prevent negative tilt
+        return np.max(np.median(tilt_vals), 0.0)
+
+    # prevent negative tilt
+    return np.max(group_df["Tilt Angle"].mean(), 0.0)
 
     # if row["Tilt Angle"] == " ":
     #     return 45.0
