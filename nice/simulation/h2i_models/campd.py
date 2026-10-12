@@ -111,28 +111,30 @@ class CAMPDPerformance(om.ExplicitComponent):
             return
 
         # time_utc,Facility Name,Facility ID,Unit ID,Gross Load (MW),Heat Input (mmBtu),Year
+        # already pre-processed to have a continuous hourly time series for the year
+        gross_load_profile = campd_df["Gross Load (MW)"].values
+        
+        # # pull out all the generator IDs for the given facility_id
+        # unit_ids = campd_df["Unit ID"].unique()
+        # campd_df.set_index(keys=["Unit ID", "time_utc"], inplace=True)
+        # gross_load_profile = np.zeros(8760)
+        # for gen_id in unit_ids:
+        #     # get the gross load profile from start of year to end of year
+        #     gl = (
+        #         campd_df.loc[gen_id]
+        #         .sort_index(ascending=True)["Gross Load (MW)"]
+        #         .values
+        #     )
 
-        # pull out all the generator IDs for the given facility_id
-        unit_ids = campd_df["Unit ID"].unique()
-        campd_df.set_index(keys=["Unit ID", "time_utc"], inplace=True)
-        gross_load_profile = np.zeros(8760)
-        for gen_id in unit_ids:
-            # get the gross load profile from start of year to end of year
-            gl = (
-                campd_df.loc[gen_id]
-                .sort_index(ascending=True)["Gross Load (MW)"]
-                .values
-            )
 
-
-            if len(gl) != len(gross_load_profile):
-                msg = (
-                    f"Facility ID {facility_id} with Generator ID {gen_id}: "
-                    f"gross load is incorrect length of {len(gl)}"
-                )
-                raise ValueError(msg)
+        #     if len(gl) != len(gross_load_profile):
+        #         msg = (
+        #             f"Facility ID {facility_id} with Generator ID {gen_id}: "
+        #             f"gross load is incorrect length of {len(gl)}"
+        #         )
+        #         raise ValueError(msg)
                 
-            gross_load_profile += np.nan_to_num(gl)  # convert nans to zeros
+        #     gross_load_profile += np.nan_to_num(gl)  # convert nans to zeros
         net_load_profile = net_to_gross * gross_load_profile  # convert gross to net
         outputs["electricity_out"] = net_load_profile
         max_annual_prod = outputs["rated_electricity_production"] * self.n_timesteps
