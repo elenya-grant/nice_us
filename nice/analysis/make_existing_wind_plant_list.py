@@ -1,3 +1,4 @@
+import numpy as np
 import pandas as pd
 
 from nice import DATA_DIR, LIBRARY_DIR
@@ -7,6 +8,24 @@ from nice.tools.eia_860_file_tools import load_eia_860
 def convert_to_type(df, new_col, old_col, data_type):
     df[new_col] = df[old_col].astype(data_type)
     return df
+
+
+def estimate_rotor_diameter(turbine_size_kW):
+    # estimate rotor diameter based on GE 1.5 MW
+    ws_rated_ref = 16.46  # m/s
+    cp_ref = 0.11793001171425908
+    # power_ref_kw = 1500.0
+    rho = 1.225  # kg/m3
+
+    # P = 0.5*rho*A*V^3*Cp
+    denom = 0.5 * rho * (ws_rated_ref**3) * cp_ref
+    # Solve for A -> A = P/0.5*rho*V^3*Cp
+    rotor_swept_area = turbine_size_kW * 1e3 / denom
+    # A = pi*D^2/4
+    # D = sqrt(4*A/pi)
+
+    rotor_diameter = np.sqrt(rotor_swept_area * 4 / np.pi)
+    return rotor_diameter
 
 
 def make_existing_wind_plant_sitelist(data_year=2025):
@@ -73,9 +92,9 @@ def make_existing_wind_plant_sitelist(data_year=2025):
     wind_data_agg["Turbine Hub Height (m)"] = wind_data.groupby(level="Plant Code")[
         "Turbine Hub Height (m)"
     ].mean()
-    wind_data_agg["Estimated Rotor Diameter (m)"] = wind_data.groupby(
-        level="Plant Code"
-    )["Estimated Rotor Diameter (m)"].mean()
+    # wind_data_agg["Estimated Rotor Diameter (m)"] = wind_data.groupby(
+    #     level="Plant Code"
+    # )["Estimated Rotor Diameter (m)"].mean()
     wind_data_agg["Nameplate Capacity (MW)"] = wind_data.groupby(level="Plant Code")[
         "Nameplate Capacity (MW)"
     ].sum()
@@ -85,6 +104,19 @@ def make_existing_wind_plant_sitelist(data_year=2025):
     wind_data_agg["Number of Turbines"] = wind_data.groupby(level="Plant Code")[
         "Number of Turbines"
     ].sum()
+    wind_data_agg["Estimated Rotor Diameter (m)"] = estimate_rotor_diameter(
+        wind_data_agg["turb_size_mw"] * 1e3
+    )
+
+    # Make sure hub-height is at least blade length * 1.1
+    wind_data_agg["Minimum Hub Height (m)"] = (
+        wind_data_agg["Estimated Rotor Diameter (m)"] * 0.5 * 1.1
+    )
+
+    wind_data_agg["Turbine Hub Height (m)"] = wind_data_agg[
+        ["Turbine Hub Height (m)", "Minimum Hub Height (m)"]
+    ].min(axis=1)
+    wind_data_agg.drop(columns=["Minimum Hub Height (m)"], inplace=True)
     # wind_data_agg["Prime Mover"] = wind_data.groupby(level="Plant Code")
 
     # Filter by capacity
