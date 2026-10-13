@@ -55,10 +55,15 @@ def make_facility_subset_doe_csv(
         df = df[df[fac_id_col].isin(fac_ids_include)]
         fac_ids_sorted = sorted(fac_ids_include)
 
+    print(
+        f"Attempting subset of {n_facilities} facilities, starting at facility {n_facilities_start}"
+    )
     end_facid = n_facilities_start + n_facilities
     if end_facid >= len(fac_ids_sorted):
+        print("using all facilities")
         fac_ids_subset = fac_ids_sorted[n_facilities_start:]
     else:
+        print("using subset of facilities")
         fac_ids_subset = fac_ids_sorted[n_facilities_start:end_facid]
 
     sub_df = df[df[fac_id_col].isin(fac_ids_subset)].copy(deep=True)
@@ -70,7 +75,9 @@ def make_facility_subset_doe_csv(
     if len(fac_ids_subset) < 10:
         print(f"facilities ids used are: {sub_df[fac_id_col].unique()}\n")
     else:
-        print("\n")
+        print(
+            f"facilities ids range from {sub_df.iloc[0][fac_id_col]} to {sub_df.iloc[-1][fac_id_col]}\n"
+        )
 
 
 def make_copy_of_example(
@@ -425,7 +432,7 @@ if __name__ == "__main__":
         "--valid_plant_ids_fname",
         "--v",
         type=str,
-        default="valid_price_data_facilities_v2.csv",
+        default="valid_price_data_facilities_v2b.csv",
         help="filename of file containing plant ids with valid price data",
     )
 
@@ -433,7 +440,7 @@ if __name__ == "__main__":
         "--missing_plant_ids_fname",
         "--m",
         type=str,
-        default="missing_price_data_facilities_v2.csv",
+        default="missing_price_data_facilities_v2b.csv",
         help="filename of file containing plant ids with missing price data",
     )
 
