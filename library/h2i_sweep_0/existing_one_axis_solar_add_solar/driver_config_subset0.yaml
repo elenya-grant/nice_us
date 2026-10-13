@@ -1,0 +1,85 @@
+general:
+  folder_output: /kfs2/projects/surint/campd_spheres/national_analysis/software/nice_us/library/h2i_sweep_0/existing_one_axis_solar_add_solar/outputs_subset0
+  create_om_reports: false
+driver:
+  parameter_sweep:
+    flag: true
+    debug_print: false
+    generator: csvgen
+    filename: /kfs2/projects/surint/campd_spheres/national_analysis/software/nice_us/library/h2i_sweep_0/existing_one_axis_solar_add_solar/design_sweep_facilities_subset_subset0.csv
+    run_parallel: false
+recorder:
+  flag: true
+  file: case.sql
+  overwrite_recorder: true
+  includes:
+  - '*'
+  excludes:
+  - '*resource_data'
+  - '*.*_in'
+  - '*.*_out'
+  - '*.*_command_value'
+  - '*.*_set_point'
+  - '*.SOC'
+  - '*.elevation'
+  - '*.CapEx'
+  - '*.OpEx'
+  - '*.marginal_cost'
+  - '*.operational_life'
+  - '*.cost_year'
+design_variables:
+  poi_demand:
+    electricity_demand:
+      flag: true
+      units: MW
+      lower: -1000000000000.0
+      upper: 1000000000000.0
+  grid_sell:
+    interconnection_size:
+      flag: true
+      units: MW
+      lower: -1000000000000.0
+      upper: 1000000000000.0
+    plant_code:
+      flag: true
+      units: unitless
+      lower: -1000000000000.0
+      upper: 1000000000000.0
+  existing_plant:
+    system_capacity_DC:
+      flag: true
+      units: MW
+      lower: -1000000000000.0
+      upper: 1000000000000.0
+    tilt_angle:
+      flag: true
+      units: deg
+      lower: -1000000000000.0
+      upper: 1000000000000.0
+    azimuth_angle:
+      flag: true
+      units: deg
+      lower: -1000000000000.0
+      upper: 1000000000000.0
+    dc_ac_ratio:
+      flag: true
+      units: unitless
+      lower: -1000000000000.0
+      upper: 1000000000000.0
+  site:
+    latitude:
+      flag: true
+      units: deg
+      lower: -1000000000000.0
+      upper: 1000000000000.0
+    longitude:
+      flag: true
+      units: deg
+      lower: -1000000000000.0
+      upper: 1000000000000.0
+  solar_add_on:
+    system_capacity_DC:
+      flag: true
+      units: MW
+      lower: -1000000000000.0
+      upper: 1000000000000.0

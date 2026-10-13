@@ -1,0 +1,101 @@
+technologies:
+  grid_sell:
+    performance_model:
+      model: GridPerformanceModel
+    cost_model:
+      model: CustomGridCostModel
+      model_location: /projects/surint/campd_spheres/national_analysis/software/nice_us/nice/simulation/h2i_models/custom_grid.py
+    model_inputs:
+      shared_parameters:
+        interconnection_size: 1.e6
+      cost_parameters:
+        data_directory: /projects/surint/campd_spheres/price_profiles
+        electricity_sell_price: 0.0
+        cost_year: 2022
+        interconnection_capex_per_kw: 0.0
+        interconnection_opex_per_kw: 0.0
+        fixed_interconnection_cost: 0.0
+  poi_demand:
+    performance_model:
+      model: GenericDemandComponent
+    model_inputs:
+      performance_parameters:
+        commodity: electricity
+        commodity_rate_units: kW
+        demand_profile: 0.0
+  existing_plant:
+    performance_model:
+      model: PYSAMSolarPlantPerformanceModel
+    model_inputs:
+      performance_parameters:
+        pv_capacity_kWdc: 200000
+        dc_ac_ratio: 1.32
+        create_model_from: new
+        tilt_angle_setting: input
+        azimuth_angle_setting: input
+        tilt: 0
+        azimuth: 180
+        pysam_options:
+          SystemDesign:
+            gcr: 0.3
+            array_type: 2
+            bifaciality: 0
+            inv_eff: 96.0
+            losses: 14.0757
+            module_type: 1
+            azimuth: 180
+            rotlim: 45
+          SolarResource:
+            use_wf_albedo: 1
+            albedo_default: 0.2
+  battery:
+    performance_model:
+      model: StoragePerformanceModel
+    cost_model:
+      model: ATBBatteryCostModel
+    model_inputs:
+      shared_parameters:
+        commodity: electricity
+        commodity_rate_units: kW
+        max_charge_rate: 50000.0
+        max_capacity: 200000.0
+        max_soc_fraction: 1.0
+        min_soc_fraction: 0.1
+        init_soc_fraction: 0.1
+        max_discharge_rate: 50000.0
+        round_trip_efficiency: 0.85
+        demand_profile: 0.0
+      cost_parameters:
+        cost_year: 2023
+        energy_capex: 312
+        power_capex: 0
+        opex_fraction: 0.0385
+      financial_parameters:
+        capital_items:
+          replacement_cost_percent: 1
+          refurbishment_period_years: 15
+          investment_tax_credit: 0.4
+  electrical_load_demand:
+    performance_model:
+      model: GenericDemandComponent
+    model_inputs:
+      performance_parameters:
+        commodity: electricity
+        commodity_rate_units: kW
+        demand_profile: 0.0
+  grid_buy:
+    performance_model:
+      model: GridPerformanceModel
+    cost_model:
+      model: CustomGridCostModel
+      model_location: /projects/surint/campd_spheres/national_analysis/software/nice_us/nice/simulation/h2i_models/custom_grid.py
+    model_inputs:
+      shared_parameters:
+        interconnection_size: 1.e6
+      cost_parameters:
+        data_directory: /projects/surint/campd_spheres/price_profiles
+        electricity_buy_price: 0.0
+        cost_year: 2022
+        interconnection_capex_per_kw: 0.0
+        interconnection_opex_per_kw: 0.0
+        fixed_interconnection_cost: 0.0
