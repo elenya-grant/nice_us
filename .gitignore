@@ -209,3 +209,9 @@ __marimo__/
 .DS_Store
 data/*
 !data/README.md
+
+
+# Nice stuff
+*.sql_*
+library/*.sql
+library/**/sweep_cases_*.csv
