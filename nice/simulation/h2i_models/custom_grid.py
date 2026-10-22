@@ -116,6 +116,36 @@ class CustomGridCostModel(CostModelBaseClass):
             units="USD",
             desc="Total electricity revenue from selling to the grid",
         )
+        self.add_output(
+            "total_grid_sell_energy_revenue",
+            shape=1,
+            units="USD",
+            desc="Total revenue from selling electricity to the grid"
+        )
+        self.add_output(
+            "grid_sell_energy_revenue",
+            shape=self.n_timesteps,
+            units="USD/h",
+            desc="Revenue from selling electricity to the grid per timestep"
+        )
+        self.add_output(
+            "total_grid_sell_capacity_revenue",
+            shape=1,
+            units="USD",
+            desc="Total revenue from selling electricity capacity to the grid"
+        )
+        self.add_output(
+            "grid_sell_capacity_revenue",
+            shape=self.n_timesteps,
+            units="USD/h",
+            desc="Revenue from selling electricity capacity to the grid per timestep"
+        )
+        self.add_output(
+            "grid_buy_energy_cost",
+            shape=self.n_timesteps,
+            units="USD/h",
+            desc="Cost for buying electricity from the grid per timestep"
+        )
 
     def compute(self, inputs, outputs, discrete_inputs, discrete_outputs):
         # load correct price file for the facility from data directory
@@ -124,8 +154,10 @@ class CustomGridCostModel(CostModelBaseClass):
             + f"/{int(inputs['plant_code'][0])}_2025_price_profile.csv"
         )
         price_data = pd.read_csv(price_file)  # combined day-ahead LMP + capacity value
-        price_data["price_data"] = (
-            price_data["LMP ($/MWh)"] + price_data["Capacity Payment ($/MWh)"]
+        lmp_price = price_data["LMP ($/MWh)"].values / 1000  # $/MWh to $/kWh
+        capacity_price = price_data["Capacity Payment ($/MWh)"].values / 1000  # $/MWh to $/kWh
+        combined_price = (
+            lmp_price + capacity_price
         )
 
         interconnection_size = inputs["interconnection_size"]
@@ -144,21 +176,29 @@ class CustomGridCostModel(CostModelBaseClass):
 
         # Add buying costs if buy price is configured
         # if self.config.electricity_buy_price is not None:
-        buy_price = price_data["price_data"].values / 1000  # $/MWh to $/kWh
-        outputs["electricity_buy_price"] = buy_price
+        # only use energy price for buying
+        outputs["electricity_buy_price"] = lmp_price
+        outputs["grid_buy_energy_cost"] = (self.dt / 3600) * inputs["electricity_out"] * lmp_price
         # Scalar or per-timestep: same cost each year
-        varopex += np.sum((self.dt / 3600) * inputs["electricity_out"] * buy_price)
+        varopex += np.sum(outputs["grid_buy_energy_cost"])
         outputs["gross_electricity_cost"] = np.sum(
-            (self.dt / 3600) * inputs["electricity_out"] * buy_price
+            outputs["grid_buy_energy_cost"]
         )
+        
 
         # Add selling revenue if sell price is configured
         # if self.config.electricity_sell_price is not None:
-        sell_price = price_data["price_data"].values / 1000  # $/MWh to $/kWh
-        outputs["electricity_sell_price"] = sell_price
-        varopex -= np.sum((self.dt / 3600) * inputs["electricity_sold"] * sell_price)
+        # use combined price data for selling
+        outputs["electricity_sell_price"] = combined_price
+        electricity_sold = (self.dt / 3600) * inputs["electricity_sold"]
+        varopex -= np.sum(electricity_sold * combined_price)
         outputs["gross_electricity_revenue"] = np.sum(
-            (self.dt / 3600) * inputs["electricity_sold"] * sell_price
+            electricity_sold * combined_price
         )
+        outputs["grid_sell_energy_revenue"] = electricity_sold * lmp_price
+        outputs["total_grid_sell_energy_revenue"] = np.sum(outputs["grid_sell_energy_revenue"])
+        outputs["grid_sell_capacity_revenue"] = electricity_sold * capacity_price
+        outputs["total_grid_sell_capacity_revenue"] = np.sum(outputs["grid_sell_capacity_revenue"])
+        
 
         outputs["VarOpEx"] = varopex
