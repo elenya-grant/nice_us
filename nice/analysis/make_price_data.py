@@ -158,7 +158,7 @@ net_cone = {
     "MISO": 6.49,
     "PJM": 5.50,
     "CISO": 7.34,
-    "ERCO": 11.67,
+    "ERCO": 0, #11.67, no capacity market
     "SPP": 7.13,
     "NYIS": 5.80,
 }
