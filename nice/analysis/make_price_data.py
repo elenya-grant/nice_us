@@ -14,8 +14,41 @@ use_sitelists = True
 # unique markets currently in LMP data as of 20261009
 # ["RT5AVG", "DAH", "RTH", "HA15AVG", "RT15AVG", "RUC HOURLY"]
 market_type = "DAH"  # Can use "DAH" and "HA15AVG" for day-ahead markets
-run_version = "v2b"
+run_version = "v4"
 
+# v4 is first run version to use "lmp_facility_map_ready.csv"
+
+
+
+def calc_capacity_payment_schedule(net_load, net_cone_value_per_MW_yr):
+    # Calculate capacity payment
+
+    success = True
+    # get the top percentage of net load hours to use for capacity value calculation
+    percentage_net_load = 0.03
+    threshold_value = np.sort(net_load)[-int(len(net_load) * percentage_net_load)]
+
+    # find the top percentage of net load hours, retain the indices of those hours
+    # top_percentage_indices = np.argwhere(net_load > threshold_value).flatten()
+
+    # keep vals in top_percentage_indices else zero
+    top_net_load = np.where(net_load > threshold_value, net_load, 0)
+    # get the ratio of net load to sum of net load, distribute capacity payments over these hours
+    total_peak_vals = np.sum(top_net_load)
+
+    if total_peak_vals == 0.0:
+        success = False
+        # msg = f"Plant {p} in BA {ba_code} has total peak vals of 0"
+        # warnings.warn(msg, UserWarning, stacklevel=3)
+
+    net_load_ratio = top_net_load / total_peak_vals
+
+    # if iso_name not in net_cone:  # NOTE: balancing authority or ISO?
+    #     iso_name = "OTHER"
+    # distributed the net_cone_per_kw_year over highest net load hours of the year
+    # capacity_value = net_cone_per_MW_year[iso_name] * net_load_ratio  # $/MW
+    capacity_value = net_cone_value_per_MW_yr * net_load_ratio
+    return capacity_value, success
 
 def load_facility_files(data_year=2025, n_thermal_facs=616):
     sitelist_dir = LIBRARY_DIR / "h2i"
@@ -45,7 +78,9 @@ else:
     net_load_fname = "Net_Load.csv"
     lmp_dir = Path("/projects/surint/campd_spheres/LMP/output_by_node_year")
     # lmp_dir = Path("/projects/surint/campd_spheres/lmp_data")
-    price_node_mapper_path = lmp_dir.parent / "facility_lmp_mapping.csv"
+    # price_node_mapper_path = lmp_dir.parent / "facility_lmp_mapping.csv"
+    lmp_data_cols = []
+    price_node_mapper_path = lmp_dir.parent / "lmp_facility_map_ready.csv"
     price_profile_output_dir = Path("/projects/surint/campd_spheres/price_profiles")
 
 check_create_folder(price_profile_output_dir)
@@ -116,14 +151,14 @@ else:
     # only keep plants that have the same "Plant Code" that are in generators
     plants = plants[plants["Plant Code"].isin(generators["Plant Code"].unique())]
 
-# get net cone value for correct ISO
+# -------- define net cone value for correct ISO -------- 
 # https://www.lazard.com/research-insights/levelized-cost-of-energyplus-lcoeplus/
 # $/kw-month
 net_cone = {
     "MISO": 6.49,
     "PJM": 5.50,
     "CISO": 7.34,
-    "ERCO": 11.67,
+    "ERCO": 0, #11.67, no capacity market
     "SPP": 7.13,
     "NYIS": 5.80,
 }
@@ -134,17 +169,23 @@ net_cone_per_MW_year = {
     iso: value * 1000 for iso, value in net_cone_per_kw_year.items()
 }
 
-# load LMP plant id to price node mapper
-price_node_cols = [
-    "Plant Code",
-    "Generator ID",
-    "Prime Mover",
-    "Mapped_Price_Node",
-    "Mapped_ISO_Name",
-    "Mapped_Price_Node_ID",
-]
-price_node_mapper = pd.read_csv(price_node_mapper_path, usecols=price_node_cols)
+# -------- load LMP plant id to price node mapper -------- 
+# below was for "facility_lmp_mapping.csv"
+# price_node_cols = [
+#     "Plant Code",
+#     "Generator ID",
+#     "Prime Mover",
+#     "Mapped_Price_Node",
+#     "Mapped_ISO_Name",
+#     "Mapped_Price_Node_ID",
+# ]
+# price_node_mapper = pd.read_csv(price_node_mapper_path, usecols=price_node_cols)
+# convert_to_type(price_node_mapper, "Plant Code", "Plant Code", int)
+
+# below is for lmp_facility_map_ready.csv
+price_node_mapper = pd.read_csv(price_node_mapper_path)
 convert_to_type(price_node_mapper, "Plant Code", "Plant Code", int)
+price_node_mapper.rename(columns = {"Price_Node": "Mapped_Price_Node", "Price_Node_ID": "Mapped_Price_Node_ID"}, inplace=True)
 
 # Filter price node mapper to only include plants that are in the filtered plants list
 price_node_mapper = price_node_mapper[
@@ -206,18 +247,14 @@ price_node_mapper_iso_rename = {
 }
 
 # rename ISOs in price node mapper
-price_node_mapper.replace(
-    to_replace={"Mapped_ISO_Name": price_node_mapper_iso_rename}, inplace=True
-)
+if "Mapped_ISO_Name" in price_node_mapper.columns.to_list():
+    price_node_mapper.replace(
+        to_replace={"Mapped_ISO_Name": price_node_mapper_iso_rename}, inplace=True
+    )
 
 price_node_mapper.set_index(keys=["Plant Code"], inplace=True)
 
-# for each unique plant code in generators
-# net_load = pd.read_csv(path + f"EIA930_BALANCE_{data_year}_with_Net_Load.csv")
-# NOTE: or should we be using Net_Load.csv?
-# net_load1 = pd.read_csv(net_load_dir + f"EIA930_BALANCE_{data_year}_Jan_Jun.csv")
-# net_load2 = pd.read_csv(net_load_dir + +f"EIA930_BALANCE_{data_year}_Jul_Dec.csv")
-# net_load_df = pd.concat([net_load1, net_load2], axis=1)
+# -------- load the net load profiles -------- 
 net_load_df = pd.read_csv(net_load_dir / net_load_fname)
 time_profile = pd.to_datetime(net_load_df["UTC Time at End of Hour"], utc=True)
 net_load_df["Year (UTC)"] = [
@@ -228,7 +265,9 @@ net_load_df["Time Profile (UTC)"] = time_profile
 net_load_df = net_load_df[net_load_df["Year (UTC)"] == data_year]
 
 # fill nans with zero
-net_load_df["Net_Load"] = net_load_df["Net_Load"].fillna(0)
+# net_load_df["Net_Load"] = net_load_df["Net_Load"].fillna(0)
+# ts = pd.date_range(start=f"{data_year}-01-01 00:00:00", end=f"{data_year}-12-31 23:00:00", freq="1h")
+
 
 # Get list of balancing authorities that don't have full timeseries data
 load_bas = net_load_df["Balancing Authority"].unique()
@@ -236,48 +275,105 @@ net_load_df.set_index(keys="Balancing Authority", inplace=True)
 non_yearly_bas = {
     k: len(net_load_df.loc[k]) for k in load_bas if len(net_load_df.loc[k]) != 8760
 }
-
+# Generation only BAs: AVRN, DEAA, EEI, GLHB, GRID, GRIF, GWA, HGMA, SEPA, SIKE, WWA, YAD
+gen_only_bas = ["AVRN", "DEAA", "EEI", "GLHB", "GRID", "GRIF", "GWA", "HGMA", "SEPA", "SIKE", "WWA", "YAD"]
+non_conus_bas = ['NBSO', 'CEA', 'HECO', 'GRIS']
+["CISO", "CPLE", "CPLW", "DUK", "ERCO", "FMPP", "FPC", "FPL", "GVL", "IID", "JEA", "LDWP", "LGEE", "PJM", "SC", "SEC", "TEC"]
 print(f"BAS with non-yearly data are: {list(non_yearly_bas.keys())}")
 buggy_facility_ids = []
-missing_market = []
 facilties_saved = []
+facilities_wrong_lmp_length = []
+n_capacity_payment_warnings = 0
+n_wrong_length_lmp = 0
 # NOTE: only Balancing authority that does not have yearly net load
 # info and is in the `plants`` dataframe is 'WWA'
 # and its only for 1 site (plant code 57995), which is a wind plant
 # plant_codes = [879]
 for p in plants["Plant Code"].unique():
-    # Generation only BAs: AVRN, DEAA, EEI, GLHB, GRID, GRIF, GWA, HGMA, SEPA, SIKE, WWA, YAD
-    gen_only_bas = ["AVRN", "DEAA", "EEI", "GLHB", "GRID", "GRIF", "GWA", "HGMA", "SEPA", "SIKE", "WWA", "YAD"]
-    # plant id 69875 has 1 generatior, so does 69748
     # Get balancing authority code for this plant (for net-load data)
     ba_code = plants.loc[plants["Plant Code"] == p, "Balancing Authority Code"].values[
         0
     ]
-    if ba_code in gen_only_bas:
-        continue
+
+    # ----- Get Capacity Payment Value For Balancing Authority-----
+    if ba_code in net_cone_per_MW_year:
+        net_cone_cost_for_plant_per_MW_year = net_cone_per_MW_year[ba_code]
+    else:
+        net_cone_cost_for_plant_per_MW_year = net_cone_per_MW_year["OTHER"]
+
+    # ----- Get Net Load For Balancing Authority-----
+    if (ba_code in gen_only_bas) or (ba_code in non_conus_bas):
+        # GRIS is grid force south (new mexico), could pretend its GRID which is gen_only_bas
+        # generation only BAS have zero capacity payment value
+        net_load = np.zeros(8760)
+        capacity_value = np.zeros(8760)
+        time_index = pd.date_range(start=f"{data_year}-01-01 00:00:00", end=f"{data_year}-12-31 23:00:00", freq="1h")
+
+    elif (ba_code in load_bas) and (ba_code not in non_yearly_bas):
+        # we have the data and its the right length
+        # non-generation only, we use the load
+        net_load = net_load_df.loc[ba_code].copy(deep=True)
+        net_load.set_index("Time Profile (UTC)", inplace=True)
+        net_load.sort_index(inplace=True)
+        # fix the nans
+        net_load_mw = net_load["Net_Load"].interpolate(method="time") # to get rid of nans
+        # if len(net_load_mw)!=8760:
+        #     # had nans that were dropped
+        #     net_load_interp = pd.DataFrame(columns=["Net Load (MW)"], index=ts)
+        #     net_load_interp = net_load_interp.index.map(lambda x: net_load_mw)
+        time_index = net_load.index.to_list()
+        # get net load for capacity value calculation
+        net_load_kW = net_load_mw.values * 1000  # MW -> kW
+        capacity_value, run_successful = calc_capacity_payment_schedule(net_load_kW, net_cone_cost_for_plant_per_MW_year)
+        if not run_successful:
+            # also unexpected
+            msg = f"Plant {p} in BA {ba_code} has total peak vals of 0"
+            warnings.warn(msg, UserWarning, stacklevel=3)
+            n_capacity_payment_warnings += 1
+    
+    elif ba_code in non_yearly_bas:
+        # dont expect to get into this situation
+        # load profile does not have all time indices
+        buggy_facility_ids.append(p)
+        msg = (
+            f"Plant {p}: Balancing Authority {ba_code} has non-yearly net_load "
+            f"(only has {non_yearly_bas[ba_code]} time values)"
+        )
+        warnings.warn(msg,UserWarning,stacklevel=3)
+        n_capacity_payment_warnings += 1
+    
+    elif ba_code not in load_bas:
+        # dont expect to get into this situation
+        # balancing authority not in net load dataframe
+        buggy_facility_ids.append(p)
+        print(f"Plant {p} has invalid balancing authority {ba_code}")
+        n_capacity_payment_warnings += 1
+        # continue
+    
+    else:
+        # dont expect to get into this situation
+        buggy_facility_ids.append(p)
+        print(f"Unexpected situation for plant {p} with balancing authority {ba_code}")
+        n_capacity_payment_warnings += 1
+
+
     
     # match EIA_860 BA to Net_Load Balancing Authorities for the "Plant Code"
     # use "Mapped_Price_Node_ID" to find the correct LMP file for the "Plant Code"
     # if the BA is in the gen_only BAs we skip the net load process
     
     
-    if ba_code in non_yearly_bas:
-        warnings.warn(
-            f"Balancing Authority {ba_code} has non-yearly net_load",
-            UserWarning,
-            stacklevel=3,
-        )
-        # should we add the plant to the buggy lists or is that done later?
-
-    if isinstance(price_node_mapper.loc[p, "Mapped_ISO_Name"], str):
+    if isinstance(price_node_mapper.loc[p, "Mapped_Price_Node_ID"], int | str | float | bool):
         # just one generator in the price_node_mapper
-        iso_name = price_node_mapper.loc[p, "Mapped_ISO_Name"]
+        # iso_name = price_node_mapper.loc[p, "Mapped_ISO_Name"]
         price_node_id = price_node_mapper.loc[p, "Mapped_Price_Node_ID"]
     else:
         # Get ISO name
-        iso_name = price_node_mapper.loc[p, "Mapped_ISO_Name"].values[0]
+        # iso_name = price_node_mapper.loc[p, "Mapped_ISO_Name"].values[0]
         price_node_id = price_node_mapper.loc[p, "Mapped_Price_Node_ID"].values[0]
-
+    
+    # if iso_name not in net_cone: 
+    #     iso_name = "OTHER"
     # inputs = {"plant_code": [p]}
 
     # --------- Load LMP file
@@ -328,64 +424,27 @@ for p in plants["Plant Code"].unique():
                 f"Facility ID {p} (with LMP Price Node ID {price_node_id}) "
                 f"for {data_year} has price of length {len(lmp_da)}"
             )
-            warnings.warn(msg, UserWarning, stacklevel=3)
+            # print(msg)
+            # warnings.warn(msg, UserWarning, stacklevel=3)
             buggy_facility_ids.append(p)
+            n_wrong_length_lmp += 1
+            facilities_wrong_lmp_length.append(p)
+
     else:
         lmp_da = np.zeros(8760)
         msg = f"LMP file {lmp_fpath} does not exist."
+        # print(msg)
         # warnings.warn(msg, UserWarning, stacklevel=3)
         buggy_facility_ids.append(p)
 
+    
+    
     if p in buggy_facility_ids:
+        # dont save data if its buggy
         continue
 
-    # ----- Get Net Load For Balancing Authority-----
-    if ba_code not in load_bas:
-        buggy_facility_ids.append(p)
-        print(f"Plant {p} has invalid balancing authority {ba_code}")
-        continue
-
-    net_load = net_load_df.loc[ba_code].copy(deep=True)
-    net_load.set_index("Time Profile (UTC)", inplace=True)
-    net_load.sort_index(inplace=True)
-    time_index = net_load.index.to_list()
-
-    # get net load for capacity value calculation
-    net_load = net_load["Net_Load"].values * 1000  # MW -> kW
-    # TODO: local time? UTC? want net load values starting at 00:00 UTC
-    # Columns UTC Time at End of Hour, Local Time at End of Hour, Hour Number, Data Date
-
-    if len(net_load) != 8760:
-        msg = (
-            f"Facility ID {p} (in Balancing Authority {ba_code}) "
-            f"has Net_Load of length {len(net_load)}"
-        )
-        warnings.warn(msg, UserWarning, stacklevel=3)
-        buggy_facility_ids.append(p)
-
-    # get the top percentage of net load hours to use for capacity value calculation
-    percentage_net_load = 0.03
-    threshold_value = np.sort(net_load)[-int(len(net_load) * percentage_net_load)]
-
-    # find the top percentage of net load hours, retain the indices of those hours
-    top_percentage_indices = np.argwhere(net_load > threshold_value).flatten()
-
-    # keep vals in top_percentage_indices else zero
-    top_net_load = np.where(net_load > threshold_value, net_load, 0)
-    # get the ratio of net load to sum of net load, distribute capacity payments over these hours
-    total_peak_vals = np.sum(top_net_load)
-
-    if total_peak_vals == 0.0:
-        msg = f"Plant {p} in BA {ba_code} has total peak vals of 0"
-        warnings.warn(msg, UserWarning, stacklevel=3)
-        buggy_facility_ids.append(p)
-
-    net_load_ratio = top_net_load / total_peak_vals
-
-    if iso_name not in net_cone:  # NOTE: balancing authority or ISO?
-        iso_name = "OTHER"
-    # distributed the net_cone_per_kw_year over highest net load hours of the year
-    capacity_value = net_cone_per_MW_year[iso_name] * net_load_ratio  # $/MW
+    
+    
 
     # Combine capacity value with lmp_da, price
     # price_profile = capacity_value + lmp_da
@@ -420,6 +479,11 @@ if bool(facilties_saved):
     # good.to_csv(LIBRARY_DIR / "h2i" / f"saved_price_data_facilities_{run_version}.csv")
     print(f"{len(good)} facilities have complete data")
 
+if bool(facilities_wrong_lmp_length):
+    wl = pd.Series(sorted(set(facilities_wrong_lmp_length)), name="Plant Code")
+    wl.to_csv(LIBRARY_DIR/"h2i"/f"wrong_length_price_data_facilities_{run_version}.csv")
+    print(f"{n_wrong_length_lmp} facilities have wrong length")
+
 if bool(facilties_saved):
     facs_included = set(plants["Plant Code"].to_list()) - (
         set(buggy_facility_ids) | set(missing_facility_ids)
@@ -429,3 +493,4 @@ if bool(facilties_saved):
     print(f"{len(sv)} facilities have recently saved price data")
 
 # print(f"{len(missing_market)} facilities missing 'Market' column: {missing_market}")
+print(f"Capacity payment related warnings occurred {n_capacity_payment_warnings} times")
