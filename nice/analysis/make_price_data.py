@@ -14,7 +14,7 @@ use_sitelists = True
 # unique markets currently in LMP data as of 20261009
 # ["RT5AVG", "DAH", "RTH", "HA15AVG", "RT15AVG", "RUC HOURLY"]
 market_type = "DAH"  # Can use "DAH" and "HA15AVG" for day-ahead markets
-run_version = "v4"
+run_version = "v5"
 
 # v4 is first run version to use "lmp_facility_map_ready.csv"
 
@@ -158,11 +158,12 @@ net_cone = {
     "MISO": 6.49,
     "PJM": 5.50,
     "CISO": 7.34,
-    "ERCO": 0, #11.67, no capacity market
+    # "ERCO": 0, #11.67, no capacity market
     "SPP": 7.13,
     "NYIS": 5.80,
 }
-net_cone["OTHER"] = np.average(list(net_cone.values()))
+net_cone["ISNE"] = np.average(list(net_cone.values()))
+net_cone["ERCO"] = 0.0 # no capacity market
 net_cone_per_kw_year = {iso: value * 12 for iso, value in net_cone.items()}  # $/kw-year
 # Convert to USD/MW-year
 net_cone_per_MW_year = {
@@ -243,7 +244,7 @@ price_node_mapper_iso_rename = {
     "ERCOT ISO": "ERCO",
     "New England ISO": "ISNE", 
     "New York ISO": "NYIS",
-    "Northern Maine Independent System A": "OTHER", 
+    # "Northern Maine Independent System A": "OTHER", 
 }
 
 # rename ISOs in price node mapper
@@ -299,7 +300,9 @@ for p in plants["Plant Code"].unique():
     if ba_code in net_cone_per_MW_year:
         net_cone_cost_for_plant_per_MW_year = net_cone_per_MW_year[ba_code]
     else:
-        net_cone_cost_for_plant_per_MW_year = net_cone_per_MW_year["OTHER"]
+        net_cone_cost_for_plant_per_MW_year = None #net_cone_per_MW_year["OTHER"]
+        buggy_facility_ids.append(p)
+        continue
 
     # ----- Get Net Load For Balancing Authority-----
     if (ba_code in gen_only_bas) or (ba_code in non_conus_bas):

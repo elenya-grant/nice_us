@@ -26,7 +26,7 @@ add_on_plants_to_run = ["solar_battery"]  # ["solar", "battery", "solar_battery"
 n_thermal_facs = 616
 
 ## below are inputs for prepping sites ##
-make_price_run_version = "v4"
+make_price_run_version = "v5"
 lib_subdir = "h2i_sweep_0"
 ## below is for chunking sites if needed
 
