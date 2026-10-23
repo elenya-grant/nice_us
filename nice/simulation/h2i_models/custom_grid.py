@@ -146,7 +146,18 @@ class CustomGridCostModel(CostModelBaseClass):
             units="USD/h",
             desc="Cost for buying electricity from the grid per timestep"
         )
-
+        self.add_output(
+            "energy_price",
+            shape=self.n_timesteps,
+            units="USD/(kW*h)",
+            desc="Price of energy per timestep"
+        )
+        self.add_output(
+            "capacity_price",
+            shape=self.n_timesteps,
+            units="USD/(kW*h)",
+            desc="Price of capacity per timestep"
+        )
     def compute(self, inputs, outputs, discrete_inputs, discrete_outputs):
         # load correct price file for the facility from data directory
         price_file = (
@@ -156,6 +167,8 @@ class CustomGridCostModel(CostModelBaseClass):
         price_data = pd.read_csv(price_file)  # combined day-ahead LMP + capacity value
         lmp_price = price_data["LMP ($/MWh)"].values / 1000  # $/MWh to $/kWh
         capacity_price = price_data["Capacity Payment ($/MWh)"].values / 1000  # $/MWh to $/kWh
+        outputs["energy_price"] = lmp_price
+        outputs["capacity_price"] = capacity_price
         combined_price = (
             lmp_price + capacity_price
         )
