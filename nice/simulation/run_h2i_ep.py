@@ -55,14 +55,20 @@ def run_chunks(
     driver_cnfg["driver"]["parameter_sweep"]["filename"] = str(subset_fpath)
     driver_cnfg["recorder"]["file"] = f"cases.sql_{rank_number}"
 
-    driver_cnfg["recorder"]["includes"] = ['*']
+    driver_cnfg["recorder"]["includes"] = ['*', 'correlation.corr_*']
     driver_cnfg["recorder"]["excludes"] = [
                 "*resource_data", 
                 # "capex_adjusted_*", 
                 # "varopex_adjusted_*", 
                 # "opex_adjusted_*", 
+                "correlation.ts_*",
                 "*.*_in", 
-                "*.*_out",
+                "*.electricity_out",
+                "*.unmet_electricity_demand_out",
+                "*.unused_electricity_out",
+                "*.electricity_command_value",
+                "*.electricity_sold",
+                "*.electricity_excess",
                 "*.*_command_value",
                 "*.*_set_point",
                 "*.SOC",
@@ -71,7 +77,10 @@ def run_chunks(
                 "*.OpEx",
                 "*.marginal_cost",
                 "*.operational_life",
-                "*.cost_year"
+                "*.cost_year",
+                "*.replacement_schedule",
+                "*.replacement_schedule_*",
+                "*.varopex_adjusted_*",
                 ]
 
     # driver_cnfg["recorder"]["file"] = f"rank{rank_number}_cases.sql" #f"cases.sql_{rank_number}"
