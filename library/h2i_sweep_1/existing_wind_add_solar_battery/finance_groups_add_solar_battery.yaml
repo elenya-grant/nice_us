@@ -1,0 +1,29 @@
+---
+profast_npv:
+  finance_model: ProFastNPV
+  model_inputs:
+      # Zero on purpose. grid_sell already values every exported kilowatt-hour
+      # at that hour's LMP and reports it as negative VarOpEx, which ProFAST
+      # picks up as a coproduct. A nonzero price here would pay for the same
+      # energy a second time.
+    commodity_sell_price: 0.0
+    commodity_sell_price_units: USD/(kW*h)
+    params:
+      analysis_start_year: 2032
+      installation_time: 12  # months
+      inflation_rate: 0.025  # 0 for nominal analysis
+      discount_rate: 0.08  # is 0.085 for battery-only
+      debt_equity_ratio: 2.9840637450199203  # 74.9/25.1
+      property_tax_and_insurance: 0.0
+      total_income_tax_rate: 0.257
+      capital_gains_tax_rate: 0.0
+      sales_tax_rate: 0.0
+      debt_interest_rate: 0.065
+      debt_type: One time loan
+      loan_period_if_used: 30 # used for debt_type of "One time loan"
+      cash_onhand_months: 0
+      admin_expense: 0.00
+    capital_items:
+      depr_type: MACRS
+      depr_period: 5
+      refurb: [0.]
