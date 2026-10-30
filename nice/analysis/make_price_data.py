@@ -163,7 +163,6 @@ net_cone = {
     "NYIS": 5.80,
 }
 net_cone["ISNE"] = np.average(list(net_cone.values()))
-net_cone["ERCO"] = 0.0  # no capacity market
 net_cone_per_kw_year = {iso: value * 12 for iso, value in net_cone.items()}  # $/kw-year
 # Convert to USD/MW-year
 net_cone_per_MW_year = {
