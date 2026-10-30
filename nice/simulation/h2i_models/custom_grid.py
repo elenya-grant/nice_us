@@ -29,6 +29,8 @@ class CustomGridCostModelConfig(CostModelBaseConfig):
     interconnection_capex_per_kw: float = field()  # $/kW
     interconnection_opex_per_kw: float = field()  # $/kW/year
     fixed_interconnection_cost: float = field()  # $
+
+    data_directory: Path = field()  # Directory where all the grid data files are saved.
     buy_price_mode: str | None = field(
         default=None,
         # converter=(str.lower, str.strip),
@@ -43,7 +45,6 @@ class CustomGridCostModelConfig(CostModelBaseConfig):
             validators.in_(["lmp", "capacity_payment", "both"])
         ),
     )
-    data_directory: Path = field()  # Directory where all the grid data files are saved.
 
 
 class CustomGridCostModel(CostModelBaseClass):
