@@ -115,7 +115,7 @@ def make_existing_wind_plant_sitelist(data_year=2025):
 
     wind_data_agg["Turbine Hub Height (m)"] = wind_data_agg[
         ["Turbine Hub Height (m)", "Minimum Hub Height (m)"]
-    ].min(axis=1)
+    ].max(axis=1)
     wind_data_agg.drop(columns=["Minimum Hub Height (m)"], inplace=True)
     # wind_data_agg["Prime Mover"] = wind_data.groupby(level="Plant Code")
 
